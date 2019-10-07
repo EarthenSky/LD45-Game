@@ -1,36 +1,25 @@
-/*******************************************************************************************
-*
-*   raylib [core] example - Basic window (adapted for HTML5 platform)
-*
-*   This example is prepared to compile for PLATFORM_WEB, PLATFORM_DESKTOP and PLATFORM_RPI
-*   As you will notice, code structure is slightly diferent to the other examples...
-*   To compile it for PLATFORM_WEB just uncomment #define PLATFORM_WEB at beginning
-*
-*   This example has been created using raylib 1.3 (www.raylib.com)
-*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
-*
-*   Copyright (c) 2015 Ramon Santamaria (@raysan5)
-*
-********************************************************************************************/
-
 #include "raylib.h"
 
 //#define PLATFORM_WEB  // i dont need this for some reason
- 
 #if defined(PLATFORM_WEB)
     #include <emscripten/emscripten.h>
 #endif
 
-//----------------------------------------------------------------------------------
 // Global Variables Definition
-//----------------------------------------------------------------------------------
-int screenWidth = 800;
-int screenHeight = 450;
+int screenWidth = 640;
+int screenHeight = 640;
 
-//----------------------------------------------------------------------------------
+static Texture2D player;
+static Texture2D grid;
+
+int health;
+
 // Module Functions Declaration
-//----------------------------------------------------------------------------------
-void UpdateDrawFrame(void);     // Update and Draw one frame
+void InitGame();
+
+void UpdateDrawFrame();     // Update and Draw one frame
+void Update();
+void Draw();
 
 //----------------------------------------------------------------------------------
 // Main Entry Point
@@ -38,23 +27,16 @@ void UpdateDrawFrame(void);     // Update and Draw one frame
 int main()
 {
     // Initialization
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "arena game");
 
-#if defined(PLATFORM_WEB)
+    // Load images (Textures MUST be loaded after Window init)
+    player = LoadTexture("res/fox.png");
+    grid = LoadTexture("res/grid.png");
+
     emscripten_set_main_loop(UpdateDrawFrame, 0, 1);
-#else
-    SetTargetFPS(60);   // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
-    
-    // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
-    {
-        UpdateDrawFrame();
-    }
-#endif
 
     // De-Initialization
-    CloseWindow();        // Close window and OpenGL context
+    CloseWindow();  // Close window and OpenGL context
 
     return 0;
 }
@@ -62,18 +44,25 @@ int main()
 //----------------------------------------------------------------------------------
 // Module Functions Definition
 //----------------------------------------------------------------------------------
-void UpdateDrawFrame(void)
-{
-    // Update
-    //----------------------------------------------------------------------------------
-    // TODO: Update your variables here
-    //----------------------------------------------------------------------------------
+void InitGame() {
+    health=5;
+}
 
+void UpdateDrawFrame() {
+    Update();
+    
     BeginDrawing();
-
-        ClearBackground(RAYWHITE);
-
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-
+        Draw();
     EndDrawing();
+}
+
+// Update your variables here
+void Update() {
+
+}
+
+void Draw() {
+    ClearBackground(RAYWHITE);
+    DrawTexture(player, screenWidth/2 - player.width/2, screenHeight/2 - player.height/2, WHITE);
+    DrawText(FormatText("Health: %d", health), 16, 16, 20, LIGHTGRAY);
 }
