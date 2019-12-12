@@ -1,9 +1,14 @@
-#include "raylib.h"
+#ifndef RAYLIB
+    #define RAYLIB
+    #include "raylib.h"
+#endif
 
 //#define PLATFORM_WEB  // i dont need this for some reason
 #if defined(PLATFORM_WEB)
     #include <emscripten/emscripten.h>
 #endif
+
+#include "oper.h"
 
 // Global Variables Definition
 int screenWidth = 640;
@@ -32,11 +37,16 @@ int main()
     // Load images (Textures MUST be loaded after Window init)
     player = LoadTexture("res/fox.png");
     grid = LoadTexture("res/grid.png");
+    //background = ConstructBackground(&grid);
 
     emscripten_set_main_loop(UpdateDrawFrame, 0, 1);
 
     // De-Initialization
     CloseWindow();  // Close window and OpenGL context
+
+    UnloadTexture(player);
+    UnloadTexture(grid);
+    //UnloadTexture(background);
 
     return 0;
 }
@@ -64,5 +74,6 @@ void Update() {
 void Draw() {
     ClearBackground(RAYWHITE);
     DrawTexture(player, screenWidth/2 - player.width/2, screenHeight/2 - player.height/2, WHITE);
+    DrawTexture(grid, 0, 0, WHITE);
     DrawText(FormatText("Health: %d", health), 16, 16, 20, LIGHTGRAY);
 }

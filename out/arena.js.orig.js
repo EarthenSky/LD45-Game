@@ -38,8 +38,8 @@ Module.expectedDataFileDownloads++;
     } else {
       throw 'using preloaded data can only be done on a web page or in a web worker';
     }
-    var PACKAGE_NAME = 'main.data';
-    var REMOTE_PACKAGE_BASE = 'main.data';
+    var PACKAGE_NAME = 'arena.data';
+    var REMOTE_PACKAGE_BASE = 'arena.data';
     if (typeof Module['locateFilePackage'] === 'function' && !Module['locateFile']) {
       Module['locateFile'] = Module['locateFilePackage'];
       err('warning: you defined Module.locateFilePackage, that has been renamed to Module.locateFile (using your locateFilePackage for now)');
@@ -170,10 +170,10 @@ Module['FS_createPath']('/', 'res', true, true);
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
           }
-              Module['removeRunDependency']('datafile_main.data');
+              Module['removeRunDependency']('datafile_arena.data');
 
     };
-    Module['addRunDependency']('datafile_main.data');
+    Module['addRunDependency']('datafile_arena.data');
   
     if (!Module.preloadResults) Module.preloadResults = {};
   
@@ -194,7 +194,7 @@ Module['FS_createPath']('/', 'res', true, true);
   }
 
  }
- loadPackage({"files": [{"start": 0, "audio": 0, "end": 257, "filename": "/res/back.png"}, {"start": 257, "audio": 0, "end": 650, "filename": "/res/damage.png"}, {"start": 650, "audio": 0, "end": 1201, "filename": "/res/fox.png"}, {"start": 1201, "audio": 0, "end": 1821, "filename": "/res/grass_l.png"}, {"start": 1821, "audio": 0, "end": 2302, "filename": "/res/grass_s.png"}, {"start": 2302, "audio": 0, "end": 2631, "filename": "/res/grid.png"}, {"start": 2631, "audio": 0, "end": 12474, "filename": "/res/ld-grid.xcf"}, {"start": 12474, "audio": 0, "end": 15489, "filename": "/res/ld45-enemy.xcf"}, {"start": 15489, "audio": 0, "end": 22327, "filename": "/res/ld45-main.xcf"}, {"start": 22327, "audio": 0, "end": 22837, "filename": "/res/slime_b.png"}, {"start": 22837, "audio": 0, "end": 23318, "filename": "/res/slime_p.png"}, {"start": 23318, "audio": 0, "end": 23802, "filename": "/res/slime_y.png"}], "remote_package_size": 23802, "package_uuid": "3b4d9b02-7520-4763-83a9-5534ada3ddfa"});
+ loadPackage({"files": [{"start": 0, "audio": 0, "end": 257, "filename": "/res/back.png"}, {"start": 257, "audio": 0, "end": 650, "filename": "/res/damage.png"}, {"start": 650, "audio": 0, "end": 1201, "filename": "/res/fox.png"}, {"start": 1201, "audio": 0, "end": 1821, "filename": "/res/grass_l.png"}, {"start": 1821, "audio": 0, "end": 2302, "filename": "/res/grass_s.png"}, {"start": 2302, "audio": 0, "end": 2631, "filename": "/res/grid.png"}, {"start": 2631, "audio": 0, "end": 12474, "filename": "/res/ld-grid.xcf"}, {"start": 12474, "audio": 0, "end": 15489, "filename": "/res/ld45-enemy.xcf"}, {"start": 15489, "audio": 0, "end": 22327, "filename": "/res/ld45-main.xcf"}, {"start": 22327, "audio": 0, "end": 22837, "filename": "/res/slime_b.png"}, {"start": 22837, "audio": 0, "end": 23318, "filename": "/res/slime_p.png"}, {"start": 23318, "audio": 0, "end": 23802, "filename": "/res/slime_y.png"}], "remote_package_size": 23802, "package_uuid": "53db2f9a-5b77-432f-ba96-dd69b92c60a6"});
 
 })();
 
@@ -1370,11 +1370,11 @@ function updateGlobalBufferAndViews(buf) {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 29152,
+    STACK_BASE = 29168,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5272032,
-    DYNAMIC_BASE = 5272032,
-    DYNAMICTOP_PTR = 28944;
+    STACK_MAX = 5272048,
+    DYNAMIC_BASE = 5272048,
+    DYNAMICTOP_PTR = 28960;
 
 
 
@@ -1656,7 +1656,7 @@ function isDataURI(filename) {
 
 
 
-var wasmBinaryFile = 'main.wasm';
+var wasmBinaryFile = 'arena.wasm';
 if (!isDataURI(wasmBinaryFile)) {
   wasmBinaryFile = locateFile(wasmBinaryFile);
 }
@@ -1795,7 +1795,7 @@ var ASM_CONSTS = [];
 
 
 
-// STATICTOP = STATIC_BASE + 28128;
+// STATICTOP = STATIC_BASE + 28144;
 /* global initializers */ /*__ATINIT__.push();*/
 
 
@@ -1806,7 +1806,7 @@ var ASM_CONSTS = [];
 
 
 /* no memory initializer */
-var tempDoublePtr = 29136
+var tempDoublePtr = 29152
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
   HEAP8[tempDoublePtr] = HEAP8[ptr];
@@ -9824,8 +9824,8 @@ var inf = global.Infinity;
   var jsStackTrace=env.jsStackTrace;
   var stackTrace=env.stackTrace;
   var stringToNewUTF8=env.stringToNewUTF8;
-  var STACKTOP = 29152;
-  var STACK_MAX = 5272032;
+  var STACKTOP = 29168;
+  var STACK_MAX = 5272048;
   var tempFloat = Math_fround(0);
   var asyncState = 0;
   const f0 = Math_fround(0);
@@ -9841,16 +9841,16 @@ function _malloc(i1) {
  do if (i1 >>> 0 < 245) {
   i10 = i1 >>> 0 < 11 ? 16 : i1 + 11 & -8;
   i1 = i10 >>> 3;
-  i12 = HEAP32[6846] | 0;
+  i12 = HEAP32[6851] | 0;
   i2 = i12 >>> i1;
   if (i2 & 3 | 0) {
    i4 = (i2 & 1 ^ 1) + i1 | 0;
-   i5 = 27424 + (i4 << 1 << 2) | 0;
+   i5 = 27444 + (i4 << 1 << 2) | 0;
    i1 = i5 + 8 | 0;
    i2 = HEAP32[i1 >> 2] | 0;
    i6 = i2 + 8 | 0;
    i3 = HEAP32[i6 >> 2] | 0;
-   if ((i3 | 0) == (i5 | 0)) HEAP32[6846] = i12 & ~(1 << i4); else {
+   if ((i3 | 0) == (i5 | 0)) HEAP32[6851] = i12 & ~(1 << i4); else {
     HEAP32[i3 + 12 >> 2] = i5;
     HEAP32[i1 >> 2] = i3;
    }
@@ -9862,7 +9862,7 @@ function _malloc(i1) {
    STACKTOP = i15;
    return i14 | 0;
   }
-  i11 = HEAP32[6848] | 0;
+  i11 = HEAP32[6853] | 0;
   if (i10 >>> 0 > i11 >>> 0) {
    if (i2 | 0) {
     i3 = 2 << i1;
@@ -9878,14 +9878,14 @@ function _malloc(i1) {
     i3 = i3 >>> i1;
     i4 = i3 >>> 1 & 1;
     i4 = (i2 | i8 | i6 | i1 | i4) + (i3 >>> i4) | 0;
-    i3 = 27424 + (i4 << 1 << 2) | 0;
+    i3 = 27444 + (i4 << 1 << 2) | 0;
     i1 = i3 + 8 | 0;
     i6 = HEAP32[i1 >> 2] | 0;
     i8 = i6 + 8 | 0;
     i2 = HEAP32[i8 >> 2] | 0;
     if ((i2 | 0) == (i3 | 0)) {
      i2 = i12 & ~(1 << i4);
-     HEAP32[6846] = i2;
+     HEAP32[6851] = i2;
     } else {
      HEAP32[i2 + 12 >> 2] = i3;
      HEAP32[i1 >> 2] = i2;
@@ -9898,12 +9898,12 @@ function _malloc(i1) {
     HEAP32[i5 + 4 >> 2] = i7 | 1;
     HEAP32[i6 + i14 >> 2] = i7;
     if (i11 | 0) {
-     i4 = HEAP32[6851] | 0;
+     i4 = HEAP32[6856] | 0;
      i1 = i11 >>> 3;
-     i3 = 27424 + (i1 << 1 << 2) | 0;
+     i3 = 27444 + (i1 << 1 << 2) | 0;
      i1 = 1 << i1;
      if (!(i2 & i1)) {
-      HEAP32[6846] = i2 | i1;
+      HEAP32[6851] = i2 | i1;
       i1 = i3 + 8 | 0;
       i2 = i3;
      } else {
@@ -9916,13 +9916,13 @@ function _malloc(i1) {
      HEAP32[i4 + 8 >> 2] = i2;
      HEAP32[i4 + 12 >> 2] = i3;
     }
-    HEAP32[6848] = i7;
-    HEAP32[6851] = i5;
+    HEAP32[6853] = i7;
+    HEAP32[6856] = i5;
     i14 = i8;
     STACKTOP = i15;
     return i14 | 0;
    }
-   i6 = HEAP32[6847] | 0;
+   i6 = HEAP32[6852] | 0;
    if (i6) {
     i8 = (i6 & 0 - i6) + -1 | 0;
     i5 = i8 >>> 12 & 16;
@@ -9934,7 +9934,7 @@ function _malloc(i1) {
     i2 = i8 >>> 1 & 2;
     i8 = i8 >>> i2;
     i9 = i8 >>> 1 & 1;
-    i9 = HEAP32[27688 + ((i4 | i5 | i7 | i2 | i9) + (i8 >>> i9) << 2) >> 2] | 0;
+    i9 = HEAP32[27708 + ((i4 | i5 | i7 | i2 | i9) + (i8 >>> i9) << 2) >> 2] | 0;
     i8 = (HEAP32[i9 + 4 >> 2] & -8) - i10 | 0;
     i2 = i9;
     while (1) {
@@ -9989,11 +9989,11 @@ function _malloc(i1) {
      } while (0);
      do if (i5 | 0) {
       i1 = HEAP32[i9 + 28 >> 2] | 0;
-      i2 = 27688 + (i1 << 2) | 0;
+      i2 = 27708 + (i1 << 2) | 0;
       if ((i9 | 0) == (HEAP32[i2 >> 2] | 0)) {
        HEAP32[i2 >> 2] = i3;
        if (!i3) {
-        HEAP32[6847] = i6 & ~(1 << i1);
+        HEAP32[6852] = i6 & ~(1 << i1);
         break;
        }
       } else {
@@ -10023,12 +10023,12 @@ function _malloc(i1) {
       HEAP32[i7 + 4 >> 2] = i8 | 1;
       HEAP32[i7 + i8 >> 2] = i8;
       if (i11 | 0) {
-       i4 = HEAP32[6851] | 0;
+       i4 = HEAP32[6856] | 0;
        i1 = i11 >>> 3;
-       i3 = 27424 + (i1 << 1 << 2) | 0;
+       i3 = 27444 + (i1 << 1 << 2) | 0;
        i1 = 1 << i1;
        if (!(i1 & i12)) {
-        HEAP32[6846] = i1 | i12;
+        HEAP32[6851] = i1 | i12;
         i1 = i3 + 8 | 0;
         i2 = i3;
        } else {
@@ -10041,8 +10041,8 @@ function _malloc(i1) {
        HEAP32[i4 + 8 >> 2] = i2;
        HEAP32[i4 + 12 >> 2] = i3;
       }
-      HEAP32[6848] = i8;
-      HEAP32[6851] = i7;
+      HEAP32[6853] = i8;
+      HEAP32[6856] = i7;
      }
      i14 = i9 + 8 | 0;
      STACKTOP = i15;
@@ -10053,7 +10053,7 @@ function _malloc(i1) {
  } else if (i1 >>> 0 > 4294967231) i10 = -1; else {
   i1 = i1 + 11 | 0;
   i10 = i1 & -8;
-  i4 = HEAP32[6847] | 0;
+  i4 = HEAP32[6852] | 0;
   if (i4) {
    i2 = 0 - i10 | 0;
    i1 = i1 >>> 8;
@@ -10066,7 +10066,7 @@ function _malloc(i1) {
     i8 = 14 - (i11 | i12 | i8) + (i14 << i8 >>> 15) | 0;
     i8 = i10 >>> (i8 + 7 | 0) & 1 | i8 << 1;
    }
-   i1 = HEAP32[27688 + (i8 << 2) >> 2] | 0;
+   i1 = HEAP32[27708 + (i8 << 2) >> 2] | 0;
    L79 : do if (!i1) {
     i3 = 0;
     i1 = 0;
@@ -10112,7 +10112,7 @@ function _malloc(i1) {
      i12 = i1 >>> 1 & 2;
      i1 = i1 >>> i12;
      i3 = i1 >>> 1 & 1;
-     i3 = HEAP32[27688 + ((i8 | i9 | i11 | i12 | i3) + (i1 >>> i3) << 2) >> 2] | 0;
+     i3 = HEAP32[27708 + ((i8 | i9 | i11 | i12 | i3) + (i1 >>> i3) << 2) >> 2] | 0;
      i1 = 0;
     }
     if (!i3) {
@@ -10136,7 +10136,7 @@ function _malloc(i1) {
      i1 = i5;
     }
    }
-   if (i9) if (i7 >>> 0 < ((HEAP32[6848] | 0) - i10 | 0) >>> 0) {
+   if (i9) if (i7 >>> 0 < ((HEAP32[6853] | 0) - i10 | 0) >>> 0) {
     i8 = i9 + i10 | 0;
     if (i8 >>> 0 > i9 >>> 0) {
      i6 = HEAP32[i9 + 24 >> 2] | 0;
@@ -10175,12 +10175,12 @@ function _malloc(i1) {
      } while (0);
      do if (i6) {
       i2 = HEAP32[i9 + 28 >> 2] | 0;
-      i3 = 27688 + (i2 << 2) | 0;
+      i3 = 27708 + (i2 << 2) | 0;
       if ((i9 | 0) == (HEAP32[i3 >> 2] | 0)) {
        HEAP32[i3 >> 2] = i1;
        if (!i1) {
         i4 = i4 & ~(1 << i2);
-        HEAP32[6847] = i4;
+        HEAP32[6852] = i4;
         break;
        }
       } else {
@@ -10211,11 +10211,11 @@ function _malloc(i1) {
       HEAP32[i8 + i7 >> 2] = i7;
       i1 = i7 >>> 3;
       if (i7 >>> 0 < 256) {
-       i3 = 27424 + (i1 << 1 << 2) | 0;
-       i2 = HEAP32[6846] | 0;
+       i3 = 27444 + (i1 << 1 << 2) | 0;
+       i2 = HEAP32[6851] | 0;
        i1 = 1 << i1;
        if (!(i2 & i1)) {
-        HEAP32[6846] = i2 | i1;
+        HEAP32[6851] = i2 | i1;
         i1 = i3 + 8 | 0;
         i2 = i3;
        } else {
@@ -10239,14 +10239,14 @@ function _malloc(i1) {
        i3 = 14 - (i12 | i13 | i3) + (i14 << i3 >>> 15) | 0;
        i3 = i7 >>> (i3 + 7 | 0) & 1 | i3 << 1;
       }
-      i1 = 27688 + (i3 << 2) | 0;
+      i1 = 27708 + (i3 << 2) | 0;
       HEAP32[i8 + 28 >> 2] = i3;
       i2 = i8 + 16 | 0;
       HEAP32[i2 + 4 >> 2] = 0;
       HEAP32[i2 >> 2] = 0;
       i2 = 1 << i3;
       if (!(i4 & i2)) {
-       HEAP32[6847] = i4 | i2;
+       HEAP32[6852] = i4 | i2;
        HEAP32[i1 >> 2] = i8;
        HEAP32[i8 + 24 >> 2] = i1;
        HEAP32[i8 + 12 >> 2] = i8;
@@ -10289,20 +10289,20 @@ function _malloc(i1) {
    }
   }
  } while (0);
- i3 = HEAP32[6848] | 0;
+ i3 = HEAP32[6853] | 0;
  if (i3 >>> 0 >= i10 >>> 0) {
   i2 = i3 - i10 | 0;
-  i1 = HEAP32[6851] | 0;
+  i1 = HEAP32[6856] | 0;
   if (i2 >>> 0 > 15) {
    i14 = i1 + i10 | 0;
-   HEAP32[6851] = i14;
-   HEAP32[6848] = i2;
+   HEAP32[6856] = i14;
+   HEAP32[6853] = i2;
    HEAP32[i14 + 4 >> 2] = i2 | 1;
    HEAP32[i1 + i3 >> 2] = i2;
    HEAP32[i1 + 4 >> 2] = i10 | 3;
   } else {
-   HEAP32[6848] = 0;
-   HEAP32[6851] = 0;
+   HEAP32[6853] = 0;
+   HEAP32[6856] = 0;
    HEAP32[i1 + 4 >> 2] = i3 | 3;
    i14 = i1 + i3 + 4 | 0;
    HEAP32[i14 >> 2] = HEAP32[i14 >> 2] | 1;
@@ -10311,29 +10311,29 @@ function _malloc(i1) {
   STACKTOP = i15;
   return i14 | 0;
  }
- i6 = HEAP32[6849] | 0;
+ i6 = HEAP32[6854] | 0;
  if (i6 >>> 0 > i10 >>> 0) {
   i12 = i6 - i10 | 0;
-  HEAP32[6849] = i12;
-  i14 = HEAP32[6852] | 0;
+  HEAP32[6854] = i12;
+  i14 = HEAP32[6857] | 0;
   i13 = i14 + i10 | 0;
-  HEAP32[6852] = i13;
+  HEAP32[6857] = i13;
   HEAP32[i13 + 4 >> 2] = i12 | 1;
   HEAP32[i14 + 4 >> 2] = i10 | 3;
   i14 = i14 + 8 | 0;
   STACKTOP = i15;
   return i14 | 0;
  }
- if (!(HEAP32[6964] | 0)) {
-  HEAP32[6966] = 4096;
-  HEAP32[6965] = 4096;
-  HEAP32[6967] = -1;
-  HEAP32[6968] = -1;
-  HEAP32[6969] = 0;
-  HEAP32[6957] = 0;
-  HEAP32[6964] = i13 & -16 ^ 1431655768;
+ if (!(HEAP32[6969] | 0)) {
+  HEAP32[6971] = 4096;
+  HEAP32[6970] = 4096;
+  HEAP32[6972] = -1;
+  HEAP32[6973] = -1;
+  HEAP32[6974] = 0;
+  HEAP32[6962] = 0;
+  HEAP32[6969] = i13 & -16 ^ 1431655768;
   i1 = 4096;
- } else i1 = HEAP32[6966] | 0;
+ } else i1 = HEAP32[6971] | 0;
  i7 = i10 + 48 | 0;
  i8 = i10 + 47 | 0;
  i5 = i1 + i8 | 0;
@@ -10344,9 +10344,9 @@ function _malloc(i1) {
   STACKTOP = i15;
   return i14 | 0;
  }
- i1 = HEAP32[6956] | 0;
+ i1 = HEAP32[6961] | 0;
  if (i1 | 0) {
-  i12 = HEAP32[6954] | 0;
+  i12 = HEAP32[6959] | 0;
   i13 = i12 + i9 | 0;
   if (i13 >>> 0 <= i12 >>> 0 | i13 >>> 0 > i1 >>> 0) {
    i14 = 0;
@@ -10354,10 +10354,10 @@ function _malloc(i1) {
    return i14 | 0;
   }
  }
- L178 : do if (!(HEAP32[6957] & 4)) {
-  i2 = HEAP32[6852] | 0;
+ L178 : do if (!(HEAP32[6962] & 4)) {
+  i2 = HEAP32[6857] | 0;
   L180 : do if (!i2) i14 = 128; else {
-   i4 = 27832;
+   i4 = 27852;
    while (1) {
     i1 = HEAP32[i4 >> 2] | 0;
     if (i1 >>> 0 <= i2 >>> 0) if ((i1 + (HEAP32[i4 + 4 >> 2] | 0) | 0) >>> 0 > i2 >>> 0) break;
@@ -10386,13 +10386,13 @@ function _malloc(i1) {
    i5 = _sbrk(0) | 0;
    if ((i5 | 0) == (-1 | 0)) i1 = 0; else {
     i1 = i5;
-    i2 = HEAP32[6965] | 0;
+    i2 = HEAP32[6970] | 0;
     i4 = i2 + -1 | 0;
     i1 = ((i4 & i1 | 0) == 0 ? 0 : (i4 + i1 & 0 - i2) - i1 | 0) + i9 | 0;
-    i2 = HEAP32[6954] | 0;
+    i2 = HEAP32[6959] | 0;
     i4 = i1 + i2 | 0;
     if (i1 >>> 0 > i10 >>> 0 & i1 >>> 0 < 2147483647) {
-     i3 = HEAP32[6956] | 0;
+     i3 = HEAP32[6961] | 0;
      if (i3 | 0) if (i4 >>> 0 <= i2 >>> 0 | i4 >>> 0 > i3 >>> 0) {
       i1 = 0;
       break;
@@ -10419,7 +10419,7 @@ function _malloc(i1) {
     i14 = 145;
     break L178;
    }
-   i2 = HEAP32[6966] | 0;
+   i2 = HEAP32[6971] | 0;
    i2 = i8 - i1 + i2 & 0 - i2;
    if (i2 >>> 0 >= 2147483647) {
     i6 = i4;
@@ -10437,7 +10437,7 @@ function _malloc(i1) {
     break L178;
    }
   } while (0);
-  HEAP32[6957] = HEAP32[6957] | 4;
+  HEAP32[6962] = HEAP32[6962] | 4;
   i14 = 143;
  } else {
   i1 = 0;
@@ -10455,94 +10455,94 @@ function _malloc(i1) {
   }
  }
  if ((i14 | 0) == 145) {
-  i2 = (HEAP32[6954] | 0) + i1 | 0;
-  HEAP32[6954] = i2;
-  if (i2 >>> 0 > (HEAP32[6955] | 0) >>> 0) HEAP32[6955] = i2;
-  i7 = HEAP32[6852] | 0;
+  i2 = (HEAP32[6959] | 0) + i1 | 0;
+  HEAP32[6959] = i2;
+  if (i2 >>> 0 > (HEAP32[6960] | 0) >>> 0) HEAP32[6960] = i2;
+  i7 = HEAP32[6857] | 0;
   L215 : do if (!i7) {
-   i14 = HEAP32[6850] | 0;
-   if ((i14 | 0) == 0 | i6 >>> 0 < i14 >>> 0) HEAP32[6850] = i6;
-   HEAP32[6958] = i6;
-   HEAP32[6959] = i1;
-   HEAP32[6961] = 0;
-   HEAP32[6855] = HEAP32[6964];
-   HEAP32[6854] = -1;
-   HEAP32[6859] = 27424;
-   HEAP32[6858] = 27424;
-   HEAP32[6861] = 27432;
-   HEAP32[6860] = 27432;
-   HEAP32[6863] = 27440;
-   HEAP32[6862] = 27440;
-   HEAP32[6865] = 27448;
-   HEAP32[6864] = 27448;
-   HEAP32[6867] = 27456;
-   HEAP32[6866] = 27456;
-   HEAP32[6869] = 27464;
-   HEAP32[6868] = 27464;
-   HEAP32[6871] = 27472;
-   HEAP32[6870] = 27472;
-   HEAP32[6873] = 27480;
-   HEAP32[6872] = 27480;
-   HEAP32[6875] = 27488;
-   HEAP32[6874] = 27488;
-   HEAP32[6877] = 27496;
-   HEAP32[6876] = 27496;
-   HEAP32[6879] = 27504;
-   HEAP32[6878] = 27504;
-   HEAP32[6881] = 27512;
-   HEAP32[6880] = 27512;
-   HEAP32[6883] = 27520;
-   HEAP32[6882] = 27520;
-   HEAP32[6885] = 27528;
-   HEAP32[6884] = 27528;
-   HEAP32[6887] = 27536;
-   HEAP32[6886] = 27536;
-   HEAP32[6889] = 27544;
-   HEAP32[6888] = 27544;
-   HEAP32[6891] = 27552;
-   HEAP32[6890] = 27552;
-   HEAP32[6893] = 27560;
-   HEAP32[6892] = 27560;
-   HEAP32[6895] = 27568;
-   HEAP32[6894] = 27568;
-   HEAP32[6897] = 27576;
-   HEAP32[6896] = 27576;
-   HEAP32[6899] = 27584;
-   HEAP32[6898] = 27584;
-   HEAP32[6901] = 27592;
-   HEAP32[6900] = 27592;
-   HEAP32[6903] = 27600;
-   HEAP32[6902] = 27600;
-   HEAP32[6905] = 27608;
-   HEAP32[6904] = 27608;
-   HEAP32[6907] = 27616;
-   HEAP32[6906] = 27616;
-   HEAP32[6909] = 27624;
-   HEAP32[6908] = 27624;
-   HEAP32[6911] = 27632;
-   HEAP32[6910] = 27632;
-   HEAP32[6913] = 27640;
-   HEAP32[6912] = 27640;
-   HEAP32[6915] = 27648;
-   HEAP32[6914] = 27648;
-   HEAP32[6917] = 27656;
-   HEAP32[6916] = 27656;
-   HEAP32[6919] = 27664;
-   HEAP32[6918] = 27664;
-   HEAP32[6921] = 27672;
-   HEAP32[6920] = 27672;
+   i14 = HEAP32[6855] | 0;
+   if ((i14 | 0) == 0 | i6 >>> 0 < i14 >>> 0) HEAP32[6855] = i6;
+   HEAP32[6963] = i6;
+   HEAP32[6964] = i1;
+   HEAP32[6966] = 0;
+   HEAP32[6860] = HEAP32[6969];
+   HEAP32[6859] = -1;
+   HEAP32[6864] = 27444;
+   HEAP32[6863] = 27444;
+   HEAP32[6866] = 27452;
+   HEAP32[6865] = 27452;
+   HEAP32[6868] = 27460;
+   HEAP32[6867] = 27460;
+   HEAP32[6870] = 27468;
+   HEAP32[6869] = 27468;
+   HEAP32[6872] = 27476;
+   HEAP32[6871] = 27476;
+   HEAP32[6874] = 27484;
+   HEAP32[6873] = 27484;
+   HEAP32[6876] = 27492;
+   HEAP32[6875] = 27492;
+   HEAP32[6878] = 27500;
+   HEAP32[6877] = 27500;
+   HEAP32[6880] = 27508;
+   HEAP32[6879] = 27508;
+   HEAP32[6882] = 27516;
+   HEAP32[6881] = 27516;
+   HEAP32[6884] = 27524;
+   HEAP32[6883] = 27524;
+   HEAP32[6886] = 27532;
+   HEAP32[6885] = 27532;
+   HEAP32[6888] = 27540;
+   HEAP32[6887] = 27540;
+   HEAP32[6890] = 27548;
+   HEAP32[6889] = 27548;
+   HEAP32[6892] = 27556;
+   HEAP32[6891] = 27556;
+   HEAP32[6894] = 27564;
+   HEAP32[6893] = 27564;
+   HEAP32[6896] = 27572;
+   HEAP32[6895] = 27572;
+   HEAP32[6898] = 27580;
+   HEAP32[6897] = 27580;
+   HEAP32[6900] = 27588;
+   HEAP32[6899] = 27588;
+   HEAP32[6902] = 27596;
+   HEAP32[6901] = 27596;
+   HEAP32[6904] = 27604;
+   HEAP32[6903] = 27604;
+   HEAP32[6906] = 27612;
+   HEAP32[6905] = 27612;
+   HEAP32[6908] = 27620;
+   HEAP32[6907] = 27620;
+   HEAP32[6910] = 27628;
+   HEAP32[6909] = 27628;
+   HEAP32[6912] = 27636;
+   HEAP32[6911] = 27636;
+   HEAP32[6914] = 27644;
+   HEAP32[6913] = 27644;
+   HEAP32[6916] = 27652;
+   HEAP32[6915] = 27652;
+   HEAP32[6918] = 27660;
+   HEAP32[6917] = 27660;
+   HEAP32[6920] = 27668;
+   HEAP32[6919] = 27668;
+   HEAP32[6922] = 27676;
+   HEAP32[6921] = 27676;
+   HEAP32[6924] = 27684;
+   HEAP32[6923] = 27684;
+   HEAP32[6926] = 27692;
+   HEAP32[6925] = 27692;
    i14 = i1 + -40 | 0;
    i12 = i6 + 8 | 0;
    i12 = (i12 & 7 | 0) == 0 ? 0 : 0 - i12 & 7;
    i13 = i6 + i12 | 0;
    i12 = i14 - i12 | 0;
-   HEAP32[6852] = i13;
-   HEAP32[6849] = i12;
+   HEAP32[6857] = i13;
+   HEAP32[6854] = i12;
    HEAP32[i13 + 4 >> 2] = i12 | 1;
    HEAP32[i6 + i14 + 4 >> 2] = 40;
-   HEAP32[6853] = HEAP32[6968];
+   HEAP32[6858] = HEAP32[6973];
   } else {
-   i2 = 27832;
+   i2 = 27852;
    do {
     i3 = HEAP32[i2 >> 2] | 0;
     i4 = HEAP32[i2 + 4 >> 2] | 0;
@@ -10556,22 +10556,22 @@ function _malloc(i1) {
     i5 = i2 + 4 | 0;
     if (!(HEAP32[i2 + 12 >> 2] & 8)) if (i6 >>> 0 > i7 >>> 0 & i3 >>> 0 <= i7 >>> 0) {
      HEAP32[i5 >> 2] = i4 + i1;
-     i14 = (HEAP32[6849] | 0) + i1 | 0;
+     i14 = (HEAP32[6854] | 0) + i1 | 0;
      i12 = i7 + 8 | 0;
      i12 = (i12 & 7 | 0) == 0 ? 0 : 0 - i12 & 7;
      i13 = i7 + i12 | 0;
      i12 = i14 - i12 | 0;
-     HEAP32[6852] = i13;
-     HEAP32[6849] = i12;
+     HEAP32[6857] = i13;
+     HEAP32[6854] = i12;
      HEAP32[i13 + 4 >> 2] = i12 | 1;
      HEAP32[i7 + i14 + 4 >> 2] = 40;
-     HEAP32[6853] = HEAP32[6968];
+     HEAP32[6858] = HEAP32[6973];
      break;
     }
    }
-   if (i6 >>> 0 < (HEAP32[6850] | 0) >>> 0) HEAP32[6850] = i6;
+   if (i6 >>> 0 < (HEAP32[6855] | 0) >>> 0) HEAP32[6855] = i6;
    i3 = i6 + i1 | 0;
-   i2 = 27832;
+   i2 = 27852;
    do {
     if ((HEAP32[i2 >> 2] | 0) == (i3 | 0)) {
      i14 = 162;
@@ -10591,15 +10591,15 @@ function _malloc(i1) {
     i8 = i1 - i11 - i10 | 0;
     HEAP32[i11 + 4 >> 2] = i10 | 3;
     L238 : do if ((i7 | 0) == (i1 | 0)) {
-     i14 = (HEAP32[6849] | 0) + i8 | 0;
-     HEAP32[6849] = i14;
-     HEAP32[6852] = i9;
+     i14 = (HEAP32[6854] | 0) + i8 | 0;
+     HEAP32[6854] = i14;
+     HEAP32[6857] = i9;
      HEAP32[i9 + 4 >> 2] = i14 | 1;
     } else {
-     if ((HEAP32[6851] | 0) == (i1 | 0)) {
-      i14 = (HEAP32[6848] | 0) + i8 | 0;
-      HEAP32[6848] = i14;
-      HEAP32[6851] = i9;
+     if ((HEAP32[6856] | 0) == (i1 | 0)) {
+      i14 = (HEAP32[6853] | 0) + i8 | 0;
+      HEAP32[6853] = i14;
+      HEAP32[6856] = i9;
       HEAP32[i9 + 4 >> 2] = i14 | 1;
       HEAP32[i9 + i14 >> 2] = i14;
       break;
@@ -10612,7 +10612,7 @@ function _malloc(i1) {
        i2 = HEAP32[i1 + 8 >> 2] | 0;
        i3 = HEAP32[i1 + 12 >> 2] | 0;
        if ((i3 | 0) == (i2 | 0)) {
-        HEAP32[6846] = HEAP32[6846] & ~(1 << i4);
+        HEAP32[6851] = HEAP32[6851] & ~(1 << i4);
         break;
        } else {
         HEAP32[i2 + 12 >> 2] = i3;
@@ -10656,11 +10656,11 @@ function _malloc(i1) {
        } while (0);
        if (!i6) break;
        i3 = HEAP32[i1 + 28 >> 2] | 0;
-       i4 = 27688 + (i3 << 2) | 0;
+       i4 = 27708 + (i3 << 2) | 0;
        do if ((HEAP32[i4 >> 2] | 0) == (i1 | 0)) {
         HEAP32[i4 >> 2] = i2;
         if (i2 | 0) break;
-        HEAP32[6847] = HEAP32[6847] & ~(1 << i3);
+        HEAP32[6852] = HEAP32[6852] & ~(1 << i3);
         break L246;
        } else {
         i14 = i6 + 16 | 0;
@@ -10688,11 +10688,11 @@ function _malloc(i1) {
      HEAP32[i9 + i5 >> 2] = i5;
      i1 = i5 >>> 3;
      if (i5 >>> 0 < 256) {
-      i3 = 27424 + (i1 << 1 << 2) | 0;
-      i2 = HEAP32[6846] | 0;
+      i3 = 27444 + (i1 << 1 << 2) | 0;
+      i2 = HEAP32[6851] | 0;
       i1 = 1 << i1;
       if (!(i2 & i1)) {
-       HEAP32[6846] = i2 | i1;
+       HEAP32[6851] = i2 | i1;
        i1 = i3 + 8 | 0;
        i2 = i3;
       } else {
@@ -10720,15 +10720,15 @@ function _malloc(i1) {
       i4 = 14 - (i12 | i13 | i4) + (i14 << i4 >>> 15) | 0;
       i4 = i5 >>> (i4 + 7 | 0) & 1 | i4 << 1;
      } while (0);
-     i2 = 27688 + (i4 << 2) | 0;
+     i2 = 27708 + (i4 << 2) | 0;
      HEAP32[i9 + 28 >> 2] = i4;
      i1 = i9 + 16 | 0;
      HEAP32[i1 + 4 >> 2] = 0;
      HEAP32[i1 >> 2] = 0;
-     i1 = HEAP32[6847] | 0;
+     i1 = HEAP32[6852] | 0;
      i3 = 1 << i4;
      if (!(i1 & i3)) {
-      HEAP32[6847] = i1 | i3;
+      HEAP32[6852] = i1 | i3;
       HEAP32[i2 >> 2] = i9;
       HEAP32[i9 + 24 >> 2] = i2;
       HEAP32[i9 + 12 >> 2] = i9;
@@ -10768,7 +10768,7 @@ function _malloc(i1) {
     STACKTOP = i15;
     return i14 | 0;
    }
-   i3 = 27832;
+   i3 = 27852;
    while (1) {
     i2 = HEAP32[i3 >> 2] | 0;
     if (i2 >>> 0 <= i7 >>> 0) {
@@ -10788,21 +10788,21 @@ function _malloc(i1) {
    i12 = (i12 & 7 | 0) == 0 ? 0 : 0 - i12 & 7;
    i13 = i6 + i12 | 0;
    i12 = i4 - i12 | 0;
-   HEAP32[6852] = i13;
-   HEAP32[6849] = i12;
+   HEAP32[6857] = i13;
+   HEAP32[6854] = i12;
    HEAP32[i13 + 4 >> 2] = i12 | 1;
    HEAP32[i6 + i4 + 4 >> 2] = 40;
-   HEAP32[6853] = HEAP32[6968];
+   HEAP32[6858] = HEAP32[6973];
    i4 = i3 + 4 | 0;
    HEAP32[i4 >> 2] = 27;
-   HEAP32[i14 >> 2] = HEAP32[6958];
-   HEAP32[i14 + 4 >> 2] = HEAP32[6959];
-   HEAP32[i14 + 8 >> 2] = HEAP32[6960];
-   HEAP32[i14 + 12 >> 2] = HEAP32[6961];
-   HEAP32[6958] = i6;
-   HEAP32[6959] = i1;
-   HEAP32[6961] = 0;
-   HEAP32[6960] = i14;
+   HEAP32[i14 >> 2] = HEAP32[6963];
+   HEAP32[i14 + 4 >> 2] = HEAP32[6964];
+   HEAP32[i14 + 8 >> 2] = HEAP32[6965];
+   HEAP32[i14 + 12 >> 2] = HEAP32[6966];
+   HEAP32[6963] = i6;
+   HEAP32[6964] = i1;
+   HEAP32[6966] = 0;
+   HEAP32[6965] = i14;
    i1 = i3 + 24 | 0;
    do {
     i14 = i1;
@@ -10816,11 +10816,11 @@ function _malloc(i1) {
     HEAP32[i3 >> 2] = i6;
     i1 = i6 >>> 3;
     if (i6 >>> 0 < 256) {
-     i3 = 27424 + (i1 << 1 << 2) | 0;
-     i2 = HEAP32[6846] | 0;
+     i3 = 27444 + (i1 << 1 << 2) | 0;
+     i2 = HEAP32[6851] | 0;
      i1 = 1 << i1;
      if (!(i2 & i1)) {
-      HEAP32[6846] = i2 | i1;
+      HEAP32[6851] = i2 | i1;
       i1 = i3 + 8 | 0;
       i2 = i3;
      } else {
@@ -10844,14 +10844,14 @@ function _malloc(i1) {
      i4 = 14 - (i12 | i13 | i4) + (i14 << i4 >>> 15) | 0;
      i4 = i6 >>> (i4 + 7 | 0) & 1 | i4 << 1;
     }
-    i3 = 27688 + (i4 << 2) | 0;
+    i3 = 27708 + (i4 << 2) | 0;
     HEAP32[i7 + 28 >> 2] = i4;
     HEAP32[i7 + 20 >> 2] = 0;
     HEAP32[i5 >> 2] = 0;
-    i1 = HEAP32[6847] | 0;
+    i1 = HEAP32[6852] | 0;
     i2 = 1 << i4;
     if (!(i1 & i2)) {
-     HEAP32[6847] = i1 | i2;
+     HEAP32[6852] = i1 | i2;
      HEAP32[i3 >> 2] = i7;
      HEAP32[i7 + 24 >> 2] = i3;
      HEAP32[i7 + 12 >> 2] = i7;
@@ -10888,13 +10888,13 @@ function _malloc(i1) {
     HEAP32[i7 + 24 >> 2] = 0;
    }
   } while (0);
-  i1 = HEAP32[6849] | 0;
+  i1 = HEAP32[6854] | 0;
   if (i1 >>> 0 > i10 >>> 0) {
    i12 = i1 - i10 | 0;
-   HEAP32[6849] = i12;
-   i14 = HEAP32[6852] | 0;
+   HEAP32[6854] = i12;
+   i14 = HEAP32[6857] | 0;
    i13 = i14 + i10 | 0;
-   HEAP32[6852] = i13;
+   HEAP32[6857] = i13;
    HEAP32[i13 + 4 >> 2] = i12 | 1;
    HEAP32[i14 + 4 >> 2] = i10 | 3;
    i14 = i14 + 8 | 0;
@@ -15501,7 +15501,7 @@ function _free(i1) {
  var i2 = 0, i3 = 0, i4 = 0, i5 = 0, i6 = 0, i7 = 0, i8 = 0, i9 = 0, i10 = 0;
  if (!i1) return;
  i3 = i1 + -8 | 0;
- i4 = HEAP32[6850] | 0;
+ i4 = HEAP32[6855] | 0;
  i1 = HEAP32[i1 + -4 >> 2] | 0;
  i2 = i1 & -8;
  i10 = i3 + i2 | 0;
@@ -15511,7 +15511,7 @@ function _free(i1) {
   i6 = i3 + (0 - i5) | 0;
   i7 = i5 + i2 | 0;
   if (i6 >>> 0 < i4 >>> 0) return;
-  if ((HEAP32[6851] | 0) == (i6 | 0)) {
+  if ((HEAP32[6856] | 0) == (i6 | 0)) {
    i2 = i10 + 4 | 0;
    i1 = HEAP32[i2 >> 2] | 0;
    if ((i1 & 3 | 0) != 3) {
@@ -15520,7 +15520,7 @@ function _free(i1) {
     i2 = i7;
     break;
    }
-   HEAP32[6848] = i7;
+   HEAP32[6853] = i7;
    HEAP32[i2 >> 2] = i1 & -2;
    HEAP32[i6 + 4 >> 2] = i7 | 1;
    HEAP32[i6 + i7 >> 2] = i7;
@@ -15531,7 +15531,7 @@ function _free(i1) {
    i1 = HEAP32[i6 + 8 >> 2] | 0;
    i2 = HEAP32[i6 + 12 >> 2] | 0;
    if ((i2 | 0) == (i1 | 0)) {
-    HEAP32[6846] = HEAP32[6846] & ~(1 << i3);
+    HEAP32[6851] = HEAP32[6851] & ~(1 << i3);
     i8 = i6;
     i9 = i6;
     i2 = i7;
@@ -15587,11 +15587,11 @@ function _free(i1) {
    i2 = i7;
   } else {
    i1 = HEAP32[i6 + 28 >> 2] | 0;
-   i2 = 27688 + (i1 << 2) | 0;
+   i2 = 27708 + (i1 << 2) | 0;
    if ((HEAP32[i2 >> 2] | 0) == (i6 | 0)) {
     HEAP32[i2 >> 2] = i3;
     if (!i3) {
-     HEAP32[6847] = HEAP32[6847] & ~(1 << i1);
+     HEAP32[6852] = HEAP32[6852] & ~(1 << i1);
      i8 = i6;
      i9 = i6;
      i2 = i7;
@@ -15636,20 +15636,20 @@ function _free(i1) {
  i3 = HEAP32[i1 >> 2] | 0;
  if (!(i3 & 1)) return;
  if (!(i3 & 2)) {
-  if ((HEAP32[6852] | 0) == (i10 | 0)) {
-   i10 = (HEAP32[6849] | 0) + i2 | 0;
-   HEAP32[6849] = i10;
-   HEAP32[6852] = i9;
+  if ((HEAP32[6857] | 0) == (i10 | 0)) {
+   i10 = (HEAP32[6854] | 0) + i2 | 0;
+   HEAP32[6854] = i10;
+   HEAP32[6857] = i9;
    HEAP32[i9 + 4 >> 2] = i10 | 1;
-   if ((i9 | 0) != (HEAP32[6851] | 0)) return;
-   HEAP32[6851] = 0;
-   HEAP32[6848] = 0;
+   if ((i9 | 0) != (HEAP32[6856] | 0)) return;
+   HEAP32[6856] = 0;
+   HEAP32[6853] = 0;
    return;
   }
-  if ((HEAP32[6851] | 0) == (i10 | 0)) {
-   i10 = (HEAP32[6848] | 0) + i2 | 0;
-   HEAP32[6848] = i10;
-   HEAP32[6851] = i8;
+  if ((HEAP32[6856] | 0) == (i10 | 0)) {
+   i10 = (HEAP32[6853] | 0) + i2 | 0;
+   HEAP32[6853] = i10;
+   HEAP32[6856] = i8;
    HEAP32[i9 + 4 >> 2] = i10 | 1;
    HEAP32[i8 + i10 >> 2] = i10;
    return;
@@ -15660,7 +15660,7 @@ function _free(i1) {
    i2 = HEAP32[i10 + 8 >> 2] | 0;
    i1 = HEAP32[i10 + 12 >> 2] | 0;
    if ((i1 | 0) == (i2 | 0)) {
-    HEAP32[6846] = HEAP32[6846] & ~(1 << i4);
+    HEAP32[6851] = HEAP32[6851] & ~(1 << i4);
     break;
    } else {
     HEAP32[i2 + 12 >> 2] = i1;
@@ -15706,11 +15706,11 @@ function _free(i1) {
    } while (0);
    if (i6 | 0) {
     i1 = HEAP32[i10 + 28 >> 2] | 0;
-    i2 = 27688 + (i1 << 2) | 0;
+    i2 = 27708 + (i1 << 2) | 0;
     if ((HEAP32[i2 >> 2] | 0) == (i10 | 0)) {
      HEAP32[i2 >> 2] = i3;
      if (!i3) {
-      HEAP32[6847] = HEAP32[6847] & ~(1 << i1);
+      HEAP32[6852] = HEAP32[6852] & ~(1 << i1);
       break;
      }
     } else {
@@ -15734,8 +15734,8 @@ function _free(i1) {
   } while (0);
   HEAP32[i9 + 4 >> 2] = i5 | 1;
   HEAP32[i8 + i5 >> 2] = i5;
-  if ((i9 | 0) == (HEAP32[6851] | 0)) {
-   HEAP32[6848] = i5;
+  if ((i9 | 0) == (HEAP32[6856] | 0)) {
+   HEAP32[6853] = i5;
    return;
   }
  } else {
@@ -15746,11 +15746,11 @@ function _free(i1) {
  }
  i1 = i5 >>> 3;
  if (i5 >>> 0 < 256) {
-  i3 = 27424 + (i1 << 1 << 2) | 0;
-  i2 = HEAP32[6846] | 0;
+  i3 = 27444 + (i1 << 1 << 2) | 0;
+  i2 = HEAP32[6851] | 0;
   i1 = 1 << i1;
   if (!(i2 & i1)) {
-   HEAP32[6846] = i2 | i1;
+   HEAP32[6851] = i2 | i1;
    i1 = i3 + 8 | 0;
    i2 = i3;
   } else {
@@ -15774,14 +15774,14 @@ function _free(i1) {
   i4 = 14 - (i7 | i8 | i4) + (i10 << i4 >>> 15) | 0;
   i4 = i5 >>> (i4 + 7 | 0) & 1 | i4 << 1;
  }
- i2 = 27688 + (i4 << 2) | 0;
+ i2 = 27708 + (i4 << 2) | 0;
  HEAP32[i9 + 28 >> 2] = i4;
  HEAP32[i9 + 20 >> 2] = 0;
  HEAP32[i9 + 16 >> 2] = 0;
- i1 = HEAP32[6847] | 0;
+ i1 = HEAP32[6852] | 0;
  i3 = 1 << i4;
  L112 : do if (!(i1 & i3)) {
-  HEAP32[6847] = i1 | i3;
+  HEAP32[6852] = i1 | i3;
   HEAP32[i2 >> 2] = i9;
   HEAP32[i9 + 24 >> 2] = i2;
   HEAP32[i9 + 12 >> 2] = i9;
@@ -15816,179 +15816,179 @@ function _free(i1) {
   HEAP32[i9 + 12 >> 2] = i1;
   HEAP32[i9 + 24 >> 2] = 0;
  } while (0);
- i10 = (HEAP32[6854] | 0) + -1 | 0;
- HEAP32[6854] = i10;
+ i10 = (HEAP32[6859] | 0) + -1 | 0;
+ HEAP32[6859] = i10;
  if (i10 | 0) return;
- i1 = 27840;
+ i1 = 27860;
  while (1) {
   i1 = HEAP32[i1 >> 2] | 0;
   if (!i1) break; else i1 = i1 + 8 | 0;
  }
- HEAP32[6854] = -1;
+ HEAP32[6859] = -1;
  return;
 }
 
 function __emscripten_dceable_type_decls() {
- _emscripten_glBlendEquation(0);
- _emscripten_glActiveTexture(0);
- _emscripten_glColorMask(0, 0, 0, 0);
- _emscripten_glClearStencil(0);
- _emscripten_glCompileShader(0);
- _emscripten_glDeleteBuffers(0, 0);
- _emscripten_glBindVertexArrayOES(0);
- _emscripten_glBindTexture(0, 0);
- _emscripten_glDeleteQueriesEXT(0, 0);
- _emscripten_glDeleteVertexArraysOES(0, 0);
- _emscripten_glClearDepthf(Math_fround(0.0));
- _emscripten_glDeleteShader(0);
- _emscripten_glDepthMask(0);
- _emscripten_glDepthRangef(Math_fround(0.0), Math_fround(0.0));
- _emscripten_glDetachShader(0, 0);
- _emscripten_glDeleteRenderbuffers(0, 0);
- _emscripten_glDisable(0);
- _emscripten_glGetQueryivEXT(0, 0, 0);
- _emscripten_glDisableVertexAttribArray(0);
- _emscripten_glGetQueryObjectivEXT(0, 0, 0);
- _emscripten_glVertexAttribDivisorANGLE(0, 0);
- _emscripten_glBeginQueryEXT(0, 0);
- _emscripten_glIsVertexArrayOES(0) << 24 >> 24;
- _emscripten_glDrawBuffersWEBGL(0, 0);
- _emscripten_glBindRenderbuffer(0, 0);
- _emscripten_glGenVertexArraysOES(0, 0);
  _emscripten_glBindAttribLocation(0, 0, 0);
- _emscripten_glEndQueryEXT(0);
- _emscripten_glGetQueryObjecti64vEXT(0, 0, 0);
- _emscripten_glDrawElementsInstancedANGLE(0, 0, 0, 0, 0);
- _emscripten_glIsQueryEXT(0) << 24 >> 24;
- _emscripten_glGetQueryObjectui64vEXT(0, 0, 0);
- _emscripten_glGetQueryObjectuivEXT(0, 0, 0);
- _emscripten_glAttachShader(0, 0);
- _emscripten_glBindBuffer(0, 0);
- _emscripten_glBlendColor(Math_fround(0.0), Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
- _emscripten_glBlendFuncSeparate(0, 0, 0, 0);
- _emscripten_glCheckFramebufferStatus(0) | 0;
- _emscripten_glClearColor(Math_fround(0.0), Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
- _emscripten_glCompressedTexImage2D(0, 0, 0, 0, 0, 0, 0, 0);
- _emscripten_glCreateProgram() | 0;
- _emscripten_glCreateShader(0) | 0;
- _emscripten_glGenQueriesEXT(0, 0);
- _emscripten_glBlendEquationSeparate(0, 0);
- _emscripten_glCompressedTexSubImage2D(0, 0, 0, 0, 0, 0, 0, 0, 0);
- _emscripten_glCopyTexImage2D(0, 0, 0, 0, 0, 0, 0, 0);
- _emscripten_glBindFramebuffer(0, 0);
- _emscripten_glDrawArraysInstancedANGLE(0, 0, 0, 0);
- _emscripten_glBufferSubData(0, 0, 0, 0);
- _emscripten_glCopyTexSubImage2D(0, 0, 0, 0, 0, 0, 0, 0);
+ _emscripten_glVertexAttribDivisorANGLE(0, 0);
+ _emscripten_glBindRenderbuffer(0, 0);
+ _emscripten_glBlendEquation(0);
  _emscripten_glBlendFunc(0, 0);
- _emscripten_glBufferData(0, 0, 0, 0);
- _emscripten_glCullFace(0);
+ _emscripten_glCreateProgram() | 0;
  _emscripten_glDeleteFramebuffers(0, 0);
- _emscripten_glDeleteProgram(0);
- _emscripten_glDeleteTextures(0, 0);
- _emscripten_glDepthFunc(0);
- _emscripten_glClear(0);
+ _emscripten_glGetQueryivEXT(0, 0, 0);
+ _emscripten_glDrawArraysInstancedANGLE(0, 0, 0, 0);
+ _emscripten_glDrawBuffersWEBGL(0, 0);
+ _emscripten_glEndQueryEXT(0);
+ _emscripten_glDeleteQueriesEXT(0, 0);
+ _emscripten_glBindBuffer(0, 0);
+ _emscripten_glCopyTexSubImage2D(0, 0, 0, 0, 0, 0, 0, 0);
+ _emscripten_glActiveTexture(0);
+ _emscripten_glCopyTexImage2D(0, 0, 0, 0, 0, 0, 0, 0);
+ _emscripten_glIsQueryEXT(0) << 24 >> 24;
+ _emscripten_glIsVertexArrayOES(0) << 24 >> 24;
+ _emscripten_glAttachShader(0, 0);
+ _emscripten_glGetQueryObjectivEXT(0, 0, 0);
  _emscripten_glQueryCounterEXT(0, 0);
- _emscripten_glGetUniformiv(0, 0, 0);
- _emscripten_glGetActiveAttrib(0, 0, 0, 0, 0, 0, 0);
- _emscripten_glGetAttachedShaders(0, 0, 0, 0);
- _emscripten_glGetProgramInfoLog(0, 0, 0, 0);
- _emscripten_glGetShaderiv(0, 0, 0);
- _emscripten_glGetUniformLocation(0, 0) | 0;
- _emscripten_glFlush();
- _emscripten_glFinish();
- _emscripten_glGenerateMipmap(0);
- _emscripten_glGenTextures(0, 0);
- _emscripten_glGetActiveUniform(0, 0, 0, 0, 0, 0, 0);
- _emscripten_glGenRenderbuffers(0, 0);
- _emscripten_glFramebufferTexture2D(0, 0, 0, 0, 0);
- _emscripten_glGetFloatv(0, 0);
- _emscripten_glGetFramebufferAttachmentParameteriv(0, 0, 0, 0);
- _emscripten_glGetIntegerv(0, 0);
- _emscripten_glGetProgramiv(0, 0, 0);
- _emscripten_glGetRenderbufferParameteriv(0, 0, 0);
- _emscripten_glDrawElements(0, 0, 0, 0);
- _emscripten_glFrontFace(0);
+ _emscripten_glBindVertexArrayOES(0);
+ _emscripten_glBufferData(0, 0, 0, 0);
+ _emscripten_glClear(0);
+ _emscripten_glClearDepthf(Math_fround(0.0));
+ _emscripten_glColorMask(0, 0, 0, 0);
+ _emscripten_glCompressedTexSubImage2D(0, 0, 0, 0, 0, 0, 0, 0, 0);
+ _emscripten_glBlendEquationSeparate(0, 0);
+ _emscripten_glGetQueryObjectuivEXT(0, 0, 0);
+ _emscripten_glCreateShader(0) | 0;
+ _emscripten_glDeleteBuffers(0, 0);
+ _emscripten_glDeleteProgram(0);
+ _emscripten_glDepthFunc(0);
+ _emscripten_glBufferSubData(0, 0, 0, 0);
+ _emscripten_glCheckFramebufferStatus(0) | 0;
+ _emscripten_glClearStencil(0);
+ _emscripten_glDepthMask(0);
+ _emscripten_glDetachShader(0, 0);
+ _emscripten_glDepthRangef(Math_fround(0.0), Math_fround(0.0));
+ _emscripten_glDeleteRenderbuffers(0, 0);
+ _emscripten_glBindTexture(0, 0);
+ _emscripten_glDisable(0);
+ _emscripten_glDisableVertexAttribArray(0);
+ _emscripten_glDrawElementsInstancedANGLE(0, 0, 0, 0, 0);
+ _emscripten_glBlendColor(Math_fround(0.0), Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
+ _emscripten_glCompressedTexImage2D(0, 0, 0, 0, 0, 0, 0, 0);
+ _emscripten_glGenQueriesEXT(0, 0);
+ _emscripten_glDeleteShader(0);
+ _emscripten_glCullFace(0);
+ _emscripten_glBeginQueryEXT(0, 0);
+ _emscripten_glDeleteTextures(0, 0);
+ _emscripten_glGenVertexArraysOES(0, 0);
+ _emscripten_glDeleteVertexArraysOES(0, 0);
+ _emscripten_glBindFramebuffer(0, 0);
+ _emscripten_glBlendFuncSeparate(0, 0, 0, 0);
+ _emscripten_glClearColor(Math_fround(0.0), Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
+ _emscripten_glCompileShader(0);
+ _emscripten_glGetQueryObjectui64vEXT(0, 0, 0);
+ _emscripten_glGetQueryObjecti64vEXT(0, 0, 0);
+ _emscripten_glGetString(0) | 0;
  _emscripten_glGetTexParameterfv(0, 0, 0);
+ _emscripten_glGetShaderiv(0, 0, 0);
  _emscripten_glGetTexParameteriv(0, 0, 0);
  _emscripten_glGetUniformfv(0, 0, 0);
+ _emscripten_glGetUniformiv(0, 0, 0);
+ _emscripten_glGetUniformLocation(0, 0) | 0;
+ _emscripten_glGenBuffers(0, 0);
+ _emscripten_glFrontFace(0);
+ _emscripten_glGetProgramInfoLog(0, 0, 0, 0);
+ _emscripten_glEnable(0);
+ _emscripten_glGetActiveAttrib(0, 0, 0, 0, 0, 0, 0);
+ _emscripten_glGetProgramiv(0, 0, 0);
+ _emscripten_glFramebufferTexture2D(0, 0, 0, 0, 0);
+ _emscripten_glEnableVertexAttribArray(0);
  _emscripten_glGetAttribLocation(0, 0) | 0;
  _emscripten_glGetBufferParameteriv(0, 0, 0);
- _emscripten_glGenFramebuffers(0, 0);
- _emscripten_glEnableVertexAttribArray(0);
- _emscripten_glGetBooleanv(0, 0);
- _emscripten_glDrawArrays(0, 0, 0);
- _emscripten_glGenBuffers(0, 0);
+ _emscripten_glGenTextures(0, 0);
+ _emscripten_glGetFloatv(0, 0);
+ _emscripten_glGetActiveUniform(0, 0, 0, 0, 0, 0, 0);
+ _emscripten_glGenerateMipmap(0);
+ _emscripten_glGetAttachedShaders(0, 0, 0, 0);
  _emscripten_glGetError() | 0;
+ _emscripten_glGetRenderbufferParameteriv(0, 0, 0);
+ _emscripten_glFlush();
+ _emscripten_glGenRenderbuffers(0, 0);
+ _emscripten_glDrawArrays(0, 0, 0);
+ _emscripten_glGetIntegerv(0, 0);
  _emscripten_glGetShaderInfoLog(0, 0, 0, 0);
  _emscripten_glFramebufferRenderbuffer(0, 0, 0, 0);
  _emscripten_glGetShaderPrecisionFormat(0, 0, 0, 0);
- _emscripten_glEnable(0);
+ _emscripten_glDrawElements(0, 0, 0, 0);
+ _emscripten_glGenFramebuffers(0, 0);
+ _emscripten_glGetBooleanv(0, 0);
+ _emscripten_glGetFramebufferAttachmentParameteriv(0, 0, 0, 0);
  _emscripten_glGetShaderSource(0, 0, 0, 0);
- _emscripten_glGetString(0) | 0;
- _emscripten_glVertexAttrib3f(0, Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
+ _emscripten_glFinish();
  _emscripten_glUniform2f(0, Math_fround(0.0), Math_fround(0.0));
- _emscripten_glStencilMaskSeparate(0, 0);
- _emscripten_glIsTexture(0) << 24 >> 24;
- _emscripten_glReadPixels(0, 0, 0, 0, 0, 0, 0);
- _emscripten_glUniform1iv(0, 0, 0);
- _emscripten_glUniform2fv(0, 0, 0);
- _emscripten_glUniform1i(0, 0);
  _emscripten_glUniform4fv(0, 0, 0);
- _emscripten_glUniformMatrix3fv(0, 0, 0, 0);
- _emscripten_glValidateProgram(0);
- _emscripten_glGetVertexAttribiv(0, 0, 0);
- _emscripten_glVertexAttrib4f(0, Math_fround(0.0), Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
- _emscripten_glStencilFunc(0, 0, 0);
- _emscripten_glGetVertexAttribPointerv(0, 0, 0);
- _emscripten_glPixelStorei(0, 0);
- _emscripten_glStencilOp(0, 0, 0);
- _emscripten_glStencilOpSeparate(0, 0, 0, 0);
- _emscripten_glTexParameteri(0, 0, 0);
- _emscripten_glTexParameterf(0, 0, Math_fround(0.0));
- _emscripten_glIsFramebuffer(0) << 24 >> 24;
- _emscripten_glUniformMatrix2fv(0, 0, 0, 0);
- _emscripten_glVertexAttrib4fv(0, 0);
- _emscripten_glUniform4f(0, Math_fround(0.0), Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
- _emscripten_glLineWidth(Math_fround(0.0));
- _emscripten_glReleaseShaderCompiler();
- _emscripten_glUniform3iv(0, 0, 0);
- _emscripten_glVertexAttribPointer(0, 0, 0, 0, 0, 0);
- _emscripten_glTexParameteriv(0, 0, 0);
- _emscripten_glStencilFuncSeparate(0, 0, 0, 0);
- _emscripten_glUniform1fv(0, 0, 0);
- _emscripten_glUniformMatrix4fv(0, 0, 0, 0);
- _emscripten_glVertexAttrib3fv(0, 0);
- _emscripten_glTexImage2D(0, 0, 0, 0, 0, 0, 0, 0, 0);
- _emscripten_glTexParameterfv(0, 0, 0);
  _emscripten_glHint(0, 0);
- _emscripten_glIsRenderbuffer(0) << 24 >> 24;
- _emscripten_glTexSubImage2D(0, 0, 0, 0, 0, 0, 0, 0, 0);
- _emscripten_glUniform4i(0, 0, 0, 0, 0);
- _emscripten_glUniform3i(0, 0, 0, 0);
- _emscripten_glShaderSource(0, 0, 0, 0);
- _emscripten_glIsBuffer(0) << 24 >> 24;
- _emscripten_glGetVertexAttribfv(0, 0, 0);
- _emscripten_glIsProgram(0) << 24 >> 24;
- _emscripten_glIsShader(0) << 24 >> 24;
- _emscripten_glShaderBinary(0, 0, 0, 0, 0);
- _emscripten_glSampleCoverage(Math_fround(0.0), 0);
- _emscripten_glUniform2i(0, 0, 0);
- _emscripten_glUniform2iv(0, 0, 0);
- _emscripten_glUniform3f(0, Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
- _emscripten_glUniform3fv(0, 0, 0);
- _emscripten_glUseProgram(0);
- _emscripten_glLinkProgram(0);
+ _emscripten_glIsFramebuffer(0) << 24 >> 24;
+ _emscripten_glScissor(0, 0, 0, 0);
  _emscripten_glPolygonOffset(Math_fround(0.0), Math_fround(0.0));
+ _emscripten_glStencilOp(0, 0, 0);
+ _emscripten_glStencilMaskSeparate(0, 0);
+ _emscripten_glUniform2fv(0, 0, 0);
+ _emscripten_glUniform4iv(0, 0, 0);
+ _emscripten_glUniform3f(0, Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
+ _emscripten_glUniform2iv(0, 0, 0);
+ _emscripten_glUniformMatrix3fv(0, 0, 0, 0);
+ _emscripten_glShaderBinary(0, 0, 0, 0, 0);
+ _emscripten_glTexParameterfv(0, 0, 0);
+ _emscripten_glIsRenderbuffer(0) << 24 >> 24;
+ _emscripten_glIsShader(0) << 24 >> 24;
+ _emscripten_glUniform1i(0, 0);
+ _emscripten_glLinkProgram(0);
+ _emscripten_glUniform1iv(0, 0, 0);
+ _emscripten_glUniform3i(0, 0, 0, 0);
+ _emscripten_glUniform1fv(0, 0, 0);
+ _emscripten_glUniform3iv(0, 0, 0);
+ _emscripten_glUniform2i(0, 0, 0);
+ _emscripten_glIsProgram(0) << 24 >> 24;
+ _emscripten_glReleaseShaderCompiler();
+ _emscripten_glRenderbufferStorage(0, 0, 0, 0);
+ _emscripten_glUniform1f(0, Math_fround(0.0));
+ _emscripten_glUniformMatrix4fv(0, 0, 0, 0);
+ _emscripten_glValidateProgram(0);
+ _emscripten_glVertexAttrib1f(0, Math_fround(0.0));
+ _emscripten_glIsTexture(0) << 24 >> 24;
+ _emscripten_glStencilFuncSeparate(0, 0, 0, 0);
+ _emscripten_glTexParameteri(0, 0, 0);
+ _emscripten_glIsBuffer(0) << 24 >> 24;
+ _emscripten_glTexParameteriv(0, 0, 0);
+ _emscripten_glTexSubImage2D(0, 0, 0, 0, 0, 0, 0, 0, 0);
  _emscripten_glVertexAttrib1fv(0, 0);
  _emscripten_glVertexAttrib2f(0, Math_fround(0.0), Math_fround(0.0));
- _emscripten_glUniform4iv(0, 0, 0);
- _emscripten_glScissor(0, 0, 0, 0);
- _emscripten_glRenderbufferStorage(0, 0, 0, 0);
- _emscripten_glStencilMask(0);
- _emscripten_glVertexAttrib1f(0, Math_fround(0.0));
- _emscripten_glVertexAttrib2fv(0, 0);
- _emscripten_glUniform1f(0, Math_fround(0.0));
+ _emscripten_glGetVertexAttribiv(0, 0, 0);
+ _emscripten_glGetVertexAttribPointerv(0, 0, 0);
  _emscripten_glIsEnabled(0) << 24 >> 24;
+ _emscripten_glPixelStorei(0, 0);
+ _emscripten_glSampleCoverage(Math_fround(0.0), 0);
+ _emscripten_glVertexAttrib2fv(0, 0);
+ _emscripten_glVertexAttrib3fv(0, 0);
+ _emscripten_glGetVertexAttribfv(0, 0, 0);
+ _emscripten_glStencilFunc(0, 0, 0);
+ _emscripten_glStencilMask(0);
+ _emscripten_glShaderSource(0, 0, 0, 0);
+ _emscripten_glStencilOpSeparate(0, 0, 0, 0);
+ _emscripten_glUniform3fv(0, 0, 0);
+ _emscripten_glUniform4i(0, 0, 0, 0, 0);
+ _emscripten_glUniformMatrix2fv(0, 0, 0, 0);
+ _emscripten_glUniform4f(0, Math_fround(0.0), Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
+ _emscripten_glLineWidth(Math_fround(0.0));
+ _emscripten_glUseProgram(0);
+ _emscripten_glVertexAttrib4f(0, Math_fround(0.0), Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
+ _emscripten_glReadPixels(0, 0, 0, 0, 0, 0, 0);
+ _emscripten_glVertexAttrib4fv(0, 0);
+ _emscripten_glVertexAttribPointer(0, 0, 0, 0, 0, 0);
+ _emscripten_glTexImage2D(0, 0, 0, 0, 0, 0, 0, 0, 0);
+ _emscripten_glTexParameterf(0, 0, Math_fround(0.0));
+ _emscripten_glVertexAttrib3f(0, Math_fround(0.0), Math_fround(0.0), Math_fround(0.0));
  _emscripten_glViewport(0, 0, 0, 0);
 }
 
@@ -16003,7 +16003,7 @@ function _dispose_chunk(i2, i3) {
   if (!(i1 & 3)) return;
   i6 = i2 + (0 - i4) | 0;
   i7 = i4 + i3 | 0;
-  if ((HEAP32[6851] | 0) == (i6 | 0)) {
+  if ((HEAP32[6856] | 0) == (i6 | 0)) {
    i2 = i9 + 4 | 0;
    i1 = HEAP32[i2 >> 2] | 0;
    if ((i1 & 3 | 0) != 3) {
@@ -16011,7 +16011,7 @@ function _dispose_chunk(i2, i3) {
     i2 = i7;
     break;
    }
-   HEAP32[6848] = i7;
+   HEAP32[6853] = i7;
    HEAP32[i2 >> 2] = i1 & -2;
    HEAP32[i6 + 4 >> 2] = i7 | 1;
    HEAP32[i9 >> 2] = i7;
@@ -16022,7 +16022,7 @@ function _dispose_chunk(i2, i3) {
    i1 = HEAP32[i6 + 8 >> 2] | 0;
    i2 = HEAP32[i6 + 12 >> 2] | 0;
    if ((i2 | 0) == (i1 | 0)) {
-    HEAP32[6846] = HEAP32[6846] & ~(1 << i3);
+    HEAP32[6851] = HEAP32[6851] & ~(1 << i3);
     i8 = i6;
     i2 = i7;
     break;
@@ -16075,11 +16075,11 @@ function _dispose_chunk(i2, i3) {
    i2 = i7;
   } else {
    i1 = HEAP32[i6 + 28 >> 2] | 0;
-   i2 = 27688 + (i1 << 2) | 0;
+   i2 = 27708 + (i1 << 2) | 0;
    if ((HEAP32[i2 >> 2] | 0) == (i6 | 0)) {
     HEAP32[i2 >> 2] = i3;
     if (!i3) {
-     HEAP32[6847] = HEAP32[6847] & ~(1 << i1);
+     HEAP32[6852] = HEAP32[6852] & ~(1 << i1);
      i8 = i6;
      i2 = i7;
      break;
@@ -16118,20 +16118,20 @@ function _dispose_chunk(i2, i3) {
  i1 = i9 + 4 | 0;
  i3 = HEAP32[i1 >> 2] | 0;
  if (!(i3 & 2)) {
-  if ((HEAP32[6852] | 0) == (i9 | 0)) {
-   i9 = (HEAP32[6849] | 0) + i2 | 0;
-   HEAP32[6849] = i9;
-   HEAP32[6852] = i8;
+  if ((HEAP32[6857] | 0) == (i9 | 0)) {
+   i9 = (HEAP32[6854] | 0) + i2 | 0;
+   HEAP32[6854] = i9;
+   HEAP32[6857] = i8;
    HEAP32[i8 + 4 >> 2] = i9 | 1;
-   if ((i8 | 0) != (HEAP32[6851] | 0)) return;
-   HEAP32[6851] = 0;
-   HEAP32[6848] = 0;
+   if ((i8 | 0) != (HEAP32[6856] | 0)) return;
+   HEAP32[6856] = 0;
+   HEAP32[6853] = 0;
    return;
   }
-  if ((HEAP32[6851] | 0) == (i9 | 0)) {
-   i9 = (HEAP32[6848] | 0) + i2 | 0;
-   HEAP32[6848] = i9;
-   HEAP32[6851] = i8;
+  if ((HEAP32[6856] | 0) == (i9 | 0)) {
+   i9 = (HEAP32[6853] | 0) + i2 | 0;
+   HEAP32[6853] = i9;
+   HEAP32[6856] = i8;
    HEAP32[i8 + 4 >> 2] = i9 | 1;
    HEAP32[i8 + i9 >> 2] = i9;
    return;
@@ -16142,7 +16142,7 @@ function _dispose_chunk(i2, i3) {
    i2 = HEAP32[i9 + 8 >> 2] | 0;
    i1 = HEAP32[i9 + 12 >> 2] | 0;
    if ((i1 | 0) == (i2 | 0)) {
-    HEAP32[6846] = HEAP32[6846] & ~(1 << i4);
+    HEAP32[6851] = HEAP32[6851] & ~(1 << i4);
     break;
    } else {
     HEAP32[i2 + 12 >> 2] = i1;
@@ -16188,11 +16188,11 @@ function _dispose_chunk(i2, i3) {
    } while (0);
    if (i5 | 0) {
     i1 = HEAP32[i9 + 28 >> 2] | 0;
-    i2 = 27688 + (i1 << 2) | 0;
+    i2 = 27708 + (i1 << 2) | 0;
     if ((HEAP32[i2 >> 2] | 0) == (i9 | 0)) {
      HEAP32[i2 >> 2] = i3;
      if (!i3) {
-      HEAP32[6847] = HEAP32[6847] & ~(1 << i1);
+      HEAP32[6852] = HEAP32[6852] & ~(1 << i1);
       break;
      }
     } else {
@@ -16216,8 +16216,8 @@ function _dispose_chunk(i2, i3) {
   } while (0);
   HEAP32[i8 + 4 >> 2] = i6 | 1;
   HEAP32[i8 + i6 >> 2] = i6;
-  if ((i8 | 0) == (HEAP32[6851] | 0)) {
-   HEAP32[6848] = i6;
+  if ((i8 | 0) == (HEAP32[6856] | 0)) {
+   HEAP32[6853] = i6;
    return;
   } else i2 = i6;
  } else {
@@ -16227,11 +16227,11 @@ function _dispose_chunk(i2, i3) {
  }
  i1 = i2 >>> 3;
  if (i2 >>> 0 < 256) {
-  i3 = 27424 + (i1 << 1 << 2) | 0;
-  i2 = HEAP32[6846] | 0;
+  i3 = 27444 + (i1 << 1 << 2) | 0;
+  i2 = HEAP32[6851] | 0;
   i1 = 1 << i1;
   if (!(i2 & i1)) {
-   HEAP32[6846] = i2 | i1;
+   HEAP32[6851] = i2 | i1;
    i1 = i3 + 8 | 0;
    i2 = i3;
   } else {
@@ -16255,14 +16255,14 @@ function _dispose_chunk(i2, i3) {
   i5 = 14 - (i6 | i7 | i5) + (i9 << i5 >>> 15) | 0;
   i5 = i2 >>> (i5 + 7 | 0) & 1 | i5 << 1;
  }
- i3 = 27688 + (i5 << 2) | 0;
+ i3 = 27708 + (i5 << 2) | 0;
  HEAP32[i8 + 28 >> 2] = i5;
  HEAP32[i8 + 20 >> 2] = 0;
  HEAP32[i8 + 16 >> 2] = 0;
- i1 = HEAP32[6847] | 0;
+ i1 = HEAP32[6852] | 0;
  i4 = 1 << i5;
  if (!(i1 & i4)) {
-  HEAP32[6847] = i1 | i4;
+  HEAP32[6852] = i1 | i4;
   HEAP32[i3 >> 2] = i8;
   HEAP32[i8 + 24 >> 2] = i3;
   HEAP32[i8 + 12 >> 2] = i8;
@@ -18051,33 +18051,33 @@ function _rlglInit(i32, i27) {
    do {
     i1 = HEAP32[i8 + (i3 << 2) >> 2] | 0;
     if (!(_strcmp(i1, 10216) | 0)) {
-     HEAP32[6772] = _eglGetProcAddress(22140) | 0;
-     HEAP32[6767] = _eglGetProcAddress(22095) | 0;
+     HEAP32[6777] = _eglGetProcAddress(22140) | 0;
+     HEAP32[6772] = _eglGetProcAddress(22095) | 0;
      i7 = _eglGetProcAddress(22116) | 0;
-     HEAP32[6771] = i7;
-     if ((i7 | 0) != 0 & ((HEAP32[6772] | 0) != 0 & (HEAP32[6767] | 0) != 0)) HEAP8[27897] = 1;
+     HEAP32[6776] = i7;
+     if ((i7 | 0) != 0 & ((HEAP32[6777] | 0) != 0 & (HEAP32[6772] | 0) != 0)) HEAP8[27917] = 1;
     }
-    if (!(_strcmp(i1, 10243) | 0)) HEAP8[27899] = 1;
-    if (!(_strcmp(i1, 10263) | 0)) HEAP8[27900] = 1;
+    if (!(_strcmp(i1, 10243) | 0)) HEAP8[27919] = 1;
+    if (!(_strcmp(i1, 10263) | 0)) HEAP8[27920] = 1;
     if (!(_strcmp(i1, 10335) | 0)) i23 = 20; else if (!(_strcmp(i1, 10367) | 0)) i23 = 20; else if (!(_strcmp(i1, 10400) | 0)) i23 = 20;
     if ((i23 | 0) == 20) {
      i23 = 0;
-     HEAP8[27901] = 1;
+     HEAP8[27921] = 1;
     }
     if (!(_strcmp(i1, 10440) | 0)) i23 = 23; else if (!(_strcmp(i1, 10476) | 0)) i23 = 23;
     if ((i23 | 0) == 23) {
      i23 = 0;
-     HEAP8[27902] = 1;
+     HEAP8[27922] = 1;
     }
-    if (!(_strcmp(i1, 10509) | 0)) HEAP8[27903] = 1;
-    if (!(_strcmp(i1, 10534) | 0)) HEAP8[27904] = 1;
-    if (!(_strcmp(i1, 10567) | 0)) HEAP8[27905] = 1;
+    if (!(_strcmp(i1, 10509) | 0)) HEAP8[27923] = 1;
+    if (!(_strcmp(i1, 10534) | 0)) HEAP8[27924] = 1;
+    if (!(_strcmp(i1, 10567) | 0)) HEAP8[27925] = 1;
     if (!(_strcmp(i1, 10603) | 0)) {
-     HEAP8[27906] = 1;
-     _glGetFloatv(34047, 27080);
+     HEAP8[27926] = 1;
+     _glGetFloatv(34047, 27100);
     }
-    if (!(_strcmp(i1, 10637) | 0)) HEAP8[27898] = 1;
-    if (!(_strcmp(i1, 10665) | 0)) HEAP8[27907] = 1;
+    if (!(_strcmp(i1, 10637) | 0)) HEAP8[27918] = 1;
+    if (!(_strcmp(i1, 10665) | 0)) HEAP8[27927] = 1;
     i3 = i3 + 1 | 0;
    } while ((i3 | 0) != (i4 | 0));
   }
@@ -18087,22 +18087,22 @@ function _rlglInit(i32, i27) {
  }
  _free(i8);
  _free(i9);
- if (!(HEAP8[27897] | 0)) _TraceLog(4, 10760, i11); else _TraceLog(3, 10685, i10);
- if (!(HEAP8[27899] | 0)) _TraceLog(4, 10896, i13); else _TraceLog(3, 10821, i12);
- if (HEAP8[27901] | 0) _TraceLog(3, 10988, i14);
- if (HEAP8[27902] | 0) _TraceLog(3, 11034, i15);
- if (HEAP8[27903] | 0) _TraceLog(3, 11081, i16);
- if (HEAP8[27904] | 0) _TraceLog(3, 11132, i17);
- if (HEAP8[27905] | 0) _TraceLog(3, 11179, i18);
- if (HEAP8[27906] | 0) {
-  HEAPF64[i19 >> 3] = +Math_fround(HEAPF32[6770]);
+ if (!(HEAP8[27917] | 0)) _TraceLog(4, 10760, i11); else _TraceLog(3, 10685, i10);
+ if (!(HEAP8[27919] | 0)) _TraceLog(4, 10896, i13); else _TraceLog(3, 10821, i12);
+ if (HEAP8[27921] | 0) _TraceLog(3, 10988, i14);
+ if (HEAP8[27922] | 0) _TraceLog(3, 11034, i15);
+ if (HEAP8[27923] | 0) _TraceLog(3, 11081, i16);
+ if (HEAP8[27924] | 0) _TraceLog(3, 11132, i17);
+ if (HEAP8[27925] | 0) _TraceLog(3, 11179, i18);
+ if (HEAP8[27926] | 0) {
+  HEAPF64[i19 >> 3] = +Math_fround(HEAPF32[6775]);
   _TraceLog(3, 11226, i19);
  }
- if (HEAP8[27898] | 0) _TraceLog(3, 11292, i20);
- if (HEAP8[27907] | 0) _TraceLog(3, 11345, i21);
+ if (HEAP8[27918] | 0) _TraceLog(3, 11292, i20);
+ if (HEAP8[27927] | 0) _TraceLog(3, 11345, i21);
  HEAP32[i22 >> 2] = -1;
  i1 = _rlLoadTexture(i22, 1, 1, 7, 1) | 0;
- HEAP32[6766] = i1;
+ HEAP32[6771] = i1;
  if (!i1) _TraceLog(4, 11431, i26); else {
   HEAP32[i25 >> 2] = i1;
   _TraceLog(3, 11380, i25);
@@ -18119,7 +18119,7 @@ function _rlglInit(i32, i27) {
  HEAP32[i4 + 4 >> 2] = i3;
  _LoadBuffersDefault();
  _MatrixIdentity(i2);
- i4 = 26992;
+ i4 = 27012;
  i3 = i4 + 64 | 0;
  do {
   HEAP32[i4 >> 2] = HEAP32[i2 >> 2];
@@ -18127,8 +18127,8 @@ function _rlglInit(i32, i27) {
   i2 = i2 + 4 | 0;
  } while ((i4 | 0) < (i3 | 0));
  i2 = _malloc(4096) | 0;
- HEAP32[6764] = i2;
- i1 = HEAP32[6766] | 0;
+ HEAP32[6769] = i2;
+ i1 = HEAP32[6771] | 0;
  i3 = 0;
  do {
   i26 = i2 + (i3 << 4) | 0;
@@ -18138,7 +18138,7 @@ function _rlglInit(i32, i27) {
   HEAP32[i26 + 12 >> 2] = i1;
   i3 = i3 + 1 | 0;
  } while ((i3 | 0) != 256);
- HEAP32[6765] = 1;
+ HEAP32[6770] = 1;
  i1 = 0;
  do {
   _MatrixIdentity(i28);
@@ -18153,7 +18153,7 @@ function _rlglInit(i32, i27) {
   i1 = i1 + 1 | 0;
  } while ((i1 | 0) != 32);
  _MatrixIdentity(i29);
- i4 = 26920;
+ i4 = 26940;
  i2 = i29;
  i3 = i4 + 64 | 0;
  do {
@@ -18162,7 +18162,7 @@ function _rlglInit(i32, i27) {
   i2 = i2 + 4 | 0;
  } while ((i4 | 0) < (i3 | 0));
  _MatrixIdentity(i30);
- i4 = 26856;
+ i4 = 26876;
  i2 = i30;
  i3 = i4 + 64 | 0;
  do {
@@ -18170,7 +18170,7 @@ function _rlglInit(i32, i27) {
   i4 = i4 + 4 | 0;
   i2 = i2 + 4 | 0;
  } while ((i4 | 0) < (i3 | 0));
- HEAP32[6746] = 26856;
+ HEAP32[6751] = 26876;
  _glDepthFunc(515);
  _glDisable(2929);
  _glBlendFunc(770, 771);
@@ -18181,8 +18181,8 @@ function _rlglInit(i32, i27) {
  _glClearColor(0.0, 0.0, 0.0, 1.0);
  _glClearDepthf(1.0);
  _glClear(16640);
- HEAP32[6768] = i32;
- HEAP32[6769] = i27;
+ HEAP32[6773] = i32;
+ HEAP32[6774] = i27;
  _TraceLog(3, 11470, i31);
  STACKTOP = i33;
  return;
@@ -18398,7 +18398,7 @@ function _ProcessGestureEvent(i4) {
  STACKTOP = STACKTOP + 16 | 0;
  i7 = i6 + 8 | 0;
  i9 = HEAP32[i4 + 4 >> 2] | 0;
- HEAP32[6776] = i9;
+ HEAP32[6781] = i9;
  i1 = HEAP32[i4 >> 2] | 0;
  i3 = (i1 | 0) == 1;
  if ((i9 | 0) >= 2) {
@@ -18413,7 +18413,7 @@ function _ProcessGestureEvent(i4) {
    i9 = 26792;
    HEAP32[i9 >> 2] = HEAP32[i6 >> 2];
    HEAP32[i9 + 4 >> 2] = i7;
-   HEAP32[6775] = 4;
+   HEAP32[6780] = 4;
    STACKTOP = i8;
    return;
   }
@@ -18464,7 +18464,7 @@ function _ProcessGestureEvent(i4) {
      i1 = Math_fround(Math_fround(_Vector2Distance(i6, i7)) - f2) < Math_fround(0.0);
      i1 = i1 ? 256 : 512;
     }
-    HEAP32[6775] = i1;
+    HEAP32[6780] = i1;
     HEAP32[i6 >> 2] = HEAP32[6696];
     HEAP32[i6 + 4 >> 2] = HEAP32[6697];
     HEAP32[i7 >> 2] = HEAP32[6700];
@@ -18474,8 +18474,8 @@ function _ProcessGestureEvent(i4) {
    }
   case 0:
    {
-    HEAP32[6776] = 0;
-    HEAP32[6775] = 0;
+    HEAP32[6781] = 0;
+    HEAP32[6780] = 0;
     STACKTOP = i8;
     return;
    }
@@ -18487,22 +18487,22 @@ function _ProcessGestureEvent(i4) {
   }
  }
  if (i3) {
-  i9 = HEAP32[6777] | 0;
-  HEAP32[6777] = i9 + 1;
-  if ((i9 | 0) > 0 & (HEAP32[6775] | 0) == 0) {
+  i9 = HEAP32[6782] | 0;
+  HEAP32[6782] = i9 + 1;
+  if ((i9 | 0) > 0 & (HEAP32[6780] | 0) == 0) {
    i9 = i4 + 24 | 0;
    HEAP32[i6 >> 2] = HEAP32[6690];
    HEAP32[i6 + 4 >> 2] = HEAP32[6691];
    HEAP32[i7 >> 2] = HEAP32[i9 >> 2];
    HEAP32[i7 + 4 >> 2] = HEAP32[i9 + 4 >> 2];
    if (Math_fround(_Vector2Distance(i6, i7)) < Math_fround(.0299999993)) {
-    HEAP32[6775] = 2;
-    HEAP32[6777] = 0;
+    HEAP32[6780] = 2;
+    HEAP32[6782] = 0;
    } else i5 = 6;
   } else i5 = 6;
   if ((i5 | 0) == 6) {
-   HEAP32[6777] = 1;
-   HEAP32[6775] = 1;
+   HEAP32[6782] = 1;
+   HEAP32[6780] = 1;
   }
   i7 = i4 + 24 | 0;
   i6 = HEAP32[i7 >> 2] | 0;
@@ -18523,7 +18523,7 @@ function _ProcessGestureEvent(i4) {
  switch (i1 | 0) {
  case 0:
   {
-   if ((HEAP32[6775] | 0) == 8) {
+   if ((HEAP32[6780] | 0) == 8) {
     i3 = i4 + 24 | 0;
     i5 = HEAP32[i3 + 4 >> 2] | 0;
     i9 = 26776;
@@ -18535,7 +18535,7 @@ function _ProcessGestureEvent(i4) {
    HEAP32[i7 >> 2] = HEAP32[6694];
    HEAP32[i7 + 4 >> 2] = HEAP32[6695];
    f2 = Math_fround(Math_fround(_Vector2Distance(i6, i7)) / Math_fround(0.0));
-   HEAP8[27908] = 0;
+   HEAP8[27928] = 0;
    if (f2 > Math_fround(.000500000024)) if ((HEAP32[2326] | 0) == (HEAP32[i4 + 8 >> 2] | 0)) {
     HEAP32[i6 >> 2] = HEAP32[6690];
     HEAP32[i6 + 4 >> 2] = HEAP32[6691];
@@ -18547,17 +18547,17 @@ function _ProcessGestureEvent(i4) {
      i1 = i1 ? 128 : 0;
     }
    } else i1 = 0; else i1 = 0;
-   HEAP32[6775] = i1;
+   HEAP32[6780] = i1;
    HEAPF32[6692] = Math_fround(0.0);
    HEAPF32[6693] = Math_fround(0.0);
-   HEAP32[6776] = 0;
+   HEAP32[6781] = 0;
    STACKTOP = i8;
    return;
   }
  case 2:
   {
-   i1 = HEAP32[6775] | 0;
-   if (!(HEAP8[27908] | 0)) HEAP8[27908] = 1;
+   i1 = HEAP32[6780] | 0;
+   if (!(HEAP8[27928] | 0)) HEAP8[27928] = 1;
    i4 = i4 + 24 | 0;
    i5 = HEAP32[i4 + 4 >> 2] | 0;
    i9 = 26784;
@@ -18568,7 +18568,7 @@ function _ProcessGestureEvent(i4) {
     HEAP32[i6 + 4 >> 2] = HEAP32[6691];
     HEAP32[i7 >> 2] = HEAP32[6696];
     HEAP32[i7 + 4 >> 2] = HEAP32[6697];
-    if (Math_fround(_Vector2Distance(i6, i7)) >= Math_fround(.0149999997)) HEAP32[6775] = 8;
+    if (Math_fround(_Vector2Distance(i6, i7)) >= Math_fround(.0149999997)) HEAP32[6780] = 8;
    }
    STACKTOP = i8;
    return;
@@ -18620,33 +18620,33 @@ function _DrawCircleSector(i14, f1, i3, i2, i4, i15) {
   i2 = 0;
   do {
    _rlColor4ub(i3, i5, i6, i7);
-   f17 = Math_fround(HEAPF32[6970]);
-   f17 = Math_fround(f17 / Math_fround(HEAP32[6822] | 0));
-   f18 = Math_fround(HEAPF32[6971]);
-   _rlTexCoord2f(f17, Math_fround(f18 / Math_fround(HEAP32[6823] | 0)));
+   f17 = Math_fround(HEAPF32[6975]);
+   f17 = Math_fround(f17 / Math_fround(HEAP32[6827] | 0));
+   f18 = Math_fround(HEAPF32[6976]);
+   _rlTexCoord2f(f17, Math_fround(f18 / Math_fround(HEAP32[6828] | 0)));
    _rlVertex2f(f8, f9);
-   f18 = Math_fround(HEAPF32[6970]);
-   f18 = Math_fround(f18 / Math_fround(HEAP32[6822] | 0));
-   f17 = Math_fround(HEAPF32[6971]);
-   f17 = Math_fround(f17 + Math_fround(HEAPF32[6973]));
-   _rlTexCoord2f(f18, Math_fround(f17 / Math_fround(HEAP32[6823] | 0)));
+   f18 = Math_fround(HEAPF32[6975]);
+   f18 = Math_fround(f18 / Math_fround(HEAP32[6827] | 0));
+   f17 = Math_fround(HEAPF32[6976]);
+   f17 = Math_fround(f17 + Math_fround(HEAPF32[6978]));
+   _rlTexCoord2f(f18, Math_fround(f17 / Math_fround(HEAP32[6828] | 0)));
    f17 = Math_fround(f1 * Math_fround(.0174532924));
    f18 = Math_fround(Math_fround(f13 * Math_fround(_sinf(f17))) + f8);
    _rlVertex2f(f18, Math_fround(Math_fround(f13 * Math_fround(_cosf(f17))) + f9));
-   f17 = Math_fround(HEAPF32[6970]);
-   f17 = Math_fround(f17 + Math_fround(HEAPF32[6972]));
-   f17 = Math_fround(f17 / Math_fround(HEAP32[6822] | 0));
-   f18 = Math_fround(HEAPF32[6971]);
-   f18 = Math_fround(f18 + Math_fround(HEAPF32[6973]));
-   _rlTexCoord2f(f17, Math_fround(f18 / Math_fround(HEAP32[6823] | 0)));
+   f17 = Math_fround(HEAPF32[6975]);
+   f17 = Math_fround(f17 + Math_fround(HEAPF32[6977]));
+   f17 = Math_fround(f17 / Math_fround(HEAP32[6827] | 0));
+   f18 = Math_fround(HEAPF32[6976]);
+   f18 = Math_fround(f18 + Math_fround(HEAPF32[6978]));
+   _rlTexCoord2f(f17, Math_fround(f18 / Math_fround(HEAP32[6828] | 0)));
    f18 = Math_fround(Math_fround(f12 + f1) * Math_fround(.0174532924));
    f17 = Math_fround(Math_fround(f13 * Math_fround(_sinf(f18))) + f8);
    _rlVertex2f(f17, Math_fround(Math_fround(f13 * Math_fround(_cosf(f18))) + f9));
-   f18 = Math_fround(HEAPF32[6970]);
-   f18 = Math_fround(f18 + Math_fround(HEAPF32[6972]));
-   f18 = Math_fround(f18 / Math_fround(HEAP32[6822] | 0));
-   f17 = Math_fround(HEAPF32[6971]);
-   _rlTexCoord2f(f18, Math_fround(f17 / Math_fround(HEAP32[6823] | 0)));
+   f18 = Math_fround(HEAPF32[6975]);
+   f18 = Math_fround(f18 + Math_fround(HEAPF32[6977]));
+   f18 = Math_fround(f18 / Math_fround(HEAP32[6827] | 0));
+   f17 = Math_fround(HEAPF32[6976]);
+   _rlTexCoord2f(f18, Math_fround(f17 / Math_fround(HEAP32[6828] | 0)));
    f1 = Math_fround(f11 + f1);
    f17 = Math_fround(f1 * Math_fround(.0174532924));
    f18 = Math_fround(Math_fround(f13 * Math_fround(_sinf(f17))) + f8);
@@ -18661,35 +18661,35 @@ function _DrawCircleSector(i14, f1, i3, i2, i4, i15) {
   return;
  }
  _rlColor4ub(HEAP8[i15 >> 0] | 0, HEAP8[i15 + 1 >> 0] | 0, HEAP8[i15 + 2 >> 0] | 0, HEAP8[i15 + 3 >> 0] | 0);
- f18 = Math_fround(HEAPF32[6970]);
- f18 = Math_fround(f18 / Math_fround(HEAP32[6822] | 0));
- f17 = Math_fround(HEAPF32[6971]);
- _rlTexCoord2f(f18, Math_fround(f17 / Math_fround(HEAP32[6823] | 0)));
+ f18 = Math_fround(HEAPF32[6975]);
+ f18 = Math_fround(f18 / Math_fround(HEAP32[6827] | 0));
+ f17 = Math_fround(HEAPF32[6976]);
+ _rlTexCoord2f(f18, Math_fround(f17 / Math_fround(HEAP32[6828] | 0)));
  f17 = Math_fround(HEAPF32[i14 >> 2]);
  f18 = Math_fround(HEAPF32[i14 + 4 >> 2]);
  _rlVertex2f(f17, f18);
- f11 = Math_fround(HEAPF32[6970]);
- f11 = Math_fround(f11 / Math_fround(HEAP32[6822] | 0));
- f9 = Math_fround(HEAPF32[6971]);
- f9 = Math_fround(f9 + Math_fround(HEAPF32[6973]));
- _rlTexCoord2f(f11, Math_fround(f9 / Math_fround(HEAP32[6823] | 0)));
+ f11 = Math_fround(HEAPF32[6975]);
+ f11 = Math_fround(f11 / Math_fround(HEAP32[6827] | 0));
+ f9 = Math_fround(HEAPF32[6976]);
+ f9 = Math_fround(f9 + Math_fround(HEAPF32[6978]));
+ _rlTexCoord2f(f11, Math_fround(f9 / Math_fround(HEAP32[6828] | 0)));
  f9 = Math_fround(f1 * Math_fround(.0174532924));
  f11 = Math_fround(Math_fround(f13 * Math_fround(_sinf(f9))) + f17);
  _rlVertex2f(f11, Math_fround(Math_fround(f13 * Math_fround(_cosf(f9))) + f18));
- f9 = Math_fround(HEAPF32[6970]);
- f9 = Math_fround(f9 + Math_fround(HEAPF32[6972]));
- f9 = Math_fround(f9 / Math_fround(HEAP32[6822] | 0));
- f11 = Math_fround(HEAPF32[6971]);
- f11 = Math_fround(f11 + Math_fround(HEAPF32[6973]));
- _rlTexCoord2f(f9, Math_fround(f11 / Math_fround(HEAP32[6823] | 0)));
+ f9 = Math_fround(HEAPF32[6975]);
+ f9 = Math_fround(f9 + Math_fround(HEAPF32[6977]));
+ f9 = Math_fround(f9 / Math_fround(HEAP32[6827] | 0));
+ f11 = Math_fround(HEAPF32[6976]);
+ f11 = Math_fround(f11 + Math_fround(HEAPF32[6978]));
+ _rlTexCoord2f(f9, Math_fround(f11 / Math_fround(HEAP32[6828] | 0)));
  f12 = Math_fround(Math_fround(f12 + f1) * Math_fround(.0174532924));
  f11 = Math_fround(Math_fround(f13 * Math_fround(_sinf(f12))) + f17);
  _rlVertex2f(f11, Math_fround(Math_fround(f13 * Math_fround(_cosf(f12))) + f18));
- f12 = Math_fround(HEAPF32[6970]);
- f12 = Math_fround(f12 + Math_fround(HEAPF32[6972]));
- f12 = Math_fround(f12 / Math_fround(HEAP32[6822] | 0));
- f13 = Math_fround(HEAPF32[6971]);
- _rlTexCoord2f(f12, Math_fround(f13 / Math_fround(HEAP32[6823] | 0)));
+ f12 = Math_fround(HEAPF32[6975]);
+ f12 = Math_fround(f12 + Math_fround(HEAPF32[6977]));
+ f12 = Math_fround(f12 / Math_fround(HEAP32[6827] | 0));
+ f13 = Math_fround(HEAPF32[6976]);
+ _rlTexCoord2f(f12, Math_fround(f13 / Math_fround(HEAP32[6828] | 0)));
  _rlVertex2f(f17, f18);
  _rlEnd();
  _rlDisableTexture();
@@ -19660,7 +19660,7 @@ function _DrawBuffersDefault() {
  i6 = i12;
  i12 = i12 + 192 | 0;
  i2 = i9;
- i3 = 26920;
+ i3 = 26940;
  i4 = i2 + 64 | 0;
  do {
   HEAP32[i2 >> 2] = HEAP32[i3 >> 2];
@@ -19668,7 +19668,7 @@ function _DrawBuffersDefault() {
   i3 = i3 + 4 | 0;
  } while ((i2 | 0) < (i4 | 0));
  i2 = i8;
- i3 = 26856;
+ i3 = 26876;
  i4 = i2 + 64 | 0;
  do {
   HEAP32[i2 >> 2] = HEAP32[i3 >> 2];
@@ -19701,7 +19701,7 @@ function _DrawBuffersDefault() {
   if ((HEAP32[6084] | 0) > 0) {
    _glUseProgram(HEAP32[6612] | 0);
    i2 = i10;
-   i3 = 26856;
+   i3 = 26876;
    i4 = i2 + 64 | 0;
    do {
     HEAP32[i2 >> 2] = HEAP32[i3 >> 2];
@@ -19709,7 +19709,7 @@ function _DrawBuffersDefault() {
     i3 = i3 + 4 | 0;
    } while ((i2 | 0) < (i4 | 0));
    i2 = i7;
-   i3 = 26920;
+   i3 = 26940;
    i4 = i2 + 64 | 0;
    do {
     HEAP32[i2 >> 2] = HEAP32[i3 >> 2];
@@ -19730,7 +19730,7 @@ function _DrawBuffersDefault() {
    _glUniformMatrix4fv(i1 | 0, 1, 0, i12 | 0);
    _glUniform4f(HEAP32[(HEAP32[6613] | 0) + 44 >> 2] | 0, 1.0, 1.0, 1.0, 1.0);
    _glUniform1i(HEAP32[(HEAP32[6613] | 0) + 56 >> 2] | 0, 0);
-   if (!(HEAP8[27897] | 0)) {
+   if (!(HEAP8[27917] | 0)) {
     _glBindBuffer(34962, HEAP32[6092] | 0);
     _glVertexAttribPointer(HEAP32[HEAP32[6613] >> 2] | 0, 3, 5126, 0, 0, 0);
     _glEnableVertexAttribArray(HEAP32[HEAP32[6613] >> 2] | 0);
@@ -19741,14 +19741,14 @@ function _DrawBuffersDefault() {
     _glVertexAttribPointer(HEAP32[(HEAP32[6613] | 0) + 20 >> 2] | 0, 4, 5121, 1, 0, 0);
     _glEnableVertexAttribArray(HEAP32[(HEAP32[6613] | 0) + 20 >> 2] | 0);
     _glBindBuffer(34963, HEAP32[6095] | 0);
-   } else FUNCTION_TABLE_vi[HEAP32[6767] & 31](HEAP32[6091] | 0);
+   } else FUNCTION_TABLE_vi[HEAP32[6772] & 31](HEAP32[6091] | 0);
    _glActiveTexture(33984);
-   L12 : do if ((HEAP32[6765] | 0) > 0) {
+   L12 : do if ((HEAP32[6770] | 0) > 0) {
     i3 = 0;
     i4 = 0;
     while (1) {
-     _glBindTexture(3553, HEAP32[(HEAP32[6764] | 0) + (i3 << 4) + 12 >> 2] | 0);
-     i1 = HEAP32[6764] | 0;
+     _glBindTexture(3553, HEAP32[(HEAP32[6769] | 0) + (i3 << 4) + 12 >> 2] | 0);
+     i1 = HEAP32[6769] | 0;
      i2 = HEAP32[i1 + (i3 << 4) >> 2] | 0;
      switch (i2 | 0) {
      case 4:
@@ -19760,20 +19760,20 @@ function _DrawBuffersDefault() {
      default:
       _glDrawElements(4, ((HEAP32[i1 + (i3 << 4) + 4 >> 2] | 0) / 4 | 0) * 6 | 0, 5123, (i4 >>> 1 & 1073741823) * 6 | 0);
      }
-     i2 = HEAP32[6764] | 0;
+     i2 = HEAP32[6769] | 0;
      i2 = i2 + (i3 << 4) | 0;
      i4 = (HEAP32[i2 + 4 >> 2] | 0) + i4 + (HEAP32[i2 + 8 >> 2] | 0) | 0;
      i3 = i3 + 1 | 0;
-     if ((i3 | 0) >= (HEAP32[6765] | 0)) break L12;
+     if ((i3 | 0) >= (HEAP32[6770] | 0)) break L12;
     }
    } while (0);
-   if (!(HEAP8[27897] | 0)) {
+   if (!(HEAP8[27917] | 0)) {
     _glBindBuffer(34962, 0);
     _glBindBuffer(34963, 0);
    }
    _glBindTexture(3553, 0);
   }
-  if (HEAP8[27897] | 0) FUNCTION_TABLE_vi[HEAP32[6767] & 31](0);
+  if (HEAP8[27917] | 0) FUNCTION_TABLE_vi[HEAP32[6772] & 31](0);
   _glUseProgram(0);
   i5 = i5 + 1 | 0;
  } while (i5 >>> 0 < i11 >>> 0);
@@ -19781,7 +19781,7 @@ function _DrawBuffersDefault() {
  HEAP32[6085] = 0;
  HEAP32[6086] = 0;
  HEAPF32[2325] = Math_fround(-1.0);
- i2 = 26920;
+ i2 = 26940;
  i3 = i9;
  i4 = i2 + 64 | 0;
  do {
@@ -19789,7 +19789,7 @@ function _DrawBuffersDefault() {
   i2 = i2 + 4 | 0;
   i3 = i3 + 4 | 0;
  } while ((i2 | 0) < (i4 | 0));
- i2 = 26856;
+ i2 = 26876;
  i3 = i8;
  i4 = i2 + 64 | 0;
  do {
@@ -19797,16 +19797,16 @@ function _DrawBuffersDefault() {
   i2 = i2 + 4 | 0;
   i3 = i3 + 4 | 0;
  } while ((i2 | 0) < (i4 | 0));
- i1 = HEAP32[6764] | 0;
+ i1 = HEAP32[6769] | 0;
  i2 = 0;
  do {
   i13 = i1 + (i2 << 4) | 0;
   HEAP32[i13 >> 2] = 7;
   HEAP32[i13 + 4 >> 2] = 0;
-  HEAP32[i13 + 12 >> 2] = HEAP32[6766];
+  HEAP32[i13 + 12 >> 2] = HEAP32[6771];
   i2 = i2 + 1 | 0;
  } while ((i2 | 0) != 256);
- HEAP32[6765] = 1;
+ HEAP32[6770] = 1;
  STACKTOP = i14;
  return;
 }
@@ -20203,7 +20203,7 @@ function _LoadFontDefault() {
  i8 = i10 + 4 | 0;
  i6 = i10 + 44 | 0;
  i10 = i10 + 24 | 0;
- HEAP32[6786] = 224;
+ HEAP32[6791] = 224;
  i2 = _malloc(65536) | 0;
  _memset(i2 | 0, 0, 65536) | 0;
  i3 = 0;
@@ -20233,27 +20233,27 @@ function _LoadFontDefault() {
  HEAP32[i7 + 12 >> 2] = HEAP32[i8 + 12 >> 2];
  HEAP32[i7 + 16 >> 2] = HEAP32[i8 + 16 >> 2];
  _LoadTextureFromImage(i6, i7);
- HEAP32[6787] = HEAP32[i6 >> 2];
- HEAP32[6788] = HEAP32[i6 + 4 >> 2];
- HEAP32[6789] = HEAP32[i6 + 8 >> 2];
- HEAP32[6790] = HEAP32[i6 + 12 >> 2];
- HEAP32[6791] = HEAP32[i6 + 16 >> 2];
- i13 = HEAP32[6786] | 0;
- HEAP32[6793] = _malloc(i13 * 36 | 0) | 0;
- HEAP32[6792] = _malloc(i13 << 4) | 0;
- if ((HEAP32[6786] | 0) <= 0) {
+ HEAP32[6792] = HEAP32[i6 >> 2];
+ HEAP32[6793] = HEAP32[i6 + 4 >> 2];
+ HEAP32[6794] = HEAP32[i6 + 8 >> 2];
+ HEAP32[6795] = HEAP32[i6 + 12 >> 2];
+ HEAP32[6796] = HEAP32[i6 + 16 >> 2];
+ i13 = HEAP32[6791] | 0;
+ HEAP32[6798] = _malloc(i13 * 36 | 0) | 0;
+ HEAP32[6797] = _malloc(i13 << 4) | 0;
+ if ((HEAP32[6791] | 0) <= 0) {
   HEAP32[i7 >> 2] = HEAP32[i8 >> 2];
   HEAP32[i7 + 4 >> 2] = HEAP32[i8 + 4 >> 2];
   HEAP32[i7 + 8 >> 2] = HEAP32[i8 + 8 >> 2];
   HEAP32[i7 + 12 >> 2] = HEAP32[i8 + 12 >> 2];
   HEAP32[i7 + 16 >> 2] = HEAP32[i8 + 16 >> 2];
   _UnloadImage(i7);
-  i13 = HEAP32[6792] | 0;
+  i13 = HEAP32[6797] | 0;
   i13 = i13 + 12 | 0;
   f14 = Math_fround(HEAPF32[i13 >> 2]);
   i13 = ~~f14;
-  HEAP32[6785] = i13;
-  i13 = HEAP32[6787] | 0;
+  HEAP32[6790] = i13;
+  i13 = HEAP32[6792] | 0;
   HEAP32[i11 >> 2] = i13;
   _TraceLog(3, 13597, i11);
   STACKTOP = i12;
@@ -20263,30 +20263,30 @@ function _LoadFontDefault() {
  i1 = 1;
  i6 = 0;
  do {
-  HEAP32[(HEAP32[6793] | 0) + (i6 * 36 | 0) >> 2] = i6 + 32;
+  HEAP32[(HEAP32[6798] | 0) + (i6 * 36 | 0) >> 2] = i6 + 32;
   f14 = Math_fround(i1 | 0);
-  HEAPF32[(HEAP32[6792] | 0) + (i6 << 4) >> 2] = f14;
+  HEAPF32[(HEAP32[6797] | 0) + (i6 << 4) >> 2] = f14;
   f14 = Math_fround((i2 * 11 | 0) + 1 | 0);
-  HEAPF32[(HEAP32[6792] | 0) + (i6 << 4) + 4 >> 2] = f14;
+  HEAPF32[(HEAP32[6797] | 0) + (i6 << 4) + 4 >> 2] = f14;
   i5 = HEAP32[3104 + (i6 << 2) >> 2] | 0;
   f14 = Math_fround(i5 | 0);
-  HEAPF32[(HEAP32[6792] | 0) + (i6 << 4) + 8 >> 2] = f14;
-  HEAPF32[(HEAP32[6792] | 0) + (i6 << 4) + 12 >> 2] = Math_fround(10.0);
-  i4 = HEAP32[6792] | 0;
+  HEAPF32[(HEAP32[6797] | 0) + (i6 << 4) + 8 >> 2] = f14;
+  HEAPF32[(HEAP32[6797] | 0) + (i6 << 4) + 12 >> 2] = Math_fround(10.0);
+  i4 = HEAP32[6797] | 0;
   i1 = i1 + ~~Math_fround(Math_fround(HEAPF32[i4 + (i6 << 4) + 8 >> 2]) + Math_fround(1.0)) | 0;
   i3 = i2 + 1 | 0;
-  if ((i1 | 0) >= (HEAP32[6788] | 0)) {
+  if ((i1 | 0) >= (HEAP32[6793] | 0)) {
    f14 = Math_fround((i3 * 11 | 0) + 1 | 0);
    HEAPF32[i4 + (i6 << 4) >> 2] = Math_fround(1.0);
-   HEAPF32[(HEAP32[6792] | 0) + (i6 << 4) + 4 >> 2] = f14;
+   HEAPF32[(HEAP32[6797] | 0) + (i6 << 4) + 4 >> 2] = f14;
    i2 = i3;
    i1 = i5 + 2 | 0;
   }
-  HEAP32[(HEAP32[6793] | 0) + (i6 * 36 | 0) + 4 >> 2] = 0;
-  HEAP32[(HEAP32[6793] | 0) + (i6 * 36 | 0) + 8 >> 2] = 0;
-  HEAP32[(HEAP32[6793] | 0) + (i6 * 36 | 0) + 12 >> 2] = 0;
-  i13 = (HEAP32[6793] | 0) + (i6 * 36 | 0) + 16 | 0;
-  i5 = (HEAP32[6792] | 0) + (i6 << 4) | 0;
+  HEAP32[(HEAP32[6798] | 0) + (i6 * 36 | 0) + 4 >> 2] = 0;
+  HEAP32[(HEAP32[6798] | 0) + (i6 * 36 | 0) + 8 >> 2] = 0;
+  HEAP32[(HEAP32[6798] | 0) + (i6 * 36 | 0) + 12 >> 2] = 0;
+  i13 = (HEAP32[6798] | 0) + (i6 * 36 | 0) + 16 | 0;
+  i5 = (HEAP32[6797] | 0) + (i6 << 4) | 0;
   HEAP32[i9 >> 2] = HEAP32[i8 >> 2];
   HEAP32[i9 + 4 >> 2] = HEAP32[i8 + 4 >> 2];
   HEAP32[i9 + 8 >> 2] = HEAP32[i8 + 8 >> 2];
@@ -20303,19 +20303,19 @@ function _LoadFontDefault() {
   HEAP32[i13 + 12 >> 2] = HEAP32[i10 + 12 >> 2];
   HEAP32[i13 + 16 >> 2] = HEAP32[i10 + 16 >> 2];
   i6 = i6 + 1 | 0;
- } while ((i6 | 0) < (HEAP32[6786] | 0));
+ } while ((i6 | 0) < (HEAP32[6791] | 0));
  HEAP32[i7 >> 2] = HEAP32[i8 >> 2];
  HEAP32[i7 + 4 >> 2] = HEAP32[i8 + 4 >> 2];
  HEAP32[i7 + 8 >> 2] = HEAP32[i8 + 8 >> 2];
  HEAP32[i7 + 12 >> 2] = HEAP32[i8 + 12 >> 2];
  HEAP32[i7 + 16 >> 2] = HEAP32[i8 + 16 >> 2];
  _UnloadImage(i7);
- i13 = HEAP32[6792] | 0;
+ i13 = HEAP32[6797] | 0;
  i13 = i13 + 12 | 0;
  f14 = Math_fround(HEAPF32[i13 >> 2]);
  i13 = ~~f14;
- HEAP32[6785] = i13;
- i13 = HEAP32[6787] | 0;
+ HEAP32[6790] = i13;
+ i13 = HEAP32[6792] | 0;
  HEAP32[i11 >> 2] = i13;
  _TraceLog(3, 13597, i11);
  STACKTOP = i12;
@@ -20522,10 +20522,10 @@ function _InitGraphicsDevice(i2, i1) {
  i3 = i10 + 72 | 0;
  i8 = i10 + 64 | 0;
  i10 = i10 + 136 | 0;
- HEAP32[6783] = i2;
- HEAP32[6784] = i1;
+ HEAP32[6788] = i2;
+ HEAP32[6789] = i1;
  _MatrixIdentity(i3);
- i1 = 27176;
+ i1 = 27196;
  i2 = i3;
  i3 = i1 + 64 | 0;
  do {
@@ -20540,8 +20540,8 @@ function _InitGraphicsDevice(i2, i1) {
   STACKTOP = i17;
   return i16 | 0;
  }
- HEAP32[6810] = HEAP32[6783];
- HEAP32[6811] = HEAP32[6784];
+ HEAP32[6815] = HEAP32[6788];
+ HEAP32[6816] = HEAP32[6789];
  _glfwDefaultWindowHints();
  if (!0) _glfwWindowHint(131076, 1); else _glfwWindowHint(131076, 0);
  if (!0) _glfwWindowHint(131075, 0); else _glfwWindowHint(131075, 1);
@@ -20553,21 +20553,21 @@ function _InitGraphicsDevice(i2, i1) {
  _glfwWindowHint(139265, 196610);
  _glfwWindowHint(139275, 221185);
  if (!0) {
-  i9 = _glfwCreateWindow(HEAP32[6783] | 0, HEAP32[6784] | 0, HEAP32[6782] | 0, 0, 0) | 0;
-  HEAP32[6778] = i9;
+  i9 = _glfwCreateWindow(HEAP32[6788] | 0, HEAP32[6789] | 0, HEAP32[6787] | 0, 0, 0) | 0;
+  HEAP32[6783] = i9;
   if (i9 | 0) {
-   HEAP32[6812] = HEAP32[6783];
-   HEAP32[6813] = HEAP32[6784];
-   i1 = HEAP32[6778] | 0;
+   HEAP32[6817] = HEAP32[6788];
+   HEAP32[6818] = HEAP32[6789];
+   i1 = HEAP32[6783] | 0;
    i5 = 27;
   }
  } else {
   HEAP32[i8 >> 2] = 0;
   i7 = _glfwGetVideoModes(_glfwGetPrimaryMonitor() | 0, i8 | 0) | 0;
   L28 : do if ((HEAP32[i8 >> 2] | 0) > 0) {
-   i6 = HEAP32[6783] | 0;
+   i6 = HEAP32[6788] | 0;
    i1 = HEAP32[i8 >> 2] | 0;
-   i2 = HEAP32[6784] | 0;
+   i2 = HEAP32[6789] | 0;
    i5 = 0;
    while (1) {
     i3 = HEAP32[i7 + (i5 * 24 | 0) >> 2] | 0;
@@ -20578,51 +20578,51 @@ function _InitGraphicsDevice(i2, i1) {
     i5 = i5 + 1 | 0;
     if ((i5 | 0) >= (i1 | 0)) break L28;
    }
-   HEAP32[6810] = i3;
-   HEAP32[6811] = i4;
+   HEAP32[6815] = i3;
+   HEAP32[6816] = i4;
   } while (0);
-  i5 = HEAP32[6811] | 0;
-  HEAP32[i9 >> 2] = HEAP32[6810];
+  i5 = HEAP32[6816] | 0;
+  HEAP32[i9 >> 2] = HEAP32[6815];
   HEAP32[i9 + 4 >> 2] = i5;
   _TraceLog(4, 16834, i9);
   _SetupFramebuffer();
-  i9 = HEAP32[6810] | 0;
-  i5 = HEAP32[6811] | 0;
-  i1 = HEAP32[6782] | 0;
+  i9 = HEAP32[6815] | 0;
+  i5 = HEAP32[6816] | 0;
+  i1 = HEAP32[6787] | 0;
   i1 = _glfwCreateWindow(i9 | 0, i5 | 0, i1 | 0, _glfwGetPrimaryMonitor() | 0, 0) | 0;
-  HEAP32[6778] = i1;
+  HEAP32[6783] = i1;
   i5 = 27;
  }
  if ((i5 | 0) == 27) if (i1 | 0) {
   _TraceLog(3, 16905, i15);
-  i15 = HEAP32[6813] | 0;
-  HEAP32[i16 >> 2] = HEAP32[6812];
+  i15 = HEAP32[6818] | 0;
+  HEAP32[i16 >> 2] = HEAP32[6817];
   HEAP32[i16 + 4 >> 2] = i15;
   _TraceLog(3, 16945, i16);
-  i16 = HEAP32[6784] | 0;
-  HEAP32[i12 >> 2] = HEAP32[6783];
+  i16 = HEAP32[6789] | 0;
+  HEAP32[i12 >> 2] = HEAP32[6788];
   HEAP32[i12 + 4 >> 2] = i16;
   _TraceLog(3, 16966, i12);
-  i16 = HEAP32[6815] | 0;
-  HEAP32[i11 >> 2] = HEAP32[6814];
+  i16 = HEAP32[6820] | 0;
+  HEAP32[i11 >> 2] = HEAP32[6819];
   HEAP32[i11 + 4 >> 2] = i16;
   _TraceLog(3, 16987, i11);
-  _glfwSetWindowSizeCallback(HEAP32[6778] | 0, 1) | 0;
-  _glfwSetCursorEnterCallback(HEAP32[6778] | 0, 3) | 0;
-  _glfwSetKeyCallback(HEAP32[6778] | 0, 1) | 0;
-  _glfwSetMouseButtonCallback(HEAP32[6778] | 0, 1) | 0;
-  _glfwSetCursorPosCallback(HEAP32[6778] | 0, 1) | 0;
-  _glfwSetCharCallback(HEAP32[6778] | 0, 4) | 0;
-  _glfwSetScrollCallback(HEAP32[6778] | 0, 2) | 0;
-  _glfwSetWindowIconifyCallback(HEAP32[6778] | 0, 5) | 0;
-  _glfwSetDropCallback(HEAP32[6778] | 0, 2) | 0;
-  _glfwMakeContextCurrent(HEAP32[6778] | 0);
+  _glfwSetWindowSizeCallback(HEAP32[6783] | 0, 1) | 0;
+  _glfwSetCursorEnterCallback(HEAP32[6783] | 0, 3) | 0;
+  _glfwSetKeyCallback(HEAP32[6783] | 0, 1) | 0;
+  _glfwSetMouseButtonCallback(HEAP32[6783] | 0, 1) | 0;
+  _glfwSetCursorPosCallback(HEAP32[6783] | 0, 1) | 0;
+  _glfwSetCharCallback(HEAP32[6783] | 0, 4) | 0;
+  _glfwSetScrollCallback(HEAP32[6783] | 0, 2) | 0;
+  _glfwSetWindowIconifyCallback(HEAP32[6783] | 0, 5) | 0;
+  _glfwSetDropCallback(HEAP32[6783] | 0, 2) | 0;
+  _glfwMakeContextCurrent(HEAP32[6783] | 0);
   if (0 | 0) {
    _glfwSwapInterval(1);
    _TraceLog(3, 17012, i13);
   }
-  _rlglInit(HEAP32[6783] | 0, HEAP32[6784] | 0);
-  _SetupViewport(HEAP32[6812] | 0, HEAP32[6813] | 0);
+  _rlglInit(HEAP32[6788] | 0, HEAP32[6789] | 0);
+  _SetupViewport(HEAP32[6817] | 0, HEAP32[6818] | 0);
   HEAP8[i10 >> 0] = -11;
   HEAP8[i10 + 1 >> 0] = -11;
   HEAP8[i10 + 2 >> 0] = -11;
@@ -20784,7 +20784,7 @@ function _try_realloc_chunk(i12, i11) {
    i12 = 0;
    return i12 | 0;
   }
-  if (i1 >>> 0 >= (i11 + 4 | 0) >>> 0) if ((i1 - i11 | 0) >>> 0 <= HEAP32[6966] << 1 >>> 0) return i12 | 0;
+  if (i1 >>> 0 >= (i11 + 4 | 0) >>> 0) if ((i1 - i11 | 0) >>> 0 <= HEAP32[6971] << 1 >>> 0) return i12 | 0;
   i12 = 0;
   return i12 | 0;
  }
@@ -20799,8 +20799,8 @@ function _try_realloc_chunk(i12, i11) {
   _dispose_chunk(i8, i1);
   return i12 | 0;
  }
- if ((HEAP32[6852] | 0) == (i6 | 0)) {
-  i8 = (HEAP32[6849] | 0) + i1 | 0;
+ if ((HEAP32[6857] | 0) == (i6 | 0)) {
+  i8 = (HEAP32[6854] | 0) + i1 | 0;
   i2 = i8 - i11 | 0;
   i1 = i12 + i11 | 0;
   if (i8 >>> 0 <= i11 >>> 0) {
@@ -20809,12 +20809,12 @@ function _try_realloc_chunk(i12, i11) {
   }
   HEAP32[i10 >> 2] = i9 & 1 | i11 | 2;
   HEAP32[i1 + 4 >> 2] = i2 | 1;
-  HEAP32[6852] = i1;
-  HEAP32[6849] = i2;
+  HEAP32[6857] = i1;
+  HEAP32[6854] = i2;
   return i12 | 0;
  }
- if ((HEAP32[6851] | 0) == (i6 | 0)) {
-  i2 = (HEAP32[6848] | 0) + i1 | 0;
+ if ((HEAP32[6856] | 0) == (i6 | 0)) {
+  i2 = (HEAP32[6853] | 0) + i1 | 0;
   if (i2 >>> 0 < i11 >>> 0) {
    i12 = 0;
    return i12 | 0;
@@ -20836,8 +20836,8 @@ function _try_realloc_chunk(i12, i11) {
    i2 = 0;
    i1 = 0;
   }
-  HEAP32[6848] = i1;
-  HEAP32[6851] = i2;
+  HEAP32[6853] = i1;
+  HEAP32[6856] = i2;
   return i12 | 0;
  }
  i2 = HEAP32[i6 + 4 >> 2] | 0;
@@ -20856,7 +20856,7 @@ function _try_realloc_chunk(i12, i11) {
   i2 = HEAP32[i6 + 8 >> 2] | 0;
   i1 = HEAP32[i6 + 12 >> 2] | 0;
   if ((i1 | 0) == (i2 | 0)) {
-   HEAP32[6846] = HEAP32[6846] & ~(1 << i3);
+   HEAP32[6851] = HEAP32[6851] & ~(1 << i3);
    break;
   } else {
    HEAP32[i2 + 12 >> 2] = i1;
@@ -20902,11 +20902,11 @@ function _try_realloc_chunk(i12, i11) {
   } while (0);
   if (i5 | 0) {
    i1 = HEAP32[i6 + 28 >> 2] | 0;
-   i2 = 27688 + (i1 << 2) | 0;
+   i2 = 27708 + (i1 << 2) | 0;
    if ((HEAP32[i2 >> 2] | 0) == (i6 | 0)) {
     HEAP32[i2 >> 2] = i3;
     if (!i3) {
-     HEAP32[6847] = HEAP32[6847] & ~(1 << i1);
+     HEAP32[6852] = HEAP32[6852] & ~(1 << i1);
      break;
     }
    } else {
@@ -21223,32 +21223,32 @@ function _rlLoadTexture(i8, i19, i14, i9, i16) {
  i11 = i2 + 92 | 0;
  _glBindTexture(3553, 0);
  HEAP32[i15 >> 2] = 0;
- if ((i9 + -11 | 0) >>> 0 < 4 & (HEAP8[27901] | 0) == 0) {
+ if ((i9 + -11 | 0) >>> 0 < 4 & (HEAP8[27921] | 0) == 0) {
   _TraceLog(4, 12919, i2);
   i19 = HEAP32[i15 >> 2] | 0;
   STACKTOP = i20;
   return i19 | 0;
  }
- if ((i9 | 0) == 15 & (HEAP8[27902] | 0) == 0) {
+ if ((i9 | 0) == 15 & (HEAP8[27922] | 0) == 0) {
   _TraceLog(4, 12963, i2 + 8 | 0);
   i19 = HEAP32[i15 >> 2] | 0;
   STACKTOP = i20;
   return i19 | 0;
  }
  i1 = i9 | 1;
- if ((i1 | 0) == 17 & (HEAP8[27903] | 0) == 0) {
+ if ((i1 | 0) == 17 & (HEAP8[27923] | 0) == 0) {
   _TraceLog(4, 13008, i2 + 16 | 0);
   i19 = HEAP32[i15 >> 2] | 0;
   STACKTOP = i20;
   return i19 | 0;
  }
- if ((i1 | 0) == 19 & (HEAP8[27904] | 0) == 0) {
+ if ((i1 | 0) == 19 & (HEAP8[27924] | 0) == 0) {
   _TraceLog(4, 13053, i2 + 24 | 0);
   i19 = HEAP32[i15 >> 2] | 0;
   STACKTOP = i20;
   return i19 | 0;
  }
- if ((i1 | 0) == 21 & (HEAP8[27905] | 0) == 0) {
+ if ((i1 | 0) == 21 & (HEAP8[27925] | 0) == 0) {
   _TraceLog(4, 13098, i2 + 32 | 0);
   i19 = HEAP32[i15 >> 2] | 0;
   STACKTOP = i20;
@@ -21290,7 +21290,7 @@ function _rlLoadTexture(i8, i19, i14, i9, i16) {
    }
   }
  }
- if (!(HEAP8[27899] | 0)) {
+ if (!(HEAP8[27919] | 0)) {
   _glTexParameteri(3553, 10242, 33071);
   _glTexParameteri(3553, 10243, 33071);
  } else {
@@ -22160,17 +22160,17 @@ function _SetupFramebuffer() {
  i12 = i11 + 16 | 0;
  i8 = i11;
  i11 = i11 + 40 | 0;
- i1 = HEAP32[6783] | 0;
- i2 = HEAP32[6810] | 0;
+ i1 = HEAP32[6788] | 0;
+ i2 = HEAP32[6815] | 0;
  if (i1 >>> 0 <= i2 >>> 0) {
-  i6 = HEAP32[6784] | 0;
-  i7 = HEAP32[6811] | 0;
+  i6 = HEAP32[6789] | 0;
+  i7 = HEAP32[6816] | 0;
   if (i6 >>> 0 <= i7 >>> 0) {
    if (!(i1 >>> 0 < i2 >>> 0 | i6 >>> 0 < i7 >>> 0)) {
-    HEAP32[6812] = i1;
-    HEAP32[6813] = i6;
-    HEAP32[6814] = 0;
-    HEAP32[6815] = 0;
+    HEAP32[6817] = i1;
+    HEAP32[6818] = i6;
+    HEAP32[6819] = 0;
+    HEAP32[6820] = 0;
     STACKTOP = i13;
     return;
    }
@@ -22179,62 +22179,62 @@ function _SetupFramebuffer() {
    HEAP32[i9 + 8 >> 2] = i2;
    HEAP32[i9 + 12 >> 2] = i7;
    _TraceLog(3, 17561, i9);
-   f5 = Math_fround((HEAP32[6810] | 0) >>> 0);
-   f5 = Math_fround(f5 / Math_fround((HEAP32[6811] | 0) >>> 0));
-   i1 = HEAP32[6783] | 0;
+   f5 = Math_fround((HEAP32[6815] | 0) >>> 0);
+   f5 = Math_fround(f5 / Math_fround((HEAP32[6816] | 0) >>> 0));
+   i1 = HEAP32[6788] | 0;
    f3 = Math_fround(i1 | 0);
-   i2 = HEAP32[6784] | 0;
+   i2 = HEAP32[6789] | 0;
    f4 = Math_fround(i2 | 0);
    if (!(f5 <= Math_fround(f3 / f4))) {
     i12 = ~~Math_fround(+_llvm_round_f32(+Math_fround(f5 * f4)));
-    HEAP32[6812] = i12;
-    HEAP32[6813] = i2;
-    HEAP32[6814] = i12 - i1;
+    HEAP32[6817] = i12;
+    HEAP32[6818] = i2;
+    HEAP32[6819] = i12 - i1;
     i1 = 0;
    } else {
-    HEAP32[6812] = i1;
+    HEAP32[6817] = i1;
     i1 = ~~Math_fround(+_llvm_round_f32(+Math_fround(f3 / f5)));
-    HEAP32[6813] = i1;
-    HEAP32[6814] = 0;
+    HEAP32[6818] = i1;
+    HEAP32[6819] = 0;
     i1 = i1 - i2 | 0;
    }
-   HEAP32[6815] = i1;
+   HEAP32[6820] = i1;
    STACKTOP = i13;
    return;
   }
  }
- i7 = HEAP32[6784] | 0;
- i9 = HEAP32[6811] | 0;
+ i7 = HEAP32[6789] | 0;
+ i9 = HEAP32[6816] | 0;
  HEAP32[i8 >> 2] = i1;
  HEAP32[i8 + 4 >> 2] = i7;
  HEAP32[i8 + 8 >> 2] = i2;
  HEAP32[i8 + 12 >> 2] = i9;
  _TraceLog(4, 17418, i8);
- i1 = HEAP32[6810] | 0;
+ i1 = HEAP32[6815] | 0;
  f4 = Math_fround(i1 >>> 0);
- f10 = Math_fround(HEAP32[6783] | 0);
+ f10 = Math_fround(HEAP32[6788] | 0);
  f4 = Math_fround(f4 / f10);
- i2 = HEAP32[6811] | 0;
+ i2 = HEAP32[6816] | 0;
  f5 = Math_fround(i2 >>> 0);
- f3 = Math_fround(HEAP32[6784] | 0);
+ f3 = Math_fround(HEAP32[6789] | 0);
  f5 = Math_fround(f5 / f3);
  if (!(f4 <= f5)) {
   i9 = ~~Math_fround(+_llvm_round_f32(+Math_fround(f5 * f10)));
-  HEAP32[6812] = i9;
-  HEAP32[6813] = i2;
-  HEAP32[6814] = i1 - i9;
+  HEAP32[6817] = i9;
+  HEAP32[6818] = i2;
+  HEAP32[6819] = i1 - i9;
   i1 = 0;
  } else {
-  HEAP32[6812] = i1;
+  HEAP32[6817] = i1;
   i1 = ~~Math_fround(+_llvm_round_f32(+Math_fround(f4 * f3)));
-  HEAP32[6813] = i1;
-  HEAP32[6814] = 0;
+  HEAP32[6818] = i1;
+  HEAP32[6819] = 0;
   i1 = i2 - i1 | 0;
  }
- HEAP32[6815] = i1;
- f10 = Math_fround(Math_fround(HEAP32[6812] | 0) / f10);
+ HEAP32[6820] = i1;
+ f10 = Math_fround(Math_fround(HEAP32[6817] | 0) / f10);
  _MatrixScale(i11, f10, f10, Math_fround(1.0));
- i6 = 27176;
+ i6 = 27196;
  i1 = i11;
  i2 = i6 + 64 | 0;
  do {
@@ -22242,10 +22242,10 @@ function _SetupFramebuffer() {
   i6 = i6 + 4 | 0;
   i1 = i1 + 4 | 0;
  } while ((i6 | 0) < (i2 | 0));
- i9 = HEAP32[6810] | 0;
- HEAP32[6812] = i9;
- i11 = HEAP32[6811] | 0;
- HEAP32[6813] = i11;
+ i9 = HEAP32[6815] | 0;
+ HEAP32[6817] = i9;
+ i11 = HEAP32[6816] | 0;
+ HEAP32[6818] = i11;
  HEAP32[i12 >> 2] = i9;
  HEAP32[i12 + 4 >> 2] = i11;
  _TraceLog(4, 17496, i12);
@@ -22508,9 +22508,9 @@ function _LoadBuffersDefault() {
  HEAP32[6085] = 0;
  HEAP32[6086] = 0;
  _TraceLog(3, 11517, i3);
- if (HEAP8[27897] | 0) {
-  FUNCTION_TABLE_vii[HEAP32[6772] & 63](1, 24364);
-  FUNCTION_TABLE_vi[HEAP32[6767] & 31](HEAP32[6091] | 0);
+ if (HEAP8[27917] | 0) {
+  FUNCTION_TABLE_vii[HEAP32[6777] & 63](1, 24364);
+  FUNCTION_TABLE_vi[HEAP32[6772] & 31](HEAP32[6091] | 0);
  }
  _glGenBuffers(1, 24368);
  _glBindBuffer(34962, HEAP32[6092] | 0);
@@ -22531,11 +22531,11 @@ function _LoadBuffersDefault() {
  _glBindBuffer(34963, HEAP32[6095] | 0);
  _glBufferData(34963, 24576, HEAP32[6090] | 0, 35044);
  _TraceLog(3, 11565, i4);
- if (!(HEAP8[27897] | 0)) {
+ if (!(HEAP8[27917] | 0)) {
   STACKTOP = i5;
   return;
  }
- FUNCTION_TABLE_vi[HEAP32[6767] & 31](0);
+ FUNCTION_TABLE_vi[HEAP32[6772] & 31](0);
  STACKTOP = i5;
  return;
 }
@@ -22703,78 +22703,78 @@ function _rlGetGlTextureFormats(i1, i3, i2, i4) {
   }
  case 8:
   {
-   if (HEAP8[27900] | 0) HEAP32[i3 >> 2] = 6409;
+   if (HEAP8[27920] | 0) HEAP32[i3 >> 2] = 6409;
    HEAP32[i2 >> 2] = 6409;
    HEAP32[i4 >> 2] = 5126;
    break;
   }
  case 9:
   {
-   if (HEAP8[27900] | 0) HEAP32[i3 >> 2] = 6407;
+   if (HEAP8[27920] | 0) HEAP32[i3 >> 2] = 6407;
    HEAP32[i2 >> 2] = 6407;
    HEAP32[i4 >> 2] = 5126;
    break;
   }
  case 10:
   {
-   if (HEAP8[27900] | 0) HEAP32[i3 >> 2] = 6408;
+   if (HEAP8[27920] | 0) HEAP32[i3 >> 2] = 6408;
    HEAP32[i2 >> 2] = 6408;
    HEAP32[i4 >> 2] = 5126;
    break;
   }
  case 11:
   {
-   if (HEAP8[27901] | 0) HEAP32[i3 >> 2] = 33776;
+   if (HEAP8[27921] | 0) HEAP32[i3 >> 2] = 33776;
    break;
   }
  case 12:
   {
-   if (HEAP8[27901] | 0) HEAP32[i3 >> 2] = 33777;
+   if (HEAP8[27921] | 0) HEAP32[i3 >> 2] = 33777;
    break;
   }
  case 13:
   {
-   if (HEAP8[27901] | 0) HEAP32[i3 >> 2] = 33778;
+   if (HEAP8[27921] | 0) HEAP32[i3 >> 2] = 33778;
    break;
   }
  case 14:
   {
-   if (HEAP8[27901] | 0) HEAP32[i3 >> 2] = 33779;
+   if (HEAP8[27921] | 0) HEAP32[i3 >> 2] = 33779;
    break;
   }
  case 15:
   {
-   if (HEAP8[27902] | 0) HEAP32[i3 >> 2] = 36196;
+   if (HEAP8[27922] | 0) HEAP32[i3 >> 2] = 36196;
    break;
   }
  case 16:
   {
-   if (HEAP8[27903] | 0) HEAP32[i3 >> 2] = 37492;
+   if (HEAP8[27923] | 0) HEAP32[i3 >> 2] = 37492;
    break;
   }
  case 17:
   {
-   if (HEAP8[27903] | 0) HEAP32[i3 >> 2] = 37496;
+   if (HEAP8[27923] | 0) HEAP32[i3 >> 2] = 37496;
    break;
   }
  case 18:
   {
-   if (HEAP8[27904] | 0) HEAP32[i3 >> 2] = 35840;
+   if (HEAP8[27924] | 0) HEAP32[i3 >> 2] = 35840;
    break;
   }
  case 19:
   {
-   if (HEAP8[27904] | 0) HEAP32[i3 >> 2] = 35842;
+   if (HEAP8[27924] | 0) HEAP32[i3 >> 2] = 35842;
    break;
   }
  case 20:
   {
-   if (HEAP8[27905] | 0) HEAP32[i3 >> 2] = 37808;
+   if (HEAP8[27925] | 0) HEAP32[i3 >> 2] = 37808;
    break;
   }
  case 21:
   {
-   if (HEAP8[27905] | 0) HEAP32[i3 >> 2] = 37815;
+   if (HEAP8[27925] | 0) HEAP32[i3 >> 2] = 37815;
    break;
   }
  default:
@@ -23471,6 +23471,66 @@ function _atanf(f2) {
  return f0;
 }
 
+function _Draw() {
+ var i1 = 0, i2 = 0, i3 = 0, i4 = 0, i5 = 0, i6 = 0, i7 = 0, i8 = 0, i9 = 0;
+ i1 = STACKTOP;
+ STACKTOP = STACKTOP + 48 | 0;
+ i2 = i1 + 40 | 0;
+ i5 = i1 + 12 | 0;
+ i3 = i1;
+ i7 = i1 + 36 | 0;
+ i9 = i1 + 8 | 0;
+ i6 = i1 + 4 | 0;
+ i4 = i1 + 32 | 0;
+ HEAP8[i7 >> 0] = -11;
+ HEAP8[i7 + 1 >> 0] = -11;
+ HEAP8[i7 + 2 >> 0] = -11;
+ HEAP8[i7 + 3 >> 0] = -1;
+ HEAP8[i2 >> 0] = HEAP8[i7 >> 0] | 0;
+ HEAP8[i2 + 1 >> 0] = HEAP8[i7 + 1 >> 0] | 0;
+ HEAP8[i2 + 2 >> 0] = HEAP8[i7 + 2 >> 0] | 0;
+ HEAP8[i2 + 3 >> 0] = HEAP8[i7 + 3 >> 0] | 0;
+ _ClearBackground(i2);
+ i7 = 640 / 2 | 0 | 0;
+ i8 = i7 - ((HEAP32[6709] | 0) / 2 | 0) | 0;
+ i7 = i7 - ((HEAP32[6710] | 0) / 2 | 0) | 0;
+ HEAP32[i9 >> 2] = -1;
+ HEAP32[i5 >> 2] = HEAP32[6708];
+ HEAP32[i5 + 4 >> 2] = HEAP32[6709];
+ HEAP32[i5 + 8 >> 2] = HEAP32[6710];
+ HEAP32[i5 + 12 >> 2] = HEAP32[6711];
+ HEAP32[i5 + 16 >> 2] = HEAP32[6712];
+ HEAP8[i2 >> 0] = HEAP8[i9 >> 0] | 0;
+ HEAP8[i2 + 1 >> 0] = HEAP8[i9 + 1 >> 0] | 0;
+ HEAP8[i2 + 2 >> 0] = HEAP8[i9 + 2 >> 0] | 0;
+ HEAP8[i2 + 3 >> 0] = HEAP8[i9 + 3 >> 0] | 0;
+ _DrawTexture(i5, i8, i7, i2);
+ HEAP32[i6 >> 2] = -1;
+ HEAP32[i5 >> 2] = HEAP32[6713];
+ HEAP32[i5 + 4 >> 2] = HEAP32[6714];
+ HEAP32[i5 + 8 >> 2] = HEAP32[6715];
+ HEAP32[i5 + 12 >> 2] = HEAP32[6716];
+ HEAP32[i5 + 16 >> 2] = HEAP32[6717];
+ HEAP8[i2 >> 0] = HEAP8[i6 >> 0] | 0;
+ HEAP8[i2 + 1 >> 0] = HEAP8[i6 + 1 >> 0] | 0;
+ HEAP8[i2 + 2 >> 0] = HEAP8[i6 + 2 >> 0] | 0;
+ HEAP8[i2 + 3 >> 0] = HEAP8[i6 + 3 >> 0] | 0;
+ _DrawTexture(i5, 0, 0, i2);
+ HEAP32[i3 >> 2] = 0;
+ i3 = _TextFormat(9608, i3) | 0;
+ HEAP8[i4 >> 0] = -56;
+ HEAP8[i4 + 1 >> 0] = -56;
+ HEAP8[i4 + 2 >> 0] = -56;
+ HEAP8[i4 + 3 >> 0] = -1;
+ HEAP8[i2 >> 0] = HEAP8[i4 >> 0] | 0;
+ HEAP8[i2 + 1 >> 0] = HEAP8[i4 + 1 >> 0] | 0;
+ HEAP8[i2 + 2 >> 0] = HEAP8[i4 + 2 >> 0] | 0;
+ HEAP8[i2 + 3 >> 0] = HEAP8[i4 + 3 >> 0] | 0;
+ _DrawText(i3, 16, 16, 20, i2);
+ STACKTOP = i1;
+ return;
+}
+
 function _stbir__calculate_filters(i7, i6, i8, f12, f13, i3, i4) {
  i7 = i7 | 0;
  i6 = i6 | 0;
@@ -23675,23 +23735,23 @@ function _KeyCallback(i15, i13, i1, i2, i14) {
   return;
  }
  if ((i14 | 0) != 2) {
-  HEAP32[i9 >> 2] = HEAP32[6819];
+  HEAP32[i9 >> 2] = HEAP32[6824];
   _TakeScreenshot(_TextFormat(17168, i9) | 0);
-  HEAP32[6819] = (HEAP32[6819] | 0) + 1;
+  HEAP32[6824] = (HEAP32[6824] | 0) + 1;
   STACKTOP = i11;
   return;
  }
- if (!(HEAP8[27915] | 0)) {
-  HEAP8[27915] = 1;
-  HEAP32[6820] = 0;
+ if (!(HEAP8[27935] | 0)) {
+  HEAP8[27935] = 1;
+  HEAP32[6825] = 0;
   _memset(i3 | 0, 0, 512) | 0;
-  HEAP32[i6 >> 2] = HEAP32[6819];
+  HEAP32[i6 >> 2] = HEAP32[6824];
   _strcpy(i3, _TextFormat(17115, i6) | 0) | 0;
-  i14 = HEAP32[6783] | 0;
-  i15 = HEAP32[6784] | 0;
+  i14 = HEAP32[6788] | 0;
+  i15 = HEAP32[6789] | 0;
   _GifBegin(i3, i14, i15, ~~Math_fround(Math_fround(_GetFrameTime()) * Math_fround(10.0)), 0, 0) | 0;
-  i15 = (HEAP32[6819] | 0) + 1 | 0;
-  HEAP32[6819] = i15;
+  i15 = (HEAP32[6824] | 0) + 1 | 0;
+  HEAP32[6824] = i15;
   HEAP32[i7 >> 2] = i15;
   HEAP32[i8 >> 2] = _TextFormat(17035, i7) | 0;
   _TraceLog(3, 17135, i8);
@@ -23699,10 +23759,10 @@ function _KeyCallback(i15, i13, i1, i2, i14) {
   return;
  } else {
   _GifEnd() | 0;
-  HEAP8[27915] = 0;
-  HEAP32[i4 >> 2] = (HEAP32[6819] | 0) + -1;
+  HEAP8[27935] = 0;
+  HEAP32[i4 >> 2] = (HEAP32[6824] | 0) + -1;
   i14 = _TextFormat(17035, i4) | 0;
-  HEAP32[i5 >> 2] = (HEAP32[6819] | 0) + -1;
+  HEAP32[i5 >> 2] = (HEAP32[6824] | 0) + -1;
   i15 = _TextFormat(17035, i5) | 0;
   HEAP32[i10 >> 2] = i14;
   HEAP32[i10 + 4 >> 2] = i15;
@@ -23787,16 +23847,16 @@ function _EndDrawing() {
  i4 = i3 + 8 | 0;
  i2 = i3 + 4 | 0;
  _rlglDraw();
- if (HEAP8[27915] | 0) {
-  i6 = (HEAP32[6820] | 0) + 1 | 0;
-  HEAP32[6820] = i6;
+ if (HEAP8[27935] | 0) {
+  i6 = (HEAP32[6825] | 0) + 1 | 0;
+  HEAP32[6825] = i6;
   if (!((i6 | 0) % 10 | 0)) {
-   i6 = _rlReadScreenPixels(HEAP32[6783] | 0, HEAP32[6784] | 0) | 0;
-   _GifWriteFrame(i6, HEAP32[6783] | 0, HEAP32[6784] | 0, 10, 8, 0) | 0;
+   i6 = _rlReadScreenPixels(HEAP32[6788] | 0, HEAP32[6789] | 0) | 0;
+   _GifWriteFrame(i6, HEAP32[6788] | 0, HEAP32[6789] | 0, 10, 8, 0) | 0;
    _free(i6);
   }
-  if ((((HEAP32[6820] | 0) / 15 | 0 | 0) % 2 | 0 | 0) == 1) {
-   i6 = (HEAP32[6784] | 0) + -20 | 0;
+  if ((((HEAP32[6825] | 0) / 15 | 0 | 0) % 2 | 0 | 0) == 1) {
+   i6 = (HEAP32[6789] | 0) + -20 | 0;
    HEAP8[i2 >> 0] = -26;
    HEAP8[i2 + 1 >> 0] = 41;
    HEAP8[i2 + 2 >> 0] = 55;
@@ -23806,7 +23866,7 @@ function _EndDrawing() {
    HEAP8[i4 + 2 >> 0] = HEAP8[i2 + 2 >> 0] | 0;
    HEAP8[i4 + 3 >> 0] = HEAP8[i2 + 3 >> 0] | 0;
    _DrawCircle(30, i6, Math_fround(10.0), i4);
-   i6 = (HEAP32[6784] | 0) + -25 | 0;
+   i6 = (HEAP32[6789] | 0) + -25 | 0;
    HEAP8[i3 >> 0] = -66;
    HEAP8[i3 + 1 >> 0] = 33;
    HEAP8[i3 + 2 >> 0] = 55;
@@ -24156,7 +24216,7 @@ function ___fdopen(i6, i2) {
    HEAP32[i1 + 36 >> 2] = 2;
    HEAP32[i1 + 40 >> 2] = 2;
    HEAP32[i1 + 12 >> 2] = 3;
-   if (!(HEAP32[6827] | 0)) HEAP32[i1 + 76 >> 2] = -1;
+   if (!(HEAP32[6832] | 0)) HEAP32[i1 + 76 >> 2] = -1;
    ___ofl_add(i1) | 0;
   }
  }
@@ -24190,9 +24250,9 @@ function _SetStereoView(i4, i1, i8) {
   i10 = i10 + 4 | 0;
   i1 = i1 + 4 | 0;
  } while ((i10 | 0) < (i3 | 0));
- i2 = HEAP32[6768] | 0;
+ i2 = HEAP32[6773] | 0;
  i10 = (Math_imul(i2, i4) | 0) / 2 | 0;
- _rlViewport(i10, 0, (i2 | 0) / 2 | 0, HEAP32[6769] | 0);
+ _rlViewport(i10, 0, (i2 | 0) / 2 | 0, HEAP32[6774] | 0);
  i2 = 26592 + (i4 << 6) | 0;
  i10 = i9;
  i1 = i8;
@@ -24586,12 +24646,12 @@ function _rlVertex3f(f2, f3, f4) {
  HEAPF32[i11 >> 2] = f3;
  i7 = i13 + 8 | 0;
  HEAPF32[i7 >> 2] = f4;
- if (HEAP8[27896] | 0) {
+ if (HEAP8[27916] | 0) {
   HEAP32[i10 >> 2] = HEAP32[i13 >> 2];
   HEAP32[i10 + 4 >> 2] = HEAP32[i13 + 4 >> 2];
   HEAP32[i10 + 8 >> 2] = HEAP32[i13 + 8 >> 2];
   i1 = i9;
-  i5 = 26992;
+  i5 = 27012;
   i6 = i1 + 64 | 0;
   do {
    HEAP32[i1 >> 2] = HEAP32[i5 >> 2];
@@ -24609,7 +24669,7 @@ function _rlVertex3f(f2, f3, f4) {
   HEAP32[(HEAP32[6087] | 0) + (((HEAP32[6084] | 0) * 3 | 0) + 1 << 2) >> 2] = HEAP32[i11 >> 2];
   HEAP32[(HEAP32[6087] | 0) + (((HEAP32[6084] | 0) * 3 | 0) + 2 << 2) >> 2] = HEAP32[i7 >> 2];
   HEAP32[6084] = (HEAP32[6084] | 0) + 1;
-  i13 = (HEAP32[6764] | 0) + ((HEAP32[6765] | 0) + -1 << 4) + 4 | 0;
+  i13 = (HEAP32[6769] | 0) + ((HEAP32[6770] | 0) + -1 << 4) + 4 | 0;
   HEAP32[i13 >> 2] = (HEAP32[i13 >> 2] | 0) + 1;
   STACKTOP = i14;
   return;
@@ -24645,7 +24705,7 @@ function _rlMultMatrixf(i1) {
  HEAP32[i6 + 52 >> 2] = HEAP32[i1 + 28 >> 2];
  HEAP32[i6 + 56 >> 2] = HEAP32[i1 + 44 >> 2];
  HEAP32[i6 + 60 >> 2] = HEAP32[i1 + 60 >> 2];
- i1 = HEAP32[6746] | 0;
+ i1 = HEAP32[6751] | 0;
  i2 = i5;
  i3 = i1;
  i4 = i2 + 64 | 0;
@@ -24838,7 +24898,7 @@ function _rlEnd() {
  }
  HEAPF32[2325] = Math_fround(Math_fround(HEAPF32[2325]) + Math_fround(.0000499999987));
  if ((i1 | 0) <= 8187) return;
- i1 = HEAP32[6747] | 0;
+ i1 = HEAP32[6752] | 0;
  if ((i1 | 0) > -1) while (1) {
   _rlPopMatrix();
   if ((i1 | 0) > 0) i1 = i1 + -1 | 0; else break;
@@ -24887,54 +24947,6 @@ function _stbir__calculate_coefficients_downsample(i2, f9, i7, i8, f6, i11, i10)
   }
  }
  if ((i1 | 0) == 14) return;
-}
-
-function _Draw() {
- var i1 = 0, i2 = 0, i3 = 0, i4 = 0, i5 = 0, i6 = 0, i7 = 0, i8 = 0;
- i1 = STACKTOP;
- STACKTOP = STACKTOP + 48 | 0;
- i2 = i1 + 36 | 0;
- i7 = i1 + 8 | 0;
- i3 = i1;
- i5 = i1 + 32 | 0;
- i8 = i1 + 4 | 0;
- i4 = i1 + 28 | 0;
- HEAP8[i5 >> 0] = -11;
- HEAP8[i5 + 1 >> 0] = -11;
- HEAP8[i5 + 2 >> 0] = -11;
- HEAP8[i5 + 3 >> 0] = -1;
- HEAP8[i2 >> 0] = HEAP8[i5 >> 0] | 0;
- HEAP8[i2 + 1 >> 0] = HEAP8[i5 + 1 >> 0] | 0;
- HEAP8[i2 + 2 >> 0] = HEAP8[i5 + 2 >> 0] | 0;
- HEAP8[i2 + 3 >> 0] = HEAP8[i5 + 3 >> 0] | 0;
- _ClearBackground(i2);
- i5 = 640 / 2 | 0 | 0;
- i6 = i5 - ((HEAP32[6709] | 0) / 2 | 0) | 0;
- i5 = i5 - ((HEAP32[6710] | 0) / 2 | 0) | 0;
- HEAP32[i8 >> 2] = -1;
- HEAP32[i7 >> 2] = HEAP32[6708];
- HEAP32[i7 + 4 >> 2] = HEAP32[6709];
- HEAP32[i7 + 8 >> 2] = HEAP32[6710];
- HEAP32[i7 + 12 >> 2] = HEAP32[6711];
- HEAP32[i7 + 16 >> 2] = HEAP32[6712];
- HEAP8[i2 >> 0] = HEAP8[i8 >> 0] | 0;
- HEAP8[i2 + 1 >> 0] = HEAP8[i8 + 1 >> 0] | 0;
- HEAP8[i2 + 2 >> 0] = HEAP8[i8 + 2 >> 0] | 0;
- HEAP8[i2 + 3 >> 0] = HEAP8[i8 + 3 >> 0] | 0;
- _DrawTexture(i7, i6, i5, i2);
- HEAP32[i3 >> 2] = 0;
- i3 = _TextFormat(9608, i3) | 0;
- HEAP8[i4 >> 0] = -56;
- HEAP8[i4 + 1 >> 0] = -56;
- HEAP8[i4 + 2 >> 0] = -56;
- HEAP8[i4 + 3 >> 0] = -1;
- HEAP8[i2 >> 0] = HEAP8[i4 >> 0] | 0;
- HEAP8[i2 + 1 >> 0] = HEAP8[i4 + 1 >> 0] | 0;
- HEAP8[i2 + 2 >> 0] = HEAP8[i4 + 2 >> 0] | 0;
- HEAP8[i2 + 3 >> 0] = HEAP8[i4 + 3 >> 0] | 0;
- _DrawText(i3, 16, 16, 20, i2);
- STACKTOP = i1;
- return;
 }
 
 function _ImageResize(i2, i5, i4) {
@@ -25131,7 +25143,7 @@ function _rlRotatef(f2, f3, f4, f5) {
  HEAP32[i9 + 4 >> 2] = HEAP32[i1 + 4 >> 2];
  HEAP32[i9 + 8 >> 2] = HEAP32[i1 + 8 >> 2];
  _MatrixRotate(i7, i9, f5);
- i1 = HEAP32[6746] | 0;
+ i1 = HEAP32[6751] | 0;
  i6 = i10;
  i8 = i6 + 64 | 0;
  do {
@@ -25210,22 +25222,22 @@ function _GetShapesTexture(i1) {
  i3 = STACKTOP = STACKTOP + 63 & -64;
  STACKTOP = STACKTOP + 80 | 0;
  i2 = i3 + 36 | 0;
- if (HEAP32[6821] | 0) {
-  HEAP32[i1 >> 2] = HEAP32[6821];
-  HEAP32[i1 + 4 >> 2] = HEAP32[6822];
-  HEAP32[i1 + 8 >> 2] = HEAP32[6823];
-  HEAP32[i1 + 12 >> 2] = HEAP32[6824];
-  HEAP32[i1 + 16 >> 2] = HEAP32[6825];
+ if (HEAP32[6826] | 0) {
+  HEAP32[i1 >> 2] = HEAP32[6826];
+  HEAP32[i1 + 4 >> 2] = HEAP32[6827];
+  HEAP32[i1 + 8 >> 2] = HEAP32[6828];
+  HEAP32[i1 + 12 >> 2] = HEAP32[6829];
+  HEAP32[i1 + 16 >> 2] = HEAP32[6830];
   STACKTOP = i4;
   return;
  }
  _GetFontDefault(i2);
  i2 = i2 + 8 | 0;
- HEAP32[6821] = HEAP32[i2 >> 2];
- HEAP32[6822] = HEAP32[i2 + 4 >> 2];
- HEAP32[6823] = HEAP32[i2 + 8 >> 2];
- HEAP32[6824] = HEAP32[i2 + 12 >> 2];
- HEAP32[6825] = HEAP32[i2 + 16 >> 2];
+ HEAP32[6826] = HEAP32[i2 >> 2];
+ HEAP32[6827] = HEAP32[i2 + 4 >> 2];
+ HEAP32[6828] = HEAP32[i2 + 8 >> 2];
+ HEAP32[6829] = HEAP32[i2 + 12 >> 2];
+ HEAP32[6830] = HEAP32[i2 + 16 >> 2];
  _GetFontDefault(i3);
  i3 = HEAP32[i3 + 28 >> 2] | 0;
  f8 = Math_fround(HEAPF32[i3 + 1520 >> 2]);
@@ -25234,15 +25246,15 @@ function _GetShapesTexture(i1) {
  f7 = Math_fround(f7 + Math_fround(1.0));
  f6 = Math_fround(f6 + Math_fround(-2.0));
  f5 = Math_fround(Math_fround(HEAPF32[i3 + 1532 >> 2]) + Math_fround(-2.0));
- HEAPF32[6970] = Math_fround(f8 + Math_fround(1.0));
- HEAPF32[6971] = f7;
- HEAPF32[6972] = f6;
- HEAPF32[6973] = f5;
- HEAP32[i1 >> 2] = HEAP32[6821];
- HEAP32[i1 + 4 >> 2] = HEAP32[6822];
- HEAP32[i1 + 8 >> 2] = HEAP32[6823];
- HEAP32[i1 + 12 >> 2] = HEAP32[6824];
- HEAP32[i1 + 16 >> 2] = HEAP32[6825];
+ HEAPF32[6975] = Math_fround(f8 + Math_fround(1.0));
+ HEAPF32[6976] = f7;
+ HEAPF32[6977] = f6;
+ HEAPF32[6978] = f5;
+ HEAP32[i1 >> 2] = HEAP32[6826];
+ HEAP32[i1 + 4 >> 2] = HEAP32[6827];
+ HEAP32[i1 + 8 >> 2] = HEAP32[6828];
+ HEAP32[i1 + 12 >> 2] = HEAP32[6829];
+ HEAP32[i1 + 16 >> 2] = HEAP32[6830];
  STACKTOP = i4;
  return;
 }
@@ -25552,10 +25564,10 @@ function _LoadShaderDefault(i3) {
   HEAP32[i1 >> 2] = -1;
   i1 = i1 + 4 | 0;
  } while ((i1 | 0) < (i2 | 0));
- HEAP32[6773] = _CompileShader(11610, 35633) | 0;
+ HEAP32[6778] = _CompileShader(11610, 35633) | 0;
  i1 = _CompileShader(12093, 35632) | 0;
- HEAP32[6774] = i1;
- i1 = _LoadShaderProgram(HEAP32[6773] | 0, i1) | 0;
+ HEAP32[6779] = i1;
+ i1 = _LoadShaderProgram(HEAP32[6778] | 0, i1) | 0;
  if (!i1) {
   HEAP32[i6 >> 2] = i1;
   _TraceLog(4, 12648, i6);
@@ -25589,13 +25601,13 @@ function _PollInputEvents() {
  i6 = i4 + 1440 | 0;
  i7 = i4 + 1432 | 0;
  _UpdateGestures();
- _glfwGetCursorPos(HEAP32[6778] | 0, i6 | 0, i7 | 0);
- HEAPF32[6779] = Math_fround(+HEAPF64[i6 >> 3]);
- HEAPF32[6780] = Math_fround(+HEAPF64[i7 >> 3]);
- HEAP8[27912] = HEAP8[27909] | 0;
- HEAP8[27913] = HEAP8[27910] | 0;
- HEAP8[27914] = HEAP8[27911] | 0;
- HEAP32[6818] = 0;
+ _glfwGetCursorPos(HEAP32[6783] | 0, i6 | 0, i7 | 0);
+ HEAPF32[6784] = Math_fround(+HEAPF64[i6 >> 3]);
+ HEAPF32[6785] = Math_fround(+HEAPF64[i7 >> 3]);
+ HEAP8[27932] = HEAP8[27929] | 0;
+ HEAP8[27933] = HEAP8[27930] | 0;
+ HEAP8[27934] = HEAP8[27931] | 0;
+ HEAP32[6823] = 0;
  if (_emscripten_sample_gamepad_data() | 0) {
   STACKTOP = i8;
   return;
@@ -25674,39 +25686,39 @@ function _GifBegin(i3, i6, i5, i4, i1, i2) {
  i1 = i1 | 0;
  i2 = i2 | 0;
  i1 = _fopen(i3, 17221) | 0;
- HEAP32[6781] = i1;
+ HEAP32[6786] = i1;
  if (!i1) {
   i6 = 0;
   return i6 | 0;
  }
- HEAP32[6713] = _malloc(Math_imul(i6 << 2, i5) | 0) | 0;
+ HEAP32[6718] = _malloc(Math_imul(i6 << 2, i5) | 0) | 0;
  _fwrite(13396, 6, 1, i1) | 0;
- _fputc(i6 & 255, HEAP32[6781] | 0) | 0;
- _fputc(i6 >>> 8 & 255, HEAP32[6781] | 0) | 0;
- _fputc(i5 & 255, HEAP32[6781] | 0) | 0;
- _fputc(i5 >>> 8 & 255, HEAP32[6781] | 0) | 0;
- _fputc(240, HEAP32[6781] | 0) | 0;
- _fputc(0, HEAP32[6781] | 0) | 0;
- _fputc(0, HEAP32[6781] | 0) | 0;
- _fputc(0, HEAP32[6781] | 0) | 0;
- _fputc(0, HEAP32[6781] | 0) | 0;
- _fputc(0, HEAP32[6781] | 0) | 0;
- _fputc(0, HEAP32[6781] | 0) | 0;
- _fputc(0, HEAP32[6781] | 0) | 0;
- _fputc(0, HEAP32[6781] | 0) | 0;
+ _fputc(i6 & 255, HEAP32[6786] | 0) | 0;
+ _fputc(i6 >>> 8 & 255, HEAP32[6786] | 0) | 0;
+ _fputc(i5 & 255, HEAP32[6786] | 0) | 0;
+ _fputc(i5 >>> 8 & 255, HEAP32[6786] | 0) | 0;
+ _fputc(240, HEAP32[6786] | 0) | 0;
+ _fputc(0, HEAP32[6786] | 0) | 0;
+ _fputc(0, HEAP32[6786] | 0) | 0;
+ _fputc(0, HEAP32[6786] | 0) | 0;
+ _fputc(0, HEAP32[6786] | 0) | 0;
+ _fputc(0, HEAP32[6786] | 0) | 0;
+ _fputc(0, HEAP32[6786] | 0) | 0;
+ _fputc(0, HEAP32[6786] | 0) | 0;
+ _fputc(0, HEAP32[6786] | 0) | 0;
  if (!i4) {
   i6 = 1;
   return i6 | 0;
  }
- _fputc(33, HEAP32[6781] | 0) | 0;
- _fputc(255, HEAP32[6781] | 0) | 0;
- _fputc(11, HEAP32[6781] | 0) | 0;
- _fwrite(13403, 11, 1, HEAP32[6781] | 0) | 0;
- _fputc(3, HEAP32[6781] | 0) | 0;
- _fputc(1, HEAP32[6781] | 0) | 0;
- _fputc(0, HEAP32[6781] | 0) | 0;
- _fputc(0, HEAP32[6781] | 0) | 0;
- _fputc(0, HEAP32[6781] | 0) | 0;
+ _fputc(33, HEAP32[6786] | 0) | 0;
+ _fputc(255, HEAP32[6786] | 0) | 0;
+ _fputc(11, HEAP32[6786] | 0) | 0;
+ _fwrite(13403, 11, 1, HEAP32[6786] | 0) | 0;
+ _fputc(3, HEAP32[6786] | 0) | 0;
+ _fputc(1, HEAP32[6786] | 0) | 0;
+ _fputc(0, HEAP32[6786] | 0) | 0;
+ _fputc(0, HEAP32[6786] | 0) | 0;
+ _fputc(0, HEAP32[6786] | 0) | 0;
  i6 = 1;
  return i6 | 0;
 }
@@ -25721,7 +25733,7 @@ function _InitWindow(i3, i1, i2) {
  STACKTOP = STACKTOP + 16 | 0;
  HEAP32[i5 >> 2] = 13438;
  _TraceLog(3, 13415, i5);
- HEAP32[6782] = i2;
+ HEAP32[6787] = i2;
  if (!(_InitGraphicsDevice(i3, i1) | 0)) {
   STACKTOP = i4;
   return;
@@ -25737,8 +25749,8 @@ function _InitWindow(i3, i1, i2) {
  _emscripten_set_touchcancel_callback_on_thread(13446, 0, 1, 7, 2) | 0;
  _emscripten_set_gamepadconnected_callback_on_thread(0, 1, 8, 2) | 0;
  _emscripten_set_gamepaddisconnected_callback_on_thread(0, 1, 8, 2) | 0;
- HEAPF32[6779] = Math_fround(Math_fround(HEAP32[6783] | 0) * Math_fround(.5));
- HEAPF32[6780] = Math_fround(Math_fround(HEAP32[6784] | 0) * Math_fround(.5));
+ HEAPF32[6784] = Math_fround(Math_fround(HEAP32[6788] | 0) * Math_fround(.5));
+ HEAPF32[6785] = Math_fround(Math_fround(HEAP32[6789] | 0) * Math_fround(.5));
  STACKTOP = i4;
  return;
 }
@@ -26023,8 +26035,8 @@ function _rlBegin(i6) {
  i6 = i6 | 0;
  var i1 = 0, i2 = 0, i3 = 0, i4 = 0, i5 = 0, i7 = 0;
  i7 = 0;
- i3 = HEAP32[6764] | 0;
- i4 = HEAP32[6765] | 0;
+ i3 = HEAP32[6769] | 0;
+ i4 = HEAP32[6770] | 0;
  i5 = i4 + -1 | 0;
  i1 = HEAP32[i3 + (i5 << 4) >> 2] | 0;
  if ((i1 | 0) == (i6 | 0)) return;
@@ -26054,18 +26066,18 @@ function _rlBegin(i6) {
    HEAP32[6086] = (HEAP32[6086] | 0) + i1;
    HEAP32[6085] = (HEAP32[6085] | 0) + (HEAP32[i3 + (i5 << 4) + 8 >> 2] | 0);
    i1 = i4 + 1 | 0;
-   HEAP32[6765] = i1;
+   HEAP32[6770] = i1;
    break;
   }
  } else i7 = 9; while (0);
- if ((i7 | 0) == 9) i1 = HEAP32[6765] | 0;
+ if ((i7 | 0) == 9) i1 = HEAP32[6770] | 0;
  if ((i1 | 0) > 255) _rlglDraw();
- i5 = HEAP32[6764] | 0;
- i7 = (HEAP32[6765] | 0) + -1 | 0;
+ i5 = HEAP32[6769] | 0;
+ i7 = (HEAP32[6770] | 0) + -1 | 0;
  i7 = i5 + (i7 << 4) | 0;
  HEAP32[i7 >> 2] = i6;
  HEAP32[i7 + 4 >> 2] = 0;
- HEAP32[i7 + 12 >> 2] = HEAP32[6766];
+ HEAP32[i7 + 12 >> 2] = HEAP32[6771];
  return;
 }
 
@@ -26081,7 +26093,7 @@ function _MouseButtonCallback(i2, i6, i5, i1) {
  STACKTOP = STACKTOP + 128 | 0;
  i7 = i3 + 64 | 0;
  i1 = i3 + 8 | 0;
- HEAP8[27909 + i6 >> 0] = i5;
+ HEAP8[27929 + i6 >> 0] = i5;
  if (_IsMouseButtonPressed(0) | 0) {
   i2 = 1;
   i4 = 3;
@@ -26162,8 +26174,8 @@ function _rlEnableTexture(i5) {
  i5 = i5 | 0;
  var i1 = 0, i2 = 0, i3 = 0, i4 = 0, i6 = 0;
  i6 = 0;
- i2 = HEAP32[6764] | 0;
- i3 = HEAP32[6765] | 0;
+ i2 = HEAP32[6769] | 0;
+ i3 = HEAP32[6770] | 0;
  i4 = i3 + -1 | 0;
  if ((HEAP32[i2 + (i4 << 4) + 12 >> 2] | 0) == (i5 | 0)) return;
  i1 = HEAP32[i2 + (i4 << 4) + 4 >> 2] | 0;
@@ -26192,18 +26204,56 @@ function _rlEnableTexture(i5) {
    HEAP32[6086] = (HEAP32[6086] | 0) + i1;
    HEAP32[6085] = (HEAP32[6085] | 0) + (HEAP32[i2 + (i4 << 4) + 8 >> 2] | 0);
    i1 = i3 + 1 | 0;
-   HEAP32[6765] = i1;
+   HEAP32[6770] = i1;
    break;
   }
  } else i6 = 9; while (0);
- if ((i6 | 0) == 9) i1 = HEAP32[6765] | 0;
+ if ((i6 | 0) == 9) i1 = HEAP32[6770] | 0;
  if ((i1 | 0) > 255) _rlglDraw();
- i4 = HEAP32[6764] | 0;
- i6 = (HEAP32[6765] | 0) + -1 | 0;
+ i4 = HEAP32[6769] | 0;
+ i6 = (HEAP32[6770] | 0) + -1 | 0;
  i6 = i4 + (i6 << 4) | 0;
  HEAP32[i6 + 12 >> 2] = i5;
  HEAP32[i6 + 4 >> 2] = 0;
  return;
+}
+
+function _main() {
+ var i1 = 0, i2 = 0, i3 = 0, i4 = 0;
+ i1 = STACKTOP;
+ STACKTOP = STACKTOP + 64 | 0;
+ i2 = i1 + 40 | 0;
+ i4 = i1 + 20 | 0;
+ i3 = i1;
+ _InitWindow(640, 640, 9572);
+ _LoadTexture(i4, 9583);
+ HEAP32[6708] = HEAP32[i4 >> 2];
+ HEAP32[6709] = HEAP32[i4 + 4 >> 2];
+ HEAP32[6710] = HEAP32[i4 + 8 >> 2];
+ HEAP32[6711] = HEAP32[i4 + 12 >> 2];
+ HEAP32[6712] = HEAP32[i4 + 16 >> 2];
+ _LoadTexture(i3, 9595);
+ HEAP32[6713] = HEAP32[i3 >> 2];
+ HEAP32[6714] = HEAP32[i3 + 4 >> 2];
+ HEAP32[6715] = HEAP32[i3 + 8 >> 2];
+ HEAP32[6716] = HEAP32[i3 + 12 >> 2];
+ HEAP32[6717] = HEAP32[i3 + 16 >> 2];
+ _emscripten_set_main_loop(1, 0, 1);
+ _CloseWindow();
+ HEAP32[i2 >> 2] = HEAP32[6708];
+ HEAP32[i2 + 4 >> 2] = HEAP32[6709];
+ HEAP32[i2 + 8 >> 2] = HEAP32[6710];
+ HEAP32[i2 + 12 >> 2] = HEAP32[6711];
+ HEAP32[i2 + 16 >> 2] = HEAP32[6712];
+ _UnloadTexture(i2);
+ HEAP32[i2 >> 2] = HEAP32[6713];
+ HEAP32[i2 + 4 >> 2] = HEAP32[6714];
+ HEAP32[i2 + 8 >> 2] = HEAP32[6715];
+ HEAP32[i2 + 12 >> 2] = HEAP32[6716];
+ HEAP32[i2 + 16 >> 2] = HEAP32[6717];
+ _UnloadTexture(i2);
+ STACKTOP = i1;
+ return 0;
 }
 
 function _wcrtomb(i1, i3, i2) {
@@ -26554,10 +26604,10 @@ function _TakeScreenshot(i1) {
  i3 = i4 + 520 | 0;
  i5 = i4 + 512 | 0;
  i8 = i4 + 524 | 0;
- i6 = _rlReadScreenPixels(HEAP32[6812] | 0, HEAP32[6813] | 0) | 0;
+ i6 = _rlReadScreenPixels(HEAP32[6817] | 0, HEAP32[6818] | 0) | 0;
  HEAP32[i8 >> 2] = i6;
- HEAP32[i8 + 4 >> 2] = HEAP32[6812];
- HEAP32[i8 + 8 >> 2] = HEAP32[6813];
+ HEAP32[i8 + 4 >> 2] = HEAP32[6817];
+ HEAP32[i8 + 8 >> 2] = HEAP32[6818];
  HEAP32[i8 + 12 >> 2] = 1;
  HEAP32[i8 + 16 >> 2] = 7;
  _memset(i4 | 0, 0, 512) | 0;
@@ -26806,7 +26856,7 @@ function _rlOrtho(d6, d7, d5, d8, d10, d9) {
  i11 = i14 + 128 | 0;
  i12 = i14 + 64 | 0;
  _MatrixOrtho(i12, d6, d7, d5, d8, d10, d9);
- i1 = HEAP32[6746] | 0;
+ i1 = HEAP32[6751] | 0;
  i2 = i11;
  i3 = i1;
  i4 = i2 + 64 | 0;
@@ -27062,7 +27112,7 @@ function _rlTranslatef(f1, f2, f3) {
  i9 = i10 + 128 | 0;
  i6 = i10 + 64 | 0;
  _MatrixTranslate(i6, f1, f2, f3);
- i4 = HEAP32[6746] | 0;
+ i4 = HEAP32[6751] | 0;
  i5 = i9;
  i7 = i5 + 64 | 0;
  do {
@@ -27161,10 +27211,10 @@ function _UnloadFontDefault() {
  i3 = STACKTOP;
  i2 = STACKTOP = STACKTOP + 63 & -64;
  STACKTOP = STACKTOP + 32 | 0;
- if ((HEAP32[6786] | 0) > 0) {
+ if ((HEAP32[6791] | 0) > 0) {
   i1 = 0;
   do {
-   i4 = (HEAP32[6793] | 0) + (i1 * 36 | 0) + 16 | 0;
+   i4 = (HEAP32[6798] | 0) + (i1 * 36 | 0) + 16 | 0;
    HEAP32[i2 >> 2] = HEAP32[i4 >> 2];
    HEAP32[i2 + 4 >> 2] = HEAP32[i4 + 4 >> 2];
    HEAP32[i2 + 8 >> 2] = HEAP32[i4 + 8 >> 2];
@@ -27172,16 +27222,16 @@ function _UnloadFontDefault() {
    HEAP32[i2 + 16 >> 2] = HEAP32[i4 + 16 >> 2];
    _UnloadImage(i2);
    i1 = i1 + 1 | 0;
-  } while ((i1 | 0) < (HEAP32[6786] | 0));
+  } while ((i1 | 0) < (HEAP32[6791] | 0));
  };
- HEAP32[i2 >> 2] = HEAP32[6787];
- HEAP32[i2 + 4 >> 2] = HEAP32[6788];
- HEAP32[i2 + 8 >> 2] = HEAP32[6789];
- HEAP32[i2 + 12 >> 2] = HEAP32[6790];
- HEAP32[i2 + 16 >> 2] = HEAP32[6791];
+ HEAP32[i2 >> 2] = HEAP32[6792];
+ HEAP32[i2 + 4 >> 2] = HEAP32[6793];
+ HEAP32[i2 + 8 >> 2] = HEAP32[6794];
+ HEAP32[i2 + 12 >> 2] = HEAP32[6795];
+ HEAP32[i2 + 16 >> 2] = HEAP32[6796];
  _UnloadTexture(i2);
- _free(HEAP32[6793] | 0);
- _free(HEAP32[6792] | 0);
+ _free(HEAP32[6798] | 0);
+ _free(HEAP32[6797] | 0);
  STACKTOP = i3;
  return;
 }
@@ -28367,16 +28417,16 @@ function _GifWriteFrame(i6, i8, i5, i3, i1, i4) {
  i9 = STACKTOP;
  i7 = STACKTOP = STACKTOP + 63 & -64;
  STACKTOP = STACKTOP + 1296 | 0;
- if (!(HEAP32[6781] | 0)) {
+ if (!(HEAP32[6786] | 0)) {
   i8 = 0;
   STACKTOP = i9;
   return i8 | 0;
  }
- i2 = HEAP32[6713] | 0;
+ i2 = HEAP32[6718] | 0;
  _GifMakePalette(i4 ? 0 : i2, i6, i8, i5, i1, i4, i7);
- i1 = HEAP32[6713] | 0;
+ i1 = HEAP32[6718] | 0;
  if (i4) _GifDitherImage(i2, i6, i1, i8, i5, i7); else _GifThresholdImage(i2, i6, i1, i8, i5, i7);
- _GifWriteLzwImage(HEAP32[6781] | 0, HEAP32[6713] | 0, i8, i5, i3, i7);
+ _GifWriteLzwImage(HEAP32[6786] | 0, HEAP32[6718] | 0, i8, i5, i3, i7);
  i8 = 1;
  STACKTOP = i9;
  return i8 | 0;
@@ -28679,7 +28729,7 @@ function _strlen(i2) {
 }
 
 function _UnloadBuffersDefault() {
- if (HEAP8[27897] | 0) FUNCTION_TABLE_vi[HEAP32[6767] & 31](0);
+ if (HEAP8[27917] | 0) FUNCTION_TABLE_vi[HEAP32[6772] & 31](0);
  _glDisableVertexAttribArray(0);
  _glDisableVertexAttribArray(1);
  _glDisableVertexAttribArray(2);
@@ -28690,7 +28740,7 @@ function _UnloadBuffersDefault() {
  _glDeleteBuffers(1, 24372);
  _glDeleteBuffers(1, 24376);
  _glDeleteBuffers(1, 24380);
- if (HEAP8[27897] | 0) FUNCTION_TABLE_vii[HEAP32[6771] & 63](1, 24364);
+ if (HEAP8[27917] | 0) FUNCTION_TABLE_vii[HEAP32[6776] & 63](1, 24364);
  _free(HEAP32[6087] | 0);
  _free(HEAP32[6088] | 0);
  _free(HEAP32[6089] | 0);
@@ -28788,15 +28838,15 @@ function _stbir__calculate_sample_range_upsample(i4, f5, f7, f6, i2, i3, i1) {
 
 function _UpdateBuffersDefault() {
  if ((HEAP32[6084] | 0) <= 0) return;
- if (HEAP8[27897] | 0) FUNCTION_TABLE_vi[HEAP32[6767] & 31](HEAP32[6091] | 0);
+ if (HEAP8[27917] | 0) FUNCTION_TABLE_vi[HEAP32[6772] & 31](HEAP32[6091] | 0);
  _glBindBuffer(34962, HEAP32[6092] | 0);
  _glBufferSubData(34962, 0, (HEAP32[6084] | 0) * 12 | 0, HEAP32[6087] | 0);
  _glBindBuffer(34962, HEAP32[6093] | 0);
  _glBufferSubData(34962, 0, HEAP32[6084] << 3 | 0, HEAP32[6088] | 0);
  _glBindBuffer(34962, HEAP32[6094] | 0);
  _glBufferSubData(34962, 0, HEAP32[6084] << 2 | 0, HEAP32[6089] | 0);
- if (!(HEAP8[27897] | 0)) return;
- FUNCTION_TABLE_vi[HEAP32[6767] & 31](0);
+ if (!(HEAP8[27917] | 0)) return;
+ FUNCTION_TABLE_vi[HEAP32[6772] & 31](0);
  return;
 }
 
@@ -28946,21 +28996,21 @@ function _rlPushMatrix() {
  i5 = STACKTOP;
  i1 = STACKTOP = STACKTOP + 63 & -64;
  STACKTOP = STACKTOP + 16 | 0;
- if ((HEAP32[6747] | 0) > 31) _TraceLog(5, 10042, i1);
+ if ((HEAP32[6752] | 0) > 31) _TraceLog(5, 10042, i1);
  if ((HEAP32[2324] | 0) == 5888) {
-  HEAP8[27896] = 1;
-  HEAP32[6746] = 26992;
+  HEAP8[27916] = 1;
+  HEAP32[6751] = 27012;
  }
- i1 = HEAP32[6747] | 0;
+ i1 = HEAP32[6752] | 0;
  i2 = 22288 + (i1 << 6) | 0;
- i3 = HEAP32[6746] | 0;
+ i3 = HEAP32[6751] | 0;
  i4 = i2 + 64 | 0;
  do {
   HEAP32[i2 >> 2] = HEAP32[i3 >> 2];
   i2 = i2 + 4 | 0;
   i3 = i3 + 4 | 0;
  } while ((i2 | 0) < (i4 | 0));
- HEAP32[6747] = i1 + 1;
+ HEAP32[6752] = i1 + 1;
  STACKTOP = i5;
  return;
 }
@@ -29132,7 +29182,7 @@ function _BeginDrawing() {
  HEAPF64[3351] = d7;
  _rlLoadIdentity();
  i3 = i1;
- i5 = 27176;
+ i5 = 27196;
  i6 = i3 + 64 | 0;
  do {
   HEAP32[i3 >> 2] = HEAP32[i5 >> 2];
@@ -29343,25 +29393,6 @@ function _GifWritePalette(i3, i1) {
  return;
 }
 
-function _main() {
- var i1 = 0, i2 = 0;
- i1 = STACKTOP;
- STACKTOP = STACKTOP + 48 | 0;
- i2 = i1 + 20 | 0;
- _InitWindow(640, 640, 9572);
- _LoadTexture(i2, 9583);
- HEAP32[6708] = HEAP32[i2 >> 2];
- HEAP32[6709] = HEAP32[i2 + 4 >> 2];
- HEAP32[6710] = HEAP32[i2 + 8 >> 2];
- HEAP32[6711] = HEAP32[i2 + 12 >> 2];
- HEAP32[6712] = HEAP32[i2 + 16 >> 2];
- _LoadTexture(i1, 9595);
- _emscripten_set_main_loop(1, 0, 1);
- _CloseWindow();
- STACKTOP = i1;
- return 0;
-}
-
 function _Vector2Angle(i1, i2) {
  i1 = i1 | 0;
  i2 = i2 | 0;
@@ -29481,19 +29512,19 @@ function _WindowDropCallback(i1, i2, i3) {
  i3 = i3 | 0;
  var i4 = 0;
  _ClearDroppedFiles();
- HEAP32[6816] = _malloc(i2 << 2) | 0;
+ HEAP32[6821] = _malloc(i2 << 2) | 0;
  if ((i2 | 0) <= 0) {
-  HEAP32[6817] = i2;
+  HEAP32[6822] = i2;
   return;
  }
  i1 = 0;
  do {
   i4 = _malloc(512) | 0;
-  HEAP32[(HEAP32[6816] | 0) + (i1 << 2) >> 2] = i4;
+  HEAP32[(HEAP32[6821] | 0) + (i1 << 2) >> 2] = i4;
   _strcpy(i4, HEAP32[i3 + (i1 << 2) >> 2] | 0) | 0;
   i1 = i1 + 1 | 0;
  } while ((i1 | 0) != (i2 | 0));
- HEAP32[6817] = i2;
+ HEAP32[6822] = i2;
  return;
 }
 
@@ -29616,14 +29647,14 @@ function _SetupViewport(i2, i1) {
  i2 = i2 | 0;
  i1 = i1 | 0;
  var i3 = 0, i4 = 0;
- HEAP32[6812] = i2;
- HEAP32[6813] = i1;
- i4 = HEAP32[6814] | 0;
- i3 = HEAP32[6815] | 0;
+ HEAP32[6817] = i2;
+ HEAP32[6818] = i1;
+ i4 = HEAP32[6819] | 0;
+ i3 = HEAP32[6820] | 0;
  _rlViewport((i4 | 0) / 2 | 0, (i3 | 0) / 2 | 0, i2 - i4 | 0, i1 - i3 | 0);
  _rlMatrixMode(5889);
  _rlLoadIdentity();
- _rlOrtho(0.0, +(HEAP32[6812] | 0), +(HEAP32[6813] | 0), 0.0, 0.0, 1.0);
+ _rlOrtho(0.0, +(HEAP32[6817] | 0), +(HEAP32[6818] | 0), 0.0, 0.0, 1.0);
  _rlMatrixMode(5888);
  _rlLoadIdentity();
  return;
@@ -29887,19 +29918,6 @@ function _sbrk(i1) {
  return i3 | 0;
 }
 
-function _stbir_resize_uint8(i2, i4, i1, i3, i7, i9, i6, i8, i5) {
- i2 = i2 | 0;
- i4 = i4 | 0;
- i1 = i1 | 0;
- i3 = i3 | 0;
- i7 = i7 | 0;
- i9 = i9 | 0;
- i6 = i6 | 0;
- i8 = i8 | 0;
- i5 = i5 | 0;
- return _stbir__resize_arbitrary(i2, i4, i1, i3, i7, i9, i6, i8, Math_fround(0.0), Math_fround(0.0), Math_fround(1.0), Math_fround(1.0), 0, i5, -1, 0, 0, 0, 0, 1, 1, 0) | 0;
-}
-
 function _stbi__at_eof(i1) {
  i1 = i1 | 0;
  if (HEAP32[i1 + 16 >> 2] | 0) {
@@ -29914,6 +29932,18 @@ function _stbi__at_eof(i1) {
  }
  i1 = (HEAP32[i1 + 168 >> 2] | 0) >>> 0 >= (HEAP32[i1 + 172 >> 2] | 0) >>> 0 & 1;
  return i1 | 0;
+}
+function _stbir_resize_uint8(i2, i4, i1, i3, i7, i9, i6, i8, i5) {
+ i2 = i2 | 0;
+ i4 = i4 | 0;
+ i1 = i1 | 0;
+ i3 = i3 | 0;
+ i7 = i7 | 0;
+ i9 = i9 | 0;
+ i6 = i6 | 0;
+ i8 = i8 | 0;
+ i5 = i5 | 0;
+ return _stbir__resize_arbitrary(i2, i4, i1, i3, i7, i9, i6, i8, Math_fround(0.0), Math_fround(0.0), Math_fround(1.0), Math_fround(1.0), 0, i5, -1, 0, 0, 0, 0, 1, 1, 0) | 0;
 }
 
 function _calloc(i3, i1) {
@@ -29960,7 +29990,7 @@ function _rlLoadIdentity() {
  i2 = STACKTOP;
  i3 = STACKTOP = STACKTOP + 63 & -64;
  STACKTOP = STACKTOP + 64 | 0;
- i1 = HEAP32[6746] | 0;
+ i1 = HEAP32[6751] | 0;
  _MatrixIdentity(i3);
  i4 = i1 + 64 | 0;
  do {
@@ -29981,14 +30011,6 @@ function _rlClearColor(i4, i3, i2, i1) {
  return;
 }
 
-function _stbir__get_coefficient_width(i1, f2) {
- i1 = i1 | 0;
- f2 = Math_fround(f2);
- var f3 = f0, i4 = 0;
- i4 = (_stbir__use_upsampling(f2) | 0) == 0;
- f3 = Math_fround(Math_fround(1.0) / f2);
- return ~~Math_fround(Math_ceil(Math_fround(Math_fround(FUNCTION_TABLE_ff[HEAP32[4e3 + (i1 << 3) + 4 >> 2] & 7](i4 ? f2 : f3)) * Math_fround(2.0)))) | 0;
-}
 function ___unlist_locked_file(i1) {
  i1 = i1 | 0;
  var i2 = 0;
@@ -30001,6 +30023,15 @@ function ___unlist_locked_file(i1) {
   HEAP32[i1 >> 2] = i2;
  }
  return;
+}
+
+function _stbir__get_coefficient_width(i1, f2) {
+ i1 = i1 | 0;
+ f2 = Math_fround(f2);
+ var f3 = f0, i4 = 0;
+ i4 = (_stbir__use_upsampling(f2) | 0) == 0;
+ f3 = Math_fround(Math_fround(1.0) / f2);
+ return ~~Math_fround(Math_ceil(Math_fround(Math_fround(FUNCTION_TABLE_ff[HEAP32[4e3 + (i1 << 3) + 4 >> 2] & 7](i4 ? f2 : f3)) * Math_fround(2.0)))) | 0;
 }
 
 function _getint(i2) {
@@ -30072,13 +30103,13 @@ function _CloseWindow() {
  i1 = STACKTOP;
  i2 = STACKTOP = STACKTOP + 63 & -64;
  STACKTOP = STACKTOP + 16 | 0;
- if (HEAP8[27915] | 0) {
+ if (HEAP8[27935] | 0) {
   _GifEnd() | 0;
-  HEAP8[27915] = 0;
+  HEAP8[27935] = 0;
  }
  _UnloadFontDefault();
  _rlglClose();
- _glfwDestroyWindow(HEAP32[6778] | 0);
+ _glfwDestroyWindow(HEAP32[6783] | 0);
  _glfwTerminate();
  _TraceLog(3, 17665, i2);
  STACKTOP = i1;
@@ -30161,8 +30192,8 @@ function ___fseeko(i4, i1, i2, i3) {
 function _GetMousePosition(i1) {
  i1 = i1 | 0;
  var f2 = f0, f3 = f0;
- f3 = Math_fround(Math_fround(Math_fround(HEAPF32[6779]) + Math_fround(0.0)) * Math_fround(1.0));
- f2 = Math_fround(Math_fround(Math_fround(HEAPF32[6780]) + Math_fround(0.0)) * Math_fround(1.0));
+ f3 = Math_fround(Math_fround(Math_fround(HEAPF32[6784]) + Math_fround(0.0)) * Math_fround(1.0));
+ f2 = Math_fround(Math_fround(Math_fround(HEAPF32[6785]) + Math_fround(0.0)) * Math_fround(1.0));
  HEAPF32[i1 >> 2] = f3;
  HEAPF32[i1 + 4 >> 2] = f2;
  return;
@@ -30249,10 +30280,10 @@ function _rlglClose() {
  STACKTOP = STACKTOP + 16 | 0;
  _UnloadShaderDefault();
  _UnloadBuffersDefault();
- _glDeleteTextures(1, 27064);
- HEAP32[i2 >> 2] = HEAP32[6766];
+ _glDeleteTextures(1, 27084);
+ HEAP32[i2 >> 2] = HEAP32[6771];
  _TraceLog(3, 13331, i2);
- _free(HEAP32[6764] | 0);
+ _free(HEAP32[6769] | 0);
  STACKTOP = i1;
  return;
 }
@@ -30316,30 +30347,30 @@ function _ma_pcm_rb_pointer_disance(i1) {
 
 function _rlPopMatrix() {
  var i1 = 0;
- i1 = HEAP32[6747] | 0;
+ i1 = HEAP32[6752] | 0;
  if ((i1 | 0) > 0) {
   i1 = i1 + -1 | 0;
-  _memmove(HEAP32[6746] | 0, 22288 + (i1 << 6) | 0, 64) | 0;
-  HEAP32[6747] = i1;
+  _memmove(HEAP32[6751] | 0, 22288 + (i1 << 6) | 0, 64) | 0;
+  HEAP32[6752] = i1;
  }
- if (!((HEAP32[6747] | 0) == 0 & (HEAP32[2324] | 0) == 5888)) return;
- HEAP32[6746] = 26856;
- HEAP8[27896] = 0;
+ if (!((HEAP32[6752] | 0) == 0 & (HEAP32[2324] | 0) == 5888)) return;
+ HEAP32[6751] = 26876;
+ HEAP8[27916] = 0;
  return;
 }
 
 function _ClearDroppedFiles() {
  var i1 = 0;
- if ((HEAP32[6817] | 0) <= 0) return;
- if ((HEAP32[6817] | 0) > 0) {
+ if ((HEAP32[6822] | 0) <= 0) return;
+ if ((HEAP32[6822] | 0) > 0) {
   i1 = 0;
   do {
-   _free(HEAP32[(HEAP32[6816] | 0) + (i1 << 2) >> 2] | 0);
+   _free(HEAP32[(HEAP32[6821] | 0) + (i1 << 2) >> 2] | 0);
    i1 = i1 + 1 | 0;
-  } while ((i1 | 0) < (HEAP32[6817] | 0));
+  } while ((i1 | 0) < (HEAP32[6822] | 0));
  }
- _free(HEAP32[6816] | 0);
- HEAP32[6817] = 0;
+ _free(HEAP32[6821] | 0);
+ HEAP32[6822] = 0;
  return;
 }
 
@@ -30375,8 +30406,8 @@ function _ma_device_is_started(i1) {
 
 function _UpdateGestures() {
  var i1 = 0;
- if (((HEAP32[6775] | 0) + -1 | 0) >>> 0 < 2 & (HEAP32[6776] | 0) < 2) HEAP32[6775] = 4;
- i1 = (HEAP32[6775] | 0) + -16 | 0;
+ if (((HEAP32[6780] | 0) + -1 | 0) >>> 0 < 2 & (HEAP32[6781] | 0) < 2) HEAP32[6780] = 4;
+ i1 = (HEAP32[6780] | 0) + -16 | 0;
  switch (i1 >>> 4 | i1 << 28 | 0) {
  case 0:
  case 1:
@@ -30386,7 +30417,7 @@ function _UpdateGestures() {
  default:
   return;
  }
- HEAP32[6775] = 0;
+ HEAP32[6780] = 0;
  return;
 }
 
@@ -30423,20 +30454,20 @@ function _rlMatrixMode(i1) {
  switch (i1 | 0) {
  case 5889:
   {
-   i2 = 26920;
+   i2 = 26940;
    i3 = 3;
    break;
   }
  case 5888:
   {
-   i2 = 26856;
+   i2 = 26876;
    i3 = 3;
    break;
   }
  default:
   {}
  }
- if ((i3 | 0) == 3) HEAP32[6746] = i2;
+ if ((i3 | 0) == 3) HEAP32[6751] = i2;
  HEAP32[2324] = i1;
  return;
 }
@@ -30496,10 +30527,10 @@ function _stbir__setup(i2, i4, i3, i6, i5, i1) {
 
 function _UnloadShaderDefault() {
  _glUseProgram(0);
- _glDetachShader(HEAP32[6688] | 0, HEAP32[6773] | 0);
- _glDetachShader(HEAP32[6688] | 0, HEAP32[6774] | 0);
- _glDeleteShader(HEAP32[6773] | 0);
- _glDeleteShader(HEAP32[6774] | 0);
+ _glDetachShader(HEAP32[6688] | 0, HEAP32[6778] | 0);
+ _glDetachShader(HEAP32[6688] | 0, HEAP32[6779] | 0);
+ _glDeleteShader(HEAP32[6778] | 0);
+ _glDeleteShader(HEAP32[6779] | 0);
  _glDeleteProgram(HEAP32[6688] | 0);
  return;
 }
@@ -30767,16 +30798,16 @@ function _stbir__support_trapezoid(f1) {
 
 function _GifEnd() {
  var i1 = 0;
- i1 = HEAP32[6781] | 0;
+ i1 = HEAP32[6786] | 0;
  if (!i1) {
   i1 = 0;
   return i1 | 0;
  }
  _fputc(59, i1) | 0;
- _fclose(HEAP32[6781] | 0) | 0;
- _free(HEAP32[6713] | 0);
- HEAP32[6781] = 0;
- HEAP32[6713] = 0;
+ _fclose(HEAP32[6786] | 0) | 0;
+ _free(HEAP32[6718] | 0);
+ HEAP32[6786] = 0;
+ HEAP32[6718] = 0;
  i1 = 1;
  return i1 | 0;
 }
@@ -30915,7 +30946,7 @@ function _pop_arg_long_double(i2, i1) {
 function _SetMatrixProjection(i1) {
  i1 = i1 | 0;
  var i2 = 0, i3 = 0;
- i3 = 26920;
+ i3 = 26940;
  i2 = i3 + 64 | 0;
  do {
   HEAP32[i3 >> 2] = HEAP32[i1 >> 2];
@@ -30937,7 +30968,7 @@ function _emscripten_glUniform4f$legalf32(i1, f2, f3, f4, f5) {
 function _SetMatrixModelview(i1) {
  i1 = i1 | 0;
  var i2 = 0, i3 = 0;
- i3 = 26856;
+ i3 = 26876;
  i2 = i3 + 64 | 0;
  do {
   HEAP32[i3 >> 2] = HEAP32[i1 >> 2];
@@ -30958,7 +30989,7 @@ function ___cosdf(d1) {
 function _GetFontDefault(i1) {
  i1 = i1 | 0;
  var i2 = 0, i3 = 0;
- i2 = 27140;
+ i2 = 27160;
  i3 = i1 + 36 | 0;
  do {
   HEAP32[i1 >> 2] = HEAP32[i2 >> 2];
@@ -31078,9 +31109,9 @@ function _emscripten_glVertexAttrib3f$legalf32(i1, f2, f3, f4) {
 function _IsMouseButtonReleased(i1) {
  i1 = i1 | 0;
  var i2 = 0;
- i2 = HEAP8[27909 + i1 >> 0] | 0;
+ i2 = HEAP8[27929 + i1 >> 0] | 0;
  i2 = i2 << 24 >> 24 | 0;
- return ((i2 | 0) == 0 ? (i2 | 0) != (HEAP8[27912 + i1 >> 0] | 0) : 0) | 0;
+ return ((i2 | 0) == 0 ? (i2 | 0) != (HEAP8[27932 + i1 >> 0] | 0) : 0) | 0;
 }
 
 function _emscripten_glClearColor$legalf32(f1, f2, f3, f4) {
@@ -31102,9 +31133,9 @@ function _emscripten_glBlendColor$legalf32(f1, f2, f3, f4) {
 function _IsMouseButtonPressed(i1) {
  i1 = i1 | 0;
  var i2 = 0;
- i2 = HEAP8[27909 + i1 >> 0] | 0;
+ i2 = HEAP8[27929 + i1 >> 0] | 0;
  i2 = i2 << 24 >> 24 | 0;
- return ((i2 | 0) == 1 ? (i2 | 0) != (HEAP8[27912 + i1 >> 0] | 0) : 0) | 0;
+ return ((i2 | 0) == 1 ? (i2 | 0) != (HEAP8[27932 + i1 >> 0] | 0) : 0) | 0;
 }
 
 function _stbi__mul2sizes_valid(i1, i2) {
@@ -31319,8 +31350,8 @@ function _WindowSizeCallback(i3, i2, i1) {
  i2 = i2 | 0;
  i1 = i1 | 0;
  _SetupViewport(i2, i1);
- HEAP32[6783] = i2;
- HEAP32[6784] = i1;
+ HEAP32[6788] = i2;
+ HEAP32[6789] = i1;
  return;
 }
 
@@ -31735,7 +31766,7 @@ function _ScrollCallback(i1, d2, d3) {
  i1 = i1 | 0;
  d2 = +d2;
  d3 = +d3;
- HEAP32[6818] = ~~d3;
+ HEAP32[6823] = ~~d3;
  return;
 }
 
@@ -31958,7 +31989,7 @@ function b12(f1, i2) {
 }
 
 function _SwapBuffers() {
- _glfwSwapBuffers(HEAP32[6778] | 0);
+ _glfwSwapBuffers(HEAP32[6783] | 0);
  return;
 }
 
@@ -32038,8 +32069,8 @@ function stackRestore(i1) {
 }
 
 function ___ofl_lock() {
- ___lock(27372);
- return 27380;
+ ___lock(27392);
+ return 27400;
 }
 
 function _dummy_731(i1) {
@@ -32048,7 +32079,7 @@ function _dummy_731(i1) {
 }
 
 function _GetScreenHeight() {
- return HEAP32[6784] | 0;
+ return HEAP32[6789] | 0;
 }
 
 function getEmtStackMax() {
@@ -32056,12 +32087,12 @@ function getEmtStackMax() {
 }
 
 function ___ofl_unlock() {
- ___unlock(27372);
+ ___unlock(27392);
  return;
 }
 
 function _GetScreenWidth() {
- return HEAP32[6783] | 0;
+ return HEAP32[6788] | 0;
 }
 
 function b3(i1) {
@@ -32071,7 +32102,7 @@ function b3(i1) {
 }
 
 function _emscripten_get_sbrk_ptr() {
- return 28944;
+ return 28960;
 }
 
 function b9(f1) {
@@ -32103,7 +32134,7 @@ function _GetTime() {
 }
 
 function ___errno_location() {
- return 27368;
+ return 27388;
 }
 
 function stackSave() {

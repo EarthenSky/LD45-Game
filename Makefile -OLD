@@ -24,7 +24,7 @@
 .PHONY: all clean
 
 # Define required raylib variables
-PROJECT_NAME       ?= arena
+PROJECT_NAME       ?= raylib_examples
 RAYLIB_VERSION     ?= 2.5.0
 RAYLIB_API_VERSION ?= 2
 RAYLIB_PATH        ?= C:\raylib
@@ -347,31 +347,22 @@ ifeq ($(PLATFORM),PLATFORM_WEB)
 endif
 
 # Define all source files required
-PROJECT_SOURCE_FILES  = main.c \
-                        oper.c
-
-OBJS = $(patsubst %.c, %.o, $(PROJECT_SOURCE_FILES))
+EXAMPLES = main
+SRC = oper
 
 CURRENT_MAKEFILE = $(lastword $(MAKEFILE_LIST))
 
 # Default target entry
-all:
-	$(MAKE) $(PROJECT_NAME)
-
-$(PROJECT_NAME): $(OBJS)
-	$(CC) -o $(PROJECT_NAME)$(EXT) $(OBJS) $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(PLATFORM)
-
-%.o: %.c
-	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM)
+all: $(EXAMPLES)
 
 # Generic compilation pattern
 # NOTE: Examples must be ready for Android compilation!
-#%: %.c
-#ifeq ($(PLATFORM),PLATFORM_ANDROID)
-#	$(MAKE) -f Makefile.Android PROJECT_NAME=$@ PROJECT_SOURCE_FILES=$<
-#else
-#	$(CC) -o $@$(EXT) $< $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(PLATFORM)
-#endif
+%: %.c
+ifeq ($(PLATFORM),PLATFORM_ANDROID)
+	$(MAKE) -f Makefile.Android PROJECT_NAME=$@ PROJECT_SOURCE_FILES=$<
+else
+	$(CC) -o $@$(EXT) $< $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(PLATFORM)
+endif
 
 # Clean everything
 clean:
